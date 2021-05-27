@@ -61,6 +61,9 @@ namespace CafedralDB.SourceCode.Model
 					int disciplineType = 1;
 					
 					discipline.Descr = disciplineName;
+
+					disciplineName = disciplineName.ToLower();
+
 					if (!isSpecial)
 					{
 						discipline.LectureCount = lectures;
@@ -71,95 +74,90 @@ namespace CafedralDB.SourceCode.Model
 						discipline.Ekz = ekz;
 						discipline.Zach = zach;
 						discipline.Kz = kz;
-                        discipline.Contract = isContract;
+						discipline.Contract = isContract;
 					}
 					else
 					{
 						discipline.Special = true;
 
-                        if (disciplineName.ToLower().Contains("практ"))
-                        {
-                            //if (disciplineName.ToLower().Contains("нир") || disciplineName.ToLower().Contains("исслед"))
-                            //{
-                            //    discipline.NIIR = practices;
-                            //    disciplineType = 3;
-                            //}
-                            //else
-							if (disciplineName.ToLower().Contains("уч"))
-                            {
-                                discipline.UchPr = practices;
-                                disciplineType = 3;
-                            }
-                            else if (disciplineName.ToLower().Contains("преддип"))
-                            {
-                                discipline.PredDipPr = practices;
-                                disciplineType = 3;
-                            }
-                            else if (disciplineName.ToLower().Contains("произв"))
-                            {
-                                discipline.PrPr = practices;
-                                disciplineType = 3;
-                            }
-                        }
+						if (disciplineName.Contains("практ"))
+						{
+							if (disciplineName.Contains("уч"))
+							{
+								discipline.UchPr = practices;
+								disciplineType = 3;
+							}
+							else if (disciplineName.Contains("преддип"))
+							{
+								discipline.PredDipPr = practices;
+								disciplineType = 3;
+							}
+							else if (disciplineName.Contains("произв"))
+							{
+								discipline.PrPr = practices;
+								disciplineType = 3;
+							}
+						}
 
-						if (disciplineName.ToLower().Contains("конс") && disciplineName.ToLower().Contains("заоч"))
+						if (disciplineName.Contains("конс") && disciplineName.Contains("заоч"))
 						{
 							discipline.KonsZaoch = true;
 							disciplineType = 3;
 						}
 
-						if (disciplineName.ToLower().Contains("вып") && disciplineName.ToLower().Contains("раб"))
-						{
-							discipline.DPRuk = true;
-							disciplineType = 2;
-						}
-
-						//if (disciplineName.ToLower().Contains("гэк") || (disciplineName.ToLower().Contains("гос") && disciplineName.ToLower().Contains("экз")))
-						//{
-						//	discipline.GEK = true;
-						//	disciplineType = 3;
-						//}
-						if(disciplineName.ToLower().Contains("гос") && disciplineName.ToLower().Contains("экз"))
+                        if (disciplineName.Contains("гэк"))
                         {
+                            discipline.GEK = true;
+                            disciplineType = 3;
+                        }
+
+                        if (disciplineName.Contains("гос") && disciplineName.Contains("экз"))
+						{
 							disciplineType = 3;
 							//Добавить в таблицу и классы Гос Экзамен
-                        }
-						if (disciplineName.ToLower().Contains("гак") )
+						}
+
+						if (disciplineName.Contains("гак"))
 						{
-							if (disciplineName.ToLower().Contains("предс"))
+							if (disciplineName.Contains("предс"))
 							{
 								discipline.GAKPred = true;
 							}
 							else
 							{
-								discipline.GAK = true; 
+								discipline.GAK = true;
 							}
 							disciplineType = 3;
 						}
-
-                        if (disciplineName.ToLower().Contains("диссер"))
-                        {
-                            discipline.DPRuk = true;
-                        }
-                        if ((disciplineName.ToLower().Contains("науч") && disciplineName.ToLower().Contains("иссл"))|| disciplineName.ToLower().Contains("нир"))
+						if (disciplineName.Contains("вып") && disciplineName.Contains("раб"))
+						{
+							discipline.DPRuk = true;
+							disciplineType = 2;
+						}
+						if (disciplineName.Contains("диссер"))
+						{
+							discipline.DPRuk = true;
+						}
+						if ((disciplineName.Contains("науч") && disciplineName.Contains("иссл")) || disciplineName.Contains("нир"))
 						{
 							discipline.NIIR = practices;
 							disciplineType = 2;
 						}
 
-						if (disciplineName.ToLower().Contains("рук") && disciplineName.ToLower().Contains("каф"))
+						if (disciplineName.Contains("рук"))
 						{
-							discipline.RukKaf = true;
-							disciplineType = 3;
+							if (disciplineName.Contains("каф"))
+							{
+								discipline.RukKaf = true;
+								disciplineType = 3;
+							}
+							if (disciplineName.Contains("асп"))
+							{
+								discipline.ASPRuk = true;
+								disciplineType = 2;
+							}
 						}
-
-						if (disciplineName.ToLower().Contains("рук") && disciplineName.ToLower().Contains("асп"))
-						{
-							discipline.ASPRuk = true;
-							disciplineType = 2;
-						}
-
-						if ((disciplineName.ToLower().Contains("рук") || (disciplineName.ToLower().Contains("дисс"))) && disciplineName.ToLower().Contains("маг"))
+						if (disciplineName.Contains("дисс") && disciplineName.Contains("маг"))
 						{
 							discipline.MAGRuk = true;
 							disciplineType = 2;
@@ -172,7 +170,6 @@ namespace CafedralDB.SourceCode.Model
 					//year - надо чтоб: int(year) - semester/2
 					int course = 1;
                     //Ввести проверку, что если семестр болльше 8(для рассчета курса магистров)
-                    //добавить Изменение длительности семестра
 					if (semester!="")
 						course = (int)Math.Ceiling(Convert.ToInt32(semester)/2f);
                     if (course >= 5)
@@ -221,7 +218,8 @@ namespace CafedralDB.SourceCode.Model
 					}
 					res = true;
 					counter++;
-
+					
+					//Актуализация длительности семестра в БД
                     if(DataManager.SharedDataManager().GetSemester(semesterID).WeekCount!=weeks)
                     {
                         var newSemester = new Semester(semesterID);
@@ -229,7 +227,7 @@ namespace CafedralDB.SourceCode.Model
                         newSemester.Name = semesterID.ToString();
                         DataManager.SharedDataManager().SetSemester(newSemester);
                     }
-
+					//Актуализация информации о группе в БД
                     if(groupID!=-1 && (DataManager.SharedDataManager().GetGroup(groupID).SubgroupCount != groupCount ||
                         DataManager.SharedDataManager().GetGroup(groupID).StudentCount != studentCount))
                     {

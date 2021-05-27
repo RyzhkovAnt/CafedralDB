@@ -134,8 +134,8 @@ namespace Model
 		{
 			int result = 1;
 
-			var cn = new System.Data.OleDb.OleDbConnection(connString);
-			var cmd = new System.Data.OleDb.OleDbCommand();
+			var cn = new OleDbConnection(connString);
+			var cmd = new OleDbCommand();
 			cn.Open();
 			cmd.Connection = cn;
 			cmd.CommandType = CommandType.Text;
