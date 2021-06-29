@@ -350,14 +350,14 @@ namespace Model
 			{
 				string path = System.Windows.Forms.Application.StartupPath + "\\ExcelTemplates\\WorkloadTemplate.xltx";
 
-				Microsoft.Office.Interop.Excel.Application ObjExcel = new Excel.Application();
-				Microsoft.Office.Interop.Excel.Workbook ObjWorkBook;
-				Microsoft.Office.Interop.Excel.Worksheet ObjWorkSheet;
+				Excel.Application ObjExcel = new Excel.Application();
+				Excel.Workbook ObjWorkBook;
+				Excel.Worksheet ObjWorkSheet;
                 
 				//Книга.
 				ObjWorkBook = ObjExcel.Workbooks.Add(path);//System.Reflection.Missing.Value);
 														   //Таблица.
-				ObjWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)ObjWorkBook.Sheets[1];
+				ObjWorkSheet = (Excel.Worksheet)ObjWorkBook.Sheets[1];
 				ObjWorkBook.Title = string.Format("Нагрузка ({0} / {1})", year, Convert.ToInt32(year) + 1);
 				//
 
@@ -375,7 +375,7 @@ namespace Model
                     "INNER JOIN Discipline ON Workload.Discipline = Discipline.ID) INNER JOIN [Group] ON Workload.[Group] = [Group].ID) " +
                     "INNER JOIN Qualification ON[Group].Qualification = Qualification.ID) INNER JOIN StudyForm ON[Group].StudyForm = StudyForm.ID) " +
                     "INNER JOIN Speciality ON[Group].Speciality = Speciality.ID) INNER JOIN Faculty ON Speciality.Faculty = Faculty.ID) " +
-                    "INNER JOIN Semester ON Workload.Semester = Semester.ID) WHERE(StudyYear.StudyYear = @year) ";
+                    "INNER JOIN Semester ON Workload.Semester = Semester.ID) WHERE(StudyYear.StudyYear = @year) ORDER BY Workload.ID";
 
                 /*
                  Reader:
@@ -402,14 +402,14 @@ namespace Model
                  */
 
                 DataManager.SharedDataManager();
-				var cn = new System.Data.OleDb.OleDbConnection(DataManager.Connection.ConnectionString);
-				var cmd = new System.Data.OleDb.OleDbCommand();
+				var cn = new OleDbConnection(DataManager.Connection.ConnectionString);
+				var cmd = new OleDbCommand();
 				cn.Open();
 				cmd.Connection = cn;
 				cmd.CommandType = CommandType.Text;
 				cmd.CommandText = strSQL;
 				cmd.Parameters.AddWithValue("@year", year);
-				System.Data.OleDb.OleDbDataReader reader = cmd.ExecuteReader();
+				OleDbDataReader reader = cmd.ExecuteReader();
 
 				Dictionary<Excel.Worksheet, int> rowCounters = new Dictionary<Excel.Worksheet, int>();
 				//пишем данные
@@ -447,7 +447,7 @@ namespace Model
                     }
 
 					Dictionary<Excel.Worksheet, WorkloadAssign> assignsForTeachers = new Dictionary<Excel.Worksheet, WorkloadAssign>(); 
-
+               
 					List<WorkloadAssign> assigns = DataManager.SharedDataManager().GetWorkloadAssigns(Convert.ToInt32(reader[1]));
 					if (assigns.Count != 0)
 					{
@@ -477,11 +477,12 @@ namespace Model
 					foreach (Excel.Worksheet sheet in toWriteList)
 					{
 						int countStud = Convert.ToInt32(reader[8]);
-						if(sheet.Index>8 && Convert.ToBoolean(reader[34]))
-						{
-							WorkloadAssign assign = DataManager.SharedDataManager().GetWorkloadAssign(Convert.ToInt32(reader[1]), sheet.Name);
-							countStud = assign.StudentsCount;
-                            
+                        if (sheet.Index > 8 && Convert.ToBoolean(reader[34]))
+                        {
+                            WorkloadAssign assign = DataManager.SharedDataManager().
+                                GetWorkloadAssign(Convert.ToInt32(reader[1]), sheet.Name);
+                            countStud = assign.StudentsCount;
+
                         }
                         //TestWorkload(Convert.ToInt32(reader[1]));/*DEBUG*/
                         ExportNotAssign(reader, sheet, rowCounters,countStud);
@@ -509,12 +510,9 @@ namespace Model
                 string res = "";
                 int distId = DataManager.SharedDataManager().GetWorkload(workloadId).Discipline;
                 res += "WorkLoad " + " - " + DataManager.SharedDataManager().GetDiscipline(distId).Descr + "\r\n";
-                res += "LectureCost " + " - " + calc.LectureCost + "\r\n";
-                res += "PracticeCost " + " - " + calc.PracticeCost + "\r\n";
-                res += "LabCost " + " - " + calc.LabCost + "\r\n";
-                res += "KRCost " + " - " + calc.KRCost + "\r\n";
-                res += "ZachCost " + " - " + calc.ZachCost + "\r\n";
-                res += "EkzCost " + " - " + calc.EkzCost + "\r\n\r\n";
+                res += "GEKCost " + " - " + calc.GEKCost + "\r\n";
+                res += "GAKCost " + " - " + calc.GAKCost + "\r\n";
+                res += "GosEkz " + " - " + calc.GosEkz + "\r\n\r\n";
 
                 File.WriteAllText(System.AppDomain.CurrentDomain.BaseDirectory + "\\testWorkload\\" + calc.WorkLoadID + ".txt", res);
             }
@@ -564,69 +562,91 @@ namespace Model
 
                 */
 
-                sheet.Cells[rowCounters[sheet], 34] = Math.Round(workloadCost.LectureCost,2);
-                sheet.Cells[rowCounters[sheet], 35] = Math.Round(workloadCost.PracticeCost, 2);
-                sheet.Cells[rowCounters[sheet], 36] = Math.Round(workloadCost.LabCost, 2);
-                sheet.Cells[rowCounters[sheet], 37] = Math.Round(workloadCost.KonsCost, 2);
-                sheet.Cells[rowCounters[sheet], 38] = Math.Round(workloadCost.EkzCost, 2);
-                sheet.Cells[rowCounters[sheet], 39] = Math.Round(workloadCost.ZachCost, 2);
+                sheet.Cells[rowCounters[sheet], 34] = Math.Round(workloadCost.LectureCost,2); //часов лекций
+                sheet.Cells[rowCounters[sheet], 35] = Math.Round(workloadCost.PracticeCost, 2); //часов практ. работ
+                sheet.Cells[rowCounters[sheet], 36] = Math.Round(workloadCost.LabCost, 2); // часов лабораторных
+                sheet.Cells[rowCounters[sheet], 37] = Math.Round(workloadCost.KonsCost, 2); //часов консультаций
+                sheet.Cells[rowCounters[sheet], 38] = Math.Round(workloadCost.EkzCost, 2); // часов экзамен
+                sheet.Cells[rowCounters[sheet], 39] = Math.Round(workloadCost.ZachCost, 2); //часов зачет
                 sheet.Cells[rowCounters[sheet], 40] = 0;
-                sheet.Cells[rowCounters[sheet], 41] = Math.Round(workloadCost.KRCost, 2);
-                sheet.Cells[rowCounters[sheet], 42] = Math.Round(workloadCost.KPCost, 2);
+                sheet.Cells[rowCounters[sheet], 41] = Math.Round(workloadCost.KRCost, 2); //часов курсовая работа
+                sheet.Cells[rowCounters[sheet], 42] = Math.Round(workloadCost.KPCost, 2); //часов курсовой проект
 
-                if(workloadCost.UchPracCost != 0)
+                //Учебная практика
+                if (workloadCost.UchPracCost != 0)
                 {
+                    sheet.Cells[rowCounters[sheet], 8] = reader[18].ToString(); // Кол-во недель
+                    sheet.Cells[rowCounters[sheet], 19] = Convert.ToBoolean(reader[18]) ? "+" : ""; 
                     sheet.Cells[rowCounters[sheet], 43] = Math.Round(workloadCost.UchPracCost, 2);
                 }
+                //Производственная практика
                 if (workloadCost.PrPracCost != 0)
                 {
+                    sheet.Cells[rowCounters[sheet], 8] = reader[19].ToString(); // Кол-во недель
+                    sheet.Cells[rowCounters[sheet], 20] = Convert.ToBoolean(reader[19]) ? "+" : "";
                     sheet.Cells[rowCounters[sheet], 44] = Math.Round(workloadCost.PrPracCost, 2);
                 }
+                //Преддипломная практика
                 if (workloadCost.PredDipPracCost != 0)
                 {
+                    sheet.Cells[rowCounters[sheet], 8] = reader[20].ToString(); // Кол-во недель
+                    sheet.Cells[rowCounters[sheet], 21] = Convert.ToBoolean(reader[20]) ? "+" : "";
                     sheet.Cells[rowCounters[sheet], 45] = Math.Round(workloadCost.PredDipPracCost, 2);
                 }
+                //Научно-исследовательская работа
+                if (workloadCost.NIIRCost != 0)
+                {
+                    sheet.Cells[rowCounters[sheet], 8] = reader[33].ToString(); // Кол-во недель
+                    sheet.Cells[rowCounters[sheet], 22] = Convert.ToBoolean(reader[33]) ? "+" : "";
+                    sheet.Cells[rowCounters[sheet], 45] = Math.Round(workloadCost.NIIRCost, 2);
+                }
+                //ГЕК
                 if (workloadCost.GEKCost != 0)
                 {
                     sheet.Cells[rowCounters[sheet], 47] = Math.Round(workloadCost.GEKCost, 2);
                 }
+                //гос Экзамен
+                if (workloadCost.GosEkz != 0)
+                {
+                    sheet.Cells[rowCounters[sheet], 47] = Math.Round(workloadCost.GosEkz, 2);
+
+                }
+                //ГАК
                 if (workloadCost.GAKCost != 0)
                 {
                     sheet.Cells[rowCounters[sheet], 48] = Math.Round(workloadCost.GAKCost, 2);
                 }
-                //if(Convert.ToInt32(reader[19]) != 0)
-                //{
-                //    //производственная практика
-                //    sheet.Cells[rowCounters[sheet], 44] = Convert.ToInt32(reader[19]) * ApplicationSettings.CalculationSettings.PrPr;
-                //}
-                //else if(Convert.ToInt32(reader[33]) != 0)
-                //{
-                //    //научно-исследовательская работа
-                //    sheet.Cells[rowCounters[sheet], 44] = Convert.ToInt32(reader[33]) * ApplicationSettings.CalculationSettings.NIIR * countStud;
-                //}
-                //else
-                //{
-                //    sheet.Cells[rowCounters[sheet], 44] = 0;
-                //}
+                //ГAКпред
+                if (workloadCost.GAKPredCost != 0)
+                {
+                    sheet.Cells[rowCounters[sheet], 49] = Math.Round(workloadCost.GAKPredCost, 2);
+                }
+                // Дипломная работа 
+                if (workloadCost.DPRukCost != 0)
+                {
+                    sheet.Cells[rowCounters[sheet], 50]= Math.Round(workloadCost.DPRukCost, 2);
+                }
+
+                //Руководство кафедрой
+                if (workloadCost.RukKafCost != 0)
+                {
+                    sheet.Cells[rowCounters[sheet], 57] = Math.Round(workloadCost.RukKafCost, 2);
+                }
+
+
+
+                sheet.Cells[rowCounters[sheet], 51] = Convert.ToBoolean(reader[26]) ?
+                    (4 * countStud).ToString() : "";//рец дисс.
+
+				sheet.Cells[rowCounters[sheet], 54] = Convert.ToBoolean(reader[29]) ?
+                    (countStud * ApplicationSettings.CalculationSettings.AspRuk) : 0f; //AspRuk
+
                 string disciplineName = reader[4].ToString().ToLower();
-                //if (disciplineName.Contains("дис") && disciplineName.Contains("маг"))
-                //{
-                //    sheet.Cells[rowCounters[sheet], 56] = ApplicationSettings.CalculationSettings.MAGRuk * countStud;
-                //}
-                //if(disciplineName.Contains("практ")&& disciplineName.Contains("произв"))
-                //{
-                //    sheet.Cells[rowCounters[sheet], 44] = Convert.ToInt32(reader[19]) * ApplicationSettings.CalculationSettings.PrPr;
-                //}
 
-				//sheet.Cells[rowCounters[sheet], 45] = Convert.ToInt32(reader[20]) != 0 ? 
-                    //(Convert.ToInt32(reader[20]) * ApplicationSettings.CalculationSettings.PreddipPr) : 0;//преддип пр.
-
-				//((Excel.Range)(sheet.Cells[rowCounters[sheet], 24 + 23])).Value = Convert.ToBoolean(reader[22]) ?
-    //                (ApplicationSettings.CalculationSettings.GEK * countStud) : 0;//ГЭК.
-				//sheet.Cells[rowCounters[sheet], 48] = Convert.ToBoolean(reader[23]) ? (ApplicationSettings.CalculationSettings.GAK * countStud) : 0;//ГAК.
-				sheet.Cells[rowCounters[sheet], 49] = Convert.ToBoolean(reader[24]) ? (ApplicationSettings.CalculationSettings.GAKPred * countStud) : 0;//ГAКпред.
-				sheet.Cells[rowCounters[sheet], 50] = Convert.ToBoolean(reader[25]) ? (ApplicationSettings.CalculationSettings.DPruk * countStud) : 0;//допуск
-				sheet.Cells[rowCounters[sheet], 51] = Convert.ToBoolean(reader[26]) ? (4 * countStud).ToString() : "";//рец дисс.
+				//sheet.Cells[rowCounters[sheet], 49] = Convert.ToBoolean(reader[24]) ? 
+    //                (ApplicationSettings.CalculationSettings.GAKPred * countStud) : 0;//ГAКпред.
+				//sheet.Cells[rowCounters[sheet], 50] = Convert.ToBoolean(reader[25]) ?
+    //                (ApplicationSettings.CalculationSettings.DPruk * countStud) : 0;//Дипл проект руководство
 				/*
 				if (disciplineName.ToLower().Contains("норм") && disciplineName.ToLower().Contains("маг"))
 					sheet.Cells[rowCounters[sheet], 55] = countStud * ApplicationSettings.CalculationSettings.NormocontrolMag;
@@ -634,8 +654,8 @@ namespace Model
 				if (disciplineName.ToLower().Contains("доп") && disciplineName.ToLower().Contains("маг"))
 					sheet.Cells[rowCounters[sheet], 55] = countStud * ApplicationSettings.CalculationSettings.DopuskDissMag;
                 */
-				//sheet.Cells[rowCounters[sheet], 55] = Convert.ToBoolean(reader[30]) ? (30 * Convert.ToInt32(reader[30])).ToString() : "";//рук маг
-				sheet.Cells[rowCounters[sheet], 54] = Convert.ToBoolean(reader[29]) ? (countStud * ApplicationSettings.CalculationSettings.AspRuk) : 0f;
+				//sheet.Cells[rowCounters[sheet], 55] = Convert.ToBoolean(reader[30]) ?
+                //(30 * Convert.ToInt32(reader[30])).ToString() : "";//рук маг
 
                 /*
 				if (disciplineName.ToLower().Contains("норм") && disciplineName.ToLower().Contains("маг"))

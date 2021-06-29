@@ -50,6 +50,7 @@ namespace Model
         public bool Special { get; set; } = false;
         public bool Contract { get; set; }
 
+        public bool GosEkz { get; set; }
         public override string ToString()
 		{
 			string res = string.Format("ID:{0}\nDescr:{1}\nLect:{2}\nPract:{3}\nLab:{4}",

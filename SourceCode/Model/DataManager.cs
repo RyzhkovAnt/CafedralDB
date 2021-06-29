@@ -349,6 +349,42 @@ namespace Model
 
 			reader.Read();
 
+			/*
+			 *	0 -ID
+				1 - "Descr"
+				2 - "Department"
+				3 -"DisciplineType"
+				4 -"LectureCount"
+				5 -"PracticeCount"
+				6 -"LabCount"
+				7 -"KR"
+				8 -"KP"
+				9 -"RGR"
+				10 -"Zach"
+				11 -"Ekz"
+				12 -"Kons"
+				13 -"UchPr"
+				14 -"prPr"
+				15 -"predDipPr"
+				16 -"NIIR"
+				17 -"KonsZaoch"
+				18 -"GEK"
+				19 -"GAK"
+				20 -"GosEkz"
+				21 -"GAKPred"
+				22 -"DPruk"
+				23 -"DopuskVKR"
+				24 -"RetzVKR"
+				25 -"DPretz"
+				26 -"ASPRuk"
+				27 -"MAGRuk"
+				28 -"MAGRetz"
+				29 -"RukKaf"
+				30 -"isSpecial"
+				31 -"Contr"
+
+			 */
+
 			result = new Discipline(Convert.ToInt32(reader[0]));
 			result.Descr = reader[1].ToString();
 			result.DepartmentID = Convert.ToInt32(reader[2]);
@@ -365,22 +401,22 @@ namespace Model
 			result.UchPr = Convert.ToInt32(reader[13]);
 			result.PrPr = Convert.ToInt32(reader[14]);
 			result.PredDipPr = Convert.ToInt32(reader[15]);
-			result.KonsZaoch = Convert.ToBoolean(reader[16]);
-			result.GEK = Convert.ToBoolean(reader[17]);
-			result.GAK = Convert.ToBoolean(reader[18]);
-			result.GAKPred = Convert.ToBoolean(reader[19]);
-			result.DPRuk = Convert.ToBoolean(reader[20]);
-			result.DopuskVKR = Convert.ToBoolean(reader[21]);
-			result.RetzVKR = Convert.ToBoolean(reader[22]);
-			result.DPretz = Convert.ToBoolean(reader[23]);
-			result.ASPRuk = Convert.ToBoolean(reader[24]);
-			result.MAGRuk = Convert.ToBoolean(reader[25]);
-			result.MAGRetz = Convert.ToBoolean(reader[26]);
-			result.RukKaf = Convert.ToBoolean(reader[27]);
-			if (reader[28] != System.DBNull.Value)
-				result.NIIR = Convert.ToInt32(reader[28]);
-			if (reader[29] != System.DBNull.Value)
-				result.Special = Convert.ToBoolean(reader[29]);
+			result.NIIR = Convert.ToInt32(reader[16]);
+			result.KonsZaoch = Convert.ToBoolean(reader[17]);
+			result.GEK = Convert.ToBoolean(reader[18]);
+			result.GAK = Convert.ToBoolean(reader[19]);
+			result.GosEkz = Convert.ToBoolean(reader[20]);
+			result.GAKPred = Convert.ToBoolean(reader[21]);
+			result.DPRuk = Convert.ToBoolean(reader[22]);
+			result.DopuskVKR = Convert.ToBoolean(reader[23]);
+			result.RetzVKR = Convert.ToBoolean(reader[24]);
+			result.DPretz = Convert.ToBoolean(reader[25]);
+			result.ASPRuk = Convert.ToBoolean(reader[26]);
+			result.MAGRuk = Convert.ToBoolean(reader[27]);
+			result.MAGRetz = Convert.ToBoolean(reader[28]);
+			result.RukKaf = Convert.ToBoolean(reader[29]);
+			if (reader[30] != DBNull.Value)
+				result.Special = Convert.ToBoolean(reader[30]);
 			CloseConnection();
 			return result;
 		}
@@ -1251,10 +1287,68 @@ namespace Model
 			int id = -1;
 
 			string insertSql =
-	"INSERT INTO Discipline(Descr, Department, DisciplineType, LectureCount, PracticeCount, LabCount, KR, KP, RGR, Zach, Ekz, Kons, " +
-	" UchPr, prPr, predDipPr, KonsZaoch, GEK, GAK, GAKPred, DPruk, DopuskVKR, RetzVKR, DPretz, ASPRuk, MAGRuk, MAGRetz, RukKaf, NIIR, isSpecial, Contr) " +
-	"VALUES(@Descr,@Department,@DisciplineType,@LectureCount,@PracticeCount,@LabCount,@KR,@KP,@RGR,@Zach,@Ekz,@Kons,@UchPr, @prPr, @predDipPr, @KonsZaoch,"+
-    " @GEK, @GAK, @GAKPred, @DPruk, @DopuskVKR, @RetzVKR, @DPretz, @ASPRuk, @MAGRuk, @MAGRetz, @RukKaf, @NIIR, @isSpecial,@Contr)";
+	"INSERT INTO Discipline(Descr," +
+	" Department," +
+	" DisciplineType," +
+	" LectureCount," +
+	" PracticeCount," +
+	" LabCount," +
+	" KR," +
+	" KP," +
+	" RGR," +
+	" Zach," +
+	" Ekz," +
+	" Kons," +
+	" UchPr, " +
+	" prPr," +
+	" predDipPr," +
+	" NIIR," +
+	" KonsZaoch," +
+	" GEK, " +
+	" GAK," +
+	" GosEkz," +
+	" GAKPred," +
+	" DPruk," +
+	" DopuskVKR," +
+	" RetzVKR," +
+	" DPretz," +
+	" ASPRuk," +
+	" MAGRuk," +
+	" MAGRetz," +
+	" RukKaf," +
+	" isSpecial," +
+	" Contr) " +
+	"VALUES(@Descr," +
+	"@Department," +
+	"@DisciplineType," +
+	"@LectureCount," +
+	"@PracticeCount," +
+	"@LabCount," +
+	"@KR," +
+	"@KP," +
+	"@RGR," +
+	"@Zach," +
+	"@Ekz," +
+	"@Kons," +
+	"@UchPr," +
+	" @prPr," +
+	" @predDipPr," +
+	" @NIIR," +
+	" @KonsZaoch," +
+	" @GEK," +
+	" @GAK," +
+	" @GosEkz," +
+	" @GAKPred," +
+	" @DPruk," +
+	" @DopuskVKR," +
+	" @RetzVKR," +
+	" @DPretz," +
+	" @ASPRuk," +
+	" @MAGRuk," +
+	" @MAGRetz," +
+	" @RukKaf," +
+	" @isSpecial," +
+	"@Contr)";
 
 			using (OleDbConnection myConnection = new OleDbConnection(connString))
 			{
@@ -1278,9 +1372,11 @@ namespace Model
 				cmd.Parameters.AddWithValue("@UchPr", discipline.UchPr);
 				cmd.Parameters.AddWithValue("@prPr", discipline.PrPr);
 				cmd.Parameters.AddWithValue("@predDipPr", discipline.PredDipPr);
+				cmd.Parameters.AddWithValue("@NIIR", discipline.NIIR);
 				cmd.Parameters.AddWithValue("@KonsZaoch", discipline.KonsZaoch);
 				cmd.Parameters.AddWithValue("@GEK", discipline.GEK);
 				cmd.Parameters.AddWithValue("@GAK", discipline.GAK);
+				cmd.Parameters.AddWithValue("@GosEkz", discipline.GosEkz);
 				cmd.Parameters.AddWithValue("@GAKPred", discipline.GAKPred);
 				cmd.Parameters.AddWithValue("@DPruk", discipline.DPRuk);
 				cmd.Parameters.AddWithValue("@DopuskVKR", discipline.DopuskVKR);
@@ -1290,7 +1386,6 @@ namespace Model
 				cmd.Parameters.AddWithValue("@MAGRuk", discipline.MAGRuk);
 				cmd.Parameters.AddWithValue("@MAGRetz", discipline.MAGRetz);
 				cmd.Parameters.AddWithValue("@RukKaf", discipline.RukKaf);
-				cmd.Parameters.AddWithValue("@NIIR", discipline.NIIR);
 				cmd.Parameters.AddWithValue("@isSpecial", discipline.Special);
 
                 cmd.Parameters.AddWithValue("@Contr", discipline.Contract);

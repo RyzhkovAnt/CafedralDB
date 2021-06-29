@@ -161,7 +161,8 @@ namespace ApplicationSettings
         public static float DopuskBak = 0.25f;
         public static float NormocontrolBak = 0.25f;
         public static float AspRuk = 50f;
-
+        public static float GosEkz = 0.5f;
+        public static int EkzBoard = 6;
         public static void ToRegistry()
         {
             try
@@ -200,6 +201,8 @@ namespace ApplicationSettings
                 saveKey.SetValue("DopuskBak", DopuskBak);
                 saveKey.SetValue("NormocontrolBak", NormocontrolBak);
                 saveKey.SetValue("AspRuk", AspRuk);
+                saveKey.SetValue("GosEkz", GosEkz);
+                saveKey.SetValue("EkzBoard", EkzBoard);
 
                 saveKey.Close();
             }
@@ -248,6 +251,8 @@ namespace ApplicationSettings
                     NormocontrolMag = Convert.ToSingle(readKey.GetValue("NormocontrolMag"));
                     DopuskBak = Convert.ToSingle(readKey.GetValue("DopuskBak"));
                     NormocontrolBak = Convert.ToSingle(readKey.GetValue("NormocontrolBak"));
+                    GosEkz = Convert.ToSingle(readKey.GetValue("GosEkz"));
+                    EkzBoard = Convert.ToInt32(readKey.GetValue("EkzBoard"));
                     readKey.Close();
                 }
                 else
@@ -364,6 +369,8 @@ namespace ApplicationSettings
                 saveKey.SetValue("DopuskBak", 0.25f);
                 saveKey.SetValue("NormocontrolBak", 0.25f);
                 saveKey.SetValue("AspRuk", 50);
+                saveKey.SetValue("GosEkz", 0.5f);
+                saveKey.SetValue("EkzBoard", 6);
 
                 saveKey.Close();
             }

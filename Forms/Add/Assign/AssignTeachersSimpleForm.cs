@@ -96,14 +96,16 @@ namespace CafedralDB.Forms.Add.Assign
 
 				OleDbCommand command = new System.Data.OleDb.OleDbCommand();
 					command.Connection = Model.DataManager.Connection;
-					command.CommandText = @"SELECT        Workload.ID, Discipline.Descr AS Дисциплина, [Group].Descr AS Группа, StudyForm.DescrRus AS Форма, Semester.Descr AS Семестр, StudyYear.ID AS ГодID, StudyYear.StudyYear
-				FROM (((((Discipline INNER JOIN
-                         Workload ON Discipline.ID = Workload.Discipline) INNER JOIN
-                         [Group] ON Workload.[Group] = [Group].ID) INNER JOIN
-                         Semester ON Workload.Semester = Semester.ID) INNER JOIN
-                         StudyForm ON [Group].StudyForm = StudyForm.ID) INNER JOIN
-                         StudyYear ON Workload.StudyYear = StudyYear.ID)
-				WHERE (StudyYear.ID = [@param])";
+					command.CommandText = @"SELECT        Workload.ID, Discipline.Descr AS Дисциплина, 
+							[Group].Descr AS Группа, StudyForm.DescrRus AS Форма, 
+							Semester.Descr AS Семестр, StudyYear.ID AS ГодID, StudyYear.StudyYear
+						FROM (((((Discipline INNER JOIN
+							Workload ON Discipline.ID = Workload.Discipline) INNER JOIN
+							[Group] ON Workload.[Group] = [Group].ID) INNER JOIN
+							Semester ON Workload.Semester = Semester.ID) INNER JOIN
+							StudyForm ON [Group].StudyForm = StudyForm.ID) INNER JOIN
+							StudyYear ON Workload.StudyYear = StudyYear.ID)
+						WHERE (StudyYear.ID = [@param]) ORDER BY Workload.ID";
 
 
 					command.CommandType = global::System.Data.CommandType.Text;

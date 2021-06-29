@@ -21,7 +21,8 @@ namespace CafedralDB.SourceCode.Model
             object misValue = System.Reflection.Missing.Value;
 
             xlApp = new Excel.Application();
-            xlWorkBook = xlApp.Workbooks.Open(path, 0, true, 5, "", "", true, Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0);
+            xlWorkBook = xlApp.Workbooks.Open(path, 0, true, 5, "", "", true, Excel.XlPlatform.xlWindows,
+				"\t", false, false, 0, true, 1, 0);
             xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
 
 			//Reading data
@@ -42,11 +43,15 @@ namespace CafedralDB.SourceCode.Model
                     int studentCount = Convert.ToInt32(xlWorkSheet.GetCellText(counter, ImportSettings.StudentCountColumn));
 
                     string semester = xlWorkSheet.GetCellText(counter, ImportSettings.SemesterColumn);
-                    int weeks = xlWorkSheet.GetCellText(counter, ImportSettings.WeeksColumn) != "" ? Convert.ToInt32(xlWorkSheet.GetCellText(counter, ImportSettings.WeeksColumn)) : 0;
+                    int weeks = xlWorkSheet.GetCellText(counter, ImportSettings.WeeksColumn) != "" ? 
+						Convert.ToInt32(xlWorkSheet.GetCellText(counter, ImportSettings.WeeksColumn)) : 0;
                     string disciplineName = xlWorkSheet.GetCellText(counter, ImportSettings.DisciplineNameColumn);
-                    int lectures = xlWorkSheet.GetCellText(counter, ImportSettings.LecturesColumn)!=""?Convert.ToInt32(xlWorkSheet.GetCellText(counter, ImportSettings.LecturesColumn)):0;
-                    int labs = xlWorkSheet.GetCellText(counter, ImportSettings.LabsColumn)!=""? Convert.ToInt32(xlWorkSheet.GetCellText(counter, ImportSettings.LabsColumn)):0;
-                    int practices = xlWorkSheet.GetCellText(counter, ImportSettings.PracticesColumn)!=""? Convert.ToInt32(xlWorkSheet.GetCellText(counter, ImportSettings.PracticesColumn)):0;
+                    int lectures = xlWorkSheet.GetCellText(counter, ImportSettings.LecturesColumn)!=""?
+						Convert.ToInt32(xlWorkSheet.GetCellText(counter, ImportSettings.LecturesColumn)):0;
+                    int labs = xlWorkSheet.GetCellText(counter, ImportSettings.LabsColumn)!=""? 
+						Convert.ToInt32(xlWorkSheet.GetCellText(counter, ImportSettings.LabsColumn)):0;
+                    int practices = xlWorkSheet.GetCellText(counter, ImportSettings.PracticesColumn)!=""?
+						Convert.ToInt32(xlWorkSheet.GetCellText(counter, ImportSettings.PracticesColumn)):0;
                     bool kz = xlWorkSheet.GetCellText(counter, ImportSettings.KzColumn)!="";
                     bool kr = xlWorkSheet.GetCellText(counter, ImportSettings.KrColumn)!="";
                     bool kp = xlWorkSheet.GetCellText(counter, ImportSettings.KpColumn)!="";
@@ -97,27 +102,34 @@ namespace CafedralDB.SourceCode.Model
 								discipline.PrPr = practices;
 								disciplineType = 3;
 							}
+							else if ((disciplineName.Contains("науч") && disciplineName.Contains("иссл")) 
+								|| disciplineName.Contains("нир"))
+							{
+								discipline.NIIR = practices;
+								disciplineType = 2;
+							}
 						}
 
-						if (disciplineName.Contains("конс") && disciplineName.Contains("заоч"))
+						else if (disciplineName.Contains("конс") && disciplineName.Contains("заоч"))
 						{
 							discipline.KonsZaoch = true;
 							disciplineType = 3;
 						}
 
-                        if (disciplineName.Contains("гэк"))
+                        else if (disciplineName.Contains("гэк"))
                         {
                             discipline.GEK = true;
                             disciplineType = 3;
                         }
 
-                        if (disciplineName.Contains("гос") && disciplineName.Contains("экз"))
+                        else if (disciplineName.Contains("гос") && disciplineName.Contains("экз"))
 						{
 							disciplineType = 3;
+							discipline.GosEkz = true;
 							//Добавить в таблицу и классы Гос Экзамен
 						}
 
-						if (disciplineName.Contains("гак"))
+						else if (disciplineName.Contains("гак"))
 						{
 							if (disciplineName.Contains("предс"))
 							{
@@ -129,22 +141,18 @@ namespace CafedralDB.SourceCode.Model
 							}
 							disciplineType = 3;
 						}
-						if (disciplineName.Contains("вып") && disciplineName.Contains("раб"))
+
+						else if (disciplineName.Contains("вып") && disciplineName.Contains("раб"))
 						{
 							discipline.DPRuk = true;
 							disciplineType = 2;
 						}
-						if (disciplineName.Contains("диссер"))
+						else if (disciplineName.Contains("диссер"))
 						{
 							discipline.DPRuk = true;
-						}
-						if ((disciplineName.Contains("науч") && disciplineName.Contains("иссл")) || disciplineName.Contains("нир"))
-						{
-							discipline.NIIR = practices;
-							disciplineType = 2;
 						}
 
-						if (disciplineName.Contains("рук"))
+						else if (disciplineName.Contains("рук"))
 						{
 							if (disciplineName.Contains("каф"))
 							{
@@ -157,7 +165,7 @@ namespace CafedralDB.SourceCode.Model
 								disciplineType = 2;
 							}
 						}
-						if (disciplineName.Contains("дисс") && disciplineName.Contains("маг"))
+						else if (disciplineName.Contains("дисс") && disciplineName.Contains("маг"))
 						{
 							discipline.MAGRuk = true;
 							disciplineType = 2;
