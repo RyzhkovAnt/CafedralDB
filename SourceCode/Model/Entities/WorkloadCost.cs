@@ -33,6 +33,7 @@ namespace Model
         public float RukKafCost { get; set; }
         public float NIIRCost { get; set; }
 
+        public float MagRuk { get; set; }
         public float GosEkz { get; set; }
     }
 }

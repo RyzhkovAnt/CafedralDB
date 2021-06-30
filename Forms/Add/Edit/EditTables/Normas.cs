@@ -44,5 +44,21 @@ namespace CafedralDB.Forms.Add.Edit.EditTables
 				MessageBox.Show(err.Message);
 			}
 		}
-	}
+
+        private void ToDefaultButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+				ApplicationSettings.CalculationSettings.ToDefault();
+				ApplicationSettings.CalculationSettings.FromRegistry();
+				ApplicationSettings.CalculationSettings.ToDataBase();
+				
+				this.normasTableAdapter.Fill(this.mainDBDataSet.Normas);
+			}
+			catch(Exception err)
+            {
+				MessageBox.Show(err.Message);
+			}
+        }
+    }
 }

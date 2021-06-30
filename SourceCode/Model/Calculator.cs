@@ -78,23 +78,27 @@ namespace Model
                 zach = CalculationSettings.ZachCost * group.StudentCount;
                 workloadCost.ZachCost = zach;
             }
-           
-            workloadCost.UchPracCost = CalculationSettings.UchPr * discipline.UchPr;
-            workloadCost.PrPracCost = CalculationSettings.PrPr * discipline.PrPr;
-            workloadCost.PredDipPracCost = group.StudyFormID == 1 ? CalculationSettings.PreddipPr * 5 * discipline.PredDipPr * group.SubgroupCount :
-                CalculationSettings.PreddipPr * group.StudentCount;
+
+            workloadCost.UchPracCost = CalculationSettings.UchPr * 5 * discipline.UchPr * group.SubgroupCount;
+            workloadCost.PrPracCost = group.StudyFormID == 1 ? CalculationSettings.PrPr * 5 * discipline.PrPr * group.SubgroupCount :
+                1 * group.StudentCount;
+            workloadCost.PredDipPracCost = CalculationSettings.PreddipPr * group.StudentCount * discipline.PredDipPr;
                 
-            //ApplicationSettings.CalculationSettings.PreddipPr * discipline.PredDipPr;
             workloadCost.GEKCost = discipline.GEK ? CalculationSettings.GEK * group.StudentCount * 6 : 0;//GEK
             workloadCost.GAKCost = discipline.GAK ? CalculationSettings.GAK * group.StudentCount * 6 : 0;//GAK
             
             workloadCost.GAKPredCost = discipline.GAKPred ? CalculationSettings.GAKPred * group.StudentCount : 0;//GAKPred
-            workloadCost.DPRukCost = discipline.DPRuk ? CalculationSettings.DPruk * group.StudentCount : 0;//DPruk
+            workloadCost.DPRukCost = discipline.DPRuk ? (CalculationSettings.DPruk + CalculationSettings.DopuskBak + CalculationSettings.NormocontrolBak) *
+                group.StudentCount : 0;//DPruk
             workloadCost.RukKafCost = discipline.RukKaf ? CalculationSettings.RukKaf : 0;
             workloadCost.NIIRCost = CalculationSettings.NIIR * discipline.NIIR * group.StudentCount;
             workloadCost.ASPRukCost = discipline.ASPRuk ? CalculationSettings.AspRuk : 0;//GEK
+
             workloadCost.GosEkz = discipline.GosEkz ?
                 CalculationSettings.GosEkz * group.StudentCount * CalculationSettings.EkzBoard : 0;//Гос Экзамен
+
+            workloadCost.MagRuk = discipline.MAGRuk ? 
+                group.StudentCount * CalculationSettings.MAGRuk : 0;//Маг диссер
             return workloadCost;
         }
 

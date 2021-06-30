@@ -138,31 +138,31 @@ namespace ApplicationSettings
         public static float ZachCost = 0.25f;
 
         public static float RGR = 0.25f;
-        public static float UchPr = 0.25f;
-        public static float PrPr = 0.25f;
-        public static float PreddipPr = 2;
+        public static float UchPr = 4;
+        public static float PrPr = 2;
+        public static float PreddipPr = 1;
         public static float KzZaoch = 0.25f;
         public static float GEK = 0.25f;
         public static float GAK = 0.5f;
         public static float GAKPred = 0.25f;
-        public static float DPruk = 0.25f;
-        public static float DopuskVKR = 0.25f;
+        public static float DPruk = 14;
+        public static float DopuskVKR = 0.5f;
         public static float RetzVKR = 0.25f;
         public static float DPRetz = 0.25f;
-        public static float MAGRuk = 0.25f;
+        public static float MAGRuk = 36;
         public static float MagRetz = 0.25f;
-        public static float RukKaf = 0.25f;
+        public static float RukKaf = 60;
         public static float NIIR = 3.0f;
         public static float NIIRRukMag = 0.25f;
         public static float ASPpractice = 0.25f;
         public static float NIIRRukAsp = 0.25f;
-        public static float DopuskDissMag = 0.25f;
-        public static float NormocontrolMag = 0.25f;
-        public static float DopuskBak = 0.25f;
-        public static float NormocontrolBak = 0.25f;
+        public static float DopuskDissMag = 1;
+        public static float NormocontrolMag = 1;
+        public static float DopuskBak = 0.5f;
+        public static float NormocontrolBak = 0.5f;
         public static float AspRuk = 50f;
         public static float GosEkz = 0.5f;
-        public static int EkzBoard = 6;
+        public static float EkzBoard = 6;
         public static void ToRegistry()
         {
             try
@@ -229,8 +229,8 @@ namespace ApplicationSettings
                     ZachCost = Convert.ToSingle(readKey.GetValue("ZachCost"));
 
                     RGR = Convert.ToSingle(readKey.GetValue("RGR"));
-                    UchPr = Convert.ToSingle(readKey.GetValue("UchPr"));
-                    PrPr = Convert.ToSingle(readKey.GetValue("PrPr"));
+                    UchPr = Convert.ToInt32(readKey.GetValue("UchPr"));
+                    PrPr = Convert.ToInt32(readKey.GetValue("PrPr"));
                     PreddipPr = Convert.ToSingle(readKey.GetValue("PreddipPr"));
                     KzZaoch = Convert.ToSingle(readKey.GetValue("KzZaoch"));
                     GEK = Convert.ToSingle(readKey.GetValue("GEK"));
@@ -322,55 +322,116 @@ namespace ApplicationSettings
                 NormocontrolMag = parameters["Нормоконтроль  диссертации магистрантов"];
                 DopuskBak = parameters["Допуск к защите бакалавров"];
                 NormocontrolBak = parameters["Нормоконтроль бакалавров"];
-
+                GosEkz = parameters["Государственный экзамен"];
+                EkzBoard = parameters["Кол-во членов экз. комиссии"];
                 cn.Close();
             }
             catch(Exception err)
             {
-                System.Windows.Forms.MessageBox.Show("Не удалось загрузить настройки:\r\n" + err.Message + "\r\n" + err.StackTrace);
+                MessageBox.Show("Не удалось загрузить настройки:\r\n" + err.Message + "\r\n" + err.StackTrace);
             }
         }
+        static void UpdateDataBase(System.Data.OleDb.OleDbConnection cn, string column,float value)
+        {
+            string query = "UPDATE Normas SET [Value]=? WHERE ParameterName=?";
+            var cmd = new System.Data.OleDb.OleDbCommand();
+            cmd.Connection = cn;
+            cmd.CommandType = System.Data.CommandType.Text;
+            cmd.CommandText = query;
+            cmd.Parameters.Add("@p1", System.Data.OleDb.OleDbType.Single).Value = value;
+            cmd.Parameters.Add("@p2", System.Data.OleDb.OleDbType.Char).Value = column;
+            cmd.ExecuteNonQuery();
+        }
+        public static void ToDataBase()
+        {
+            try
+            {
+                bool res = false;
+                Model.DataManager.SharedDataManager();
+                var cn = new System.Data.OleDb.OleDbConnection(Model.DataManager.Connection.ConnectionString);
+                cn.Open();
 
+                UpdateDataBase(cn, "Лекция", LectureCost);
+                UpdateDataBase(cn, "Практическая работа", PracticeCost);
+                UpdateDataBase(cn, "Лабораторная работа", LabCost);
+                UpdateDataBase(cn, "Консультация", KonsCost);
+                UpdateDataBase(cn, "Экзамен",(float)Math.Round((double)EkzCost,2));
+                UpdateDataBase(cn, "КР", KRCost);
+                UpdateDataBase(cn, "КП", KPCost);
+                UpdateDataBase(cn, "Зачет", ZachCost);
+                UpdateDataBase(cn, "РГР", RGR);
+                UpdateDataBase(cn, "Учебная практика", UchPr);
+                UpdateDataBase(cn, "Производственная практика", PrPr);
+                UpdateDataBase(cn, "Преддипломная практика", PreddipPr);
+                UpdateDataBase(cn, "Контрольные задания заочников", KzZaoch);
+                UpdateDataBase(cn, "ГЭК", GEK);
+                UpdateDataBase(cn, "ГАК", GAK);
+                UpdateDataBase(cn, "ГАК председатель", GAKPred);
+                UpdateDataBase(cn, "ДП руководство", DPruk);
+                UpdateDataBase(cn, "Допуск к ВКР", DopuskVKR);
+                UpdateDataBase(cn, "Рецензия ВКР", RetzVKR);
+                UpdateDataBase(cn, "ДП рецензии", DPRetz);
+                UpdateDataBase(cn, "Магистранты руководство", MAGRuk);
+                UpdateDataBase(cn, "Магистранты рецензирование", MagRetz);
+                UpdateDataBase(cn, "Руководство кафедрой", RukKaf);
+                UpdateDataBase(cn, "Научная работа", NIIR);
+                UpdateDataBase(cn, "Руководство НИИР магистра", NIIRRukMag);
+                UpdateDataBase(cn, "Практика аспирантов", ASPpractice);
+                UpdateDataBase(cn, "Руководство НИИР аспирантов", NIIRRukAsp);
+                UpdateDataBase(cn, "Допуск к защите диссертации магистрантов", DopuskDissMag);
+                UpdateDataBase(cn, "Нормоконтроль  диссертации магистрантов", NormocontrolMag);
+                UpdateDataBase(cn, "Допуск к защите бакалавров", DopuskBak);
+                UpdateDataBase(cn, "Нормоконтроль бакалавров", NormocontrolBak);
+                UpdateDataBase(cn, "Государственный экзамен", GosEkz);
+                UpdateDataBase(cn, "Кол-во членов экз. комиссии", EkzBoard);
+                cn.Close();
+
+            }
+            catch (Exception exp)
+            {
+                MessageBox.Show(exp.Message);
+            }
+        }
         public static void ToDefault()
         {
             try
             {
                 RegistryKey saveKey = Registry.CurrentUser.CreateSubKey(@"software\ChairDB\CalculationSettings");
-                saveKey.SetValue("LectureCost", 1);
-                saveKey.SetValue("LabCost", 1);
-                saveKey.SetValue("PracticeCost", 1);
-                saveKey.SetValue("KonsCost", 2);
+                saveKey.SetValue("LectureCost", 1f);
+                saveKey.SetValue("LabCost", 1f);
+                saveKey.SetValue("PracticeCost", 1f);
+                saveKey.SetValue("KonsCost", 2f);
                 saveKey.SetValue("EkzCost", 0.33f);
-                saveKey.SetValue("KRCost", 2);
-                saveKey.SetValue("KPCost", 3);
+                saveKey.SetValue("KRCost", 2f);
+                saveKey.SetValue("KPCost", 3f);
                 saveKey.SetValue("ZachCost", 0.25f);
 
                 saveKey.SetValue("RGR", 0.25f);
-                saveKey.SetValue("UchPr", 0.25f);
-                saveKey.SetValue("PrPr", 0.25f);
-                saveKey.SetValue("PreddipPr", 2);
+                saveKey.SetValue("UchPr", 4f);
+                saveKey.SetValue("PrPr", 2f);
+                saveKey.SetValue("PreddipPr", 1f);
                 saveKey.SetValue("KzZaoch", 0.25f);
                 saveKey.SetValue("GEK", 0.25f);
                 saveKey.SetValue("GAK", 0.5f);
                 saveKey.SetValue("GAKPred", 0.25f);
-                saveKey.SetValue("DPruk", 0.25f);
+                saveKey.SetValue("DPruk", 14f);
                 saveKey.SetValue("DopuskVKR", 0.25f);
                 saveKey.SetValue("RetzVKR", 0.25f);
                 saveKey.SetValue("DPRetz", 0.25f);
-                saveKey.SetValue("MAGRuk", 0.25f);
+                saveKey.SetValue("MAGRuk", 36f);
                 saveKey.SetValue("MagRetz", 0.25f);
-                saveKey.SetValue("RukKaf", 0.25f);
-                saveKey.SetValue("NIIR", 0.25f);
+                saveKey.SetValue("RukKaf", 60f);
+                saveKey.SetValue("NIIR", 3f);
                 saveKey.SetValue("NIIRRukMag", 0.25f);
                 saveKey.SetValue("ASPpractice", 0.25f);
                 saveKey.SetValue("NIIRRukAsp", 0.25f);
-                saveKey.SetValue("DopuskDissMag", 0.25f);
-                saveKey.SetValue("NormocontrolMag", 0.25f);
-                saveKey.SetValue("DopuskBak", 0.25f);
-                saveKey.SetValue("NormocontrolBak", 0.25f);
-                saveKey.SetValue("AspRuk", 50);
+                saveKey.SetValue("DopuskDissMag", 1f);
+                saveKey.SetValue("NormocontrolMag", 1f);
+                saveKey.SetValue("DopuskBak", 0.5f);
+                saveKey.SetValue("NormocontrolBak", 0.5f);
+                saveKey.SetValue("AspRuk", 50f);
                 saveKey.SetValue("GosEkz", 0.5f);
-                saveKey.SetValue("EkzBoard", 6);
+                saveKey.SetValue("EkzBoard", 6f);
 
                 saveKey.Close();
             }

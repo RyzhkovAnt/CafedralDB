@@ -626,13 +626,16 @@ namespace Model
                 {
                     sheet.Cells[rowCounters[sheet], 50]= Math.Round(workloadCost.DPRukCost, 2);
                 }
-
+                //Диссертация магистров
+                if (workloadCost.MagRuk != 0)
+                {
+                    sheet.Cells[rowCounters[sheet], 55] = Math.Round(workloadCost.MagRuk, 2);
+                }
                 //Руководство кафедрой
                 if (workloadCost.RukKafCost != 0)
                 {
                     sheet.Cells[rowCounters[sheet], 57] = Math.Round(workloadCost.RukKafCost, 2);
                 }
-
 
 
                 sheet.Cells[rowCounters[sheet], 51] = Convert.ToBoolean(reader[26]) ?

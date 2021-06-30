@@ -147,9 +147,17 @@ namespace CafedralDB.SourceCode.Model
 							discipline.DPRuk = true;
 							disciplineType = 2;
 						}
-						else if (disciplineName.Contains("диссер"))
+						else if (disciplineName.Contains("диссер") )
 						{
-							discipline.DPRuk = true;
+							if (disciplineName.Contains("маг"))
+							{
+								discipline.MAGRuk = true;
+							}
+							else
+							{
+								discipline.DPRuk = true;
+							}
+							disciplineType = 2;
 						}
 
 						else if (disciplineName.Contains("рук"))
@@ -164,11 +172,6 @@ namespace CafedralDB.SourceCode.Model
 								discipline.ASPRuk = true;
 								disciplineType = 2;
 							}
-						}
-						else if (disciplineName.Contains("дисс") && disciplineName.Contains("маг"))
-						{
-							discipline.MAGRuk = true;
-							disciplineType = 2;
 						}
 					}
 					discipline.DepartmentID = 1;
