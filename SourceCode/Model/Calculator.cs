@@ -26,8 +26,10 @@ namespace Model
             Semester semester = DataManager.SharedDataManager().GetSemester(workload.Semester);
             float lec = 0, lab = 0, prac = 0, ekz = 0, kr = 0, kp = 0, zach = 0, kons = 0;
             lec = CalculationSettings.LectureCost * discipline.LectureCount * semester.WeekCount;
-            lab = CalculationSettings.LabCost * discipline.LabCount * semester.WeekCount * 
-                ((int)Math.Floor((double)group.StudentCount/9)>0 ? (int)Math.Floor((double)group.StudentCount / 9):1);
+            var subGroupCount =group.SubgroupCount == 1 ? Math.Floor((double)group.StudentCount / 9) :
+                Math.Floor((double)group.StudentCount / group.SubgroupCount / 9) * group.SubgroupCount;
+            lab = CalculationSettings.LabCost * discipline.LabCount * semester.WeekCount * Convert.ToInt32(subGroupCount);
+                //((int)Math.Floor((double)group.StudentCount/9)>0 ? (int)Math.Floor((double)group.StudentCount / 9):1);
             prac = CalculationSettings.PracticeCost * discipline.PracticeCount * semester.WeekCount * group.SubgroupCount;
             workloadCost.LectureCost = lec; 
             workloadCost.LabCost= lab;

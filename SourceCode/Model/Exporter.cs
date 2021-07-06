@@ -520,9 +520,11 @@ namespace Model
 			private static void ExportNotAssign(OleDbDataReader reader, Excel.Worksheet sheet, Dictionary<Excel.Worksheet, int> rowCounters, int countStud)
 			{
                 var workloadCost = Calculator.GetWorkloadCost(Convert.ToInt32(reader[1]));
-
-
-				sheet.Cells[rowCounters[sheet], 1] = rowCounters[sheet] - 5;
+                int groupCount = Convert.ToInt32(reader[35]);
+                int studentCount= Convert.ToInt32(reader[8]);
+                var subGroupCount= groupCount == 1 ? Math.Floor((double)studentCount / 9) :
+                    Math.Floor((double)studentCount / groupCount / 9) * groupCount;
+                sheet.Cells[rowCounters[sheet], 1] = rowCounters[sheet] - 5;
 				sheet.Cells[rowCounters[sheet], 2] = reader[4].ToString();//Дисциплина
 				sheet.Cells[rowCounters[sheet], 3] = reader[5].ToString();//Специальность
 				sheet.Cells[rowCounters[sheet], 4] = reader[6].ToString();//Факультет
@@ -531,7 +533,8 @@ namespace Model
 				sheet.Cells[rowCounters[sheet], 7] = countStud;//reader[8].ToString(); Кол-во студентов
 				sheet.Cells[rowCounters[sheet], 8] = reader[9].ToString(); // Кол-во недель
                 sheet.Cells[rowCounters[sheet], 9] = reader[35].ToString();//reader[10].ToString(); // Кол-во групп
-                sheet.Cells[rowCounters[sheet], 10] = Math.Floor(Convert.ToDouble(reader[8]) / 9).ToString(); // Кол-во подгрупп
+                sheet.Cells[rowCounters[sheet], 10] = Convert.ToInt32(subGroupCount).ToString();// Кол-во подгрупп
+                //sheet.Cells[rowCounters[sheet], 10] = Math.Floor(Convert.ToDouble(reader[8]) / 9).ToString(); 
                 sheet.Cells[rowCounters[sheet], 11] = reader[10].ToString(); // Кол-во лекций
 				sheet.Cells[rowCounters[sheet], 12] = reader[11].ToString(); // Кол-во практ. работ
 				sheet.Cells[rowCounters[sheet], 13] = reader[12].ToString(); // Кол-во лаб. работ

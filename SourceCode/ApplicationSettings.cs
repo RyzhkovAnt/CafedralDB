@@ -131,7 +131,7 @@ namespace ApplicationSettings
         public static float LectureCost = 1;
         public static float LabCost = 1;
         public static float PracticeCost = 1;
-        public static float KonsCost = 2;
+        public static float KonsCost = 0.05f;
         public static float EkzCost = 0.33f;
         public static float KRCost = 2;
         public static float KPCost = 3;
@@ -400,7 +400,7 @@ namespace ApplicationSettings
                 saveKey.SetValue("LectureCost", 1f);
                 saveKey.SetValue("LabCost", 1f);
                 saveKey.SetValue("PracticeCost", 1f);
-                saveKey.SetValue("KonsCost", 2f);
+                saveKey.SetValue("KonsCost", 0.05f);
                 saveKey.SetValue("EkzCost", 0.33f);
                 saveKey.SetValue("KRCost", 2f);
                 saveKey.SetValue("KPCost", 3f);
