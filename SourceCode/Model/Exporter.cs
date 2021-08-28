@@ -522,14 +522,15 @@ namespace Model
                 var workloadCost = Calculator.GetWorkloadCost(Convert.ToInt32(reader[1]));
                 int groupCount = Convert.ToInt32(reader[35]);
                 int studentCount= Convert.ToInt32(reader[8]);
-                var subGroupCount= groupCount == 1 ? Math.Floor((double)studentCount / 9) :
+                int semestr = Convert.ToInt32(reader[7].ToString());
+                var subGroupCount= groupCount == 1 ? Math.Floor((double)studentCount / 9)>0? Math.Floor((double)studentCount / 9):1 :
                     Math.Floor((double)studentCount / groupCount / 9) * groupCount;
                 sheet.Cells[rowCounters[sheet], 1] = rowCounters[sheet] - 5;
 				sheet.Cells[rowCounters[sheet], 2] = reader[4].ToString();//Дисциплина
 				sheet.Cells[rowCounters[sheet], 3] = reader[5].ToString();//Специальность
 				sheet.Cells[rowCounters[sheet], 4] = reader[6].ToString();//Факультет
                 sheet.Cells[rowCounters[sheet], 5] = reader[2].ToString() == "1" ? "о" : "з";//Форма обучения
-				sheet.Cells[rowCounters[sheet], 6] = reader[7].ToString();//Семестр
+                sheet.Cells[rowCounters[sheet], 6] = semestr > 8 ? semestr - 8 : semestr;//reader[7].ToString();//Семестр
 				sheet.Cells[rowCounters[sheet], 7] = countStud;//reader[8].ToString(); Кол-во студентов
 				sheet.Cells[rowCounters[sheet], 8] = reader[9].ToString(); // Кол-во недель
                 sheet.Cells[rowCounters[sheet], 9] = reader[35].ToString();//reader[10].ToString(); // Кол-во групп
