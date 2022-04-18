@@ -1588,10 +1588,11 @@ namespace Model
 				"WHERE(ID = ?)";
 				command.Parameters.Add("@p1", OleDbType.VarChar).Value = item.Name;
 				command.Parameters.Add("@p2", OleDbType.Integer).Value = item.Speciality;
-				command.Parameters.Add("@p2", OleDbType.Integer).Value = item.StudyQualification;
-				command.Parameters.Add("@p2", OleDbType.Integer).Value = item.StudyFormID;
-				command.Parameters.Add("@p2", OleDbType.Integer).Value = item.StudentCount;
-				command.Parameters.Add("@p2", OleDbType.Integer).Value = item.EntryYear;
+				command.Parameters.Add("@p3", OleDbType.Integer).Value = item.StudyQualification;
+				command.Parameters.Add("@p4", OleDbType.Integer).Value = item.StudyFormID;
+				command.Parameters.Add("@p5", OleDbType.Integer).Value = item.StudentCount;
+				command.Parameters.Add("@p6", OleDbType.Integer).Value = item.EntryYear;
+				command.Parameters.Add("@p7", OleDbType.Integer).Value = item.ID;
 				con.Open();
 				command.ExecuteNonQuery();
 			}

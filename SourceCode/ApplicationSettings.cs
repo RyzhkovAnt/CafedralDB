@@ -6,9 +6,129 @@ using System.Windows.Forms;
 
 namespace ApplicationSettings
 {
+
+    interface ISetting
+    {   
+        void LoadFromRegistry();
+        void SaveToRegistry(Dictionary<string, object> newValues);
+        void ToDefault();
+
+    }
+
+    public class NewImportSetting : ISetting
+    {
+        public int StartReadingRow { get; private set; } = 7;
+        public int GroupColumn {get;private set;} = 1;
+        public int GroupCountColumn {get;private set;} = 5;
+        public int StudentCountColumn {get;private set;} = 2;
+        public int SemesterColumn {get;private set;} = 6;
+        public int WeeksColumn {get;private set;} = 7;
+        public int DisciplineNameColumn {get;private set;} = 8;
+        public int LecturesColumn {get;private set;} = 10;
+        public int PracticesColumn {get;private set;} = 11;
+        public int LabsColumn {get;private set;} = 12;
+        public int KzColumn {get;private set;} = 17;
+        public int KrColumn {get;private set;} = 13;
+        public int KpColumn {get;private set;} = 14;
+        public int EkzColumn {get;private set;} = 15;
+        public int ZachColumn {get;private set;} = 16;
+        public int OtherColumn {get;private set;} = 9;
+        public int ContractColumn {get;private set;} = 19;
+        public int SpecialColumn {get;private set;} = 18;
+
+        public NewImportSetting()
+        {
+            LoadFromRegistry();
+        }
+        public void ToDefault()
+        {
+            try
+            {
+                Registry.CurrentUser.DeleteSubKey("software\\ChairDB\\Import");
+                RegistryKey saveKey = Registry.CurrentUser.CreateSubKey("software\\ChairDB\\Import");
+                saveKey.SetValue("StartReadingRow", "7");
+                saveKey.SetValue("GroupColumn", "1");
+                saveKey.SetValue("GroupCountColumn", "5");
+                saveKey.SetValue("WeeksColumn", "7");
+                saveKey.SetValue("DisciplineNameColumn", "8");
+                saveKey.SetValue("LecturesColumn", "10");
+                saveKey.SetValue("LabsColumn", "12");
+                saveKey.SetValue("SemesterColumn", "6");
+                saveKey.SetValue("PracticesColumn", "11");
+                saveKey.SetValue("KzColumn", "17");
+                saveKey.SetValue("KrColumn", "13");
+                saveKey.SetValue("KpColumn", "14");
+                saveKey.SetValue("EkzColumn", "15");
+                saveKey.SetValue("ZachColumn", "16");
+                saveKey.SetValue("OtherColumn", "9");
+                saveKey.SetValue("ContractColumn", "19");
+                saveKey.SetValue("SpecialColumn", "18");
+
+                saveKey.Close();
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        public void LoadFromRegistry() 
+        {
+            try
+            {
+                RegistryKey readKey = Registry.CurrentUser.OpenSubKey(@"software\ChairDB\Import");
+                if (readKey != null)
+                {
+                    StartReadingRow = Convert.ToInt32(readKey.GetValue("StartReadingRow"));
+                    GroupColumn = Convert.ToInt32(readKey.GetValue("GroupColumn"));
+                    GroupCountColumn = Convert.ToInt32(readKey.GetValue("GroupCountColumn"));
+                    SemesterColumn = Convert.ToInt32(readKey.GetValue("SemesterColumn"));
+                    WeeksColumn = Convert.ToInt32(readKey.GetValue("WeeksColumn"));
+                    DisciplineNameColumn = Convert.ToInt32(readKey.GetValue("DisciplineNameColumn"));
+                    LecturesColumn = Convert.ToInt32(readKey.GetValue("LecturesColumn"));
+                    LabsColumn = Convert.ToInt32(readKey.GetValue("LabsColumn"));
+                    PracticesColumn = Convert.ToInt32(readKey.GetValue("PracticesColumn"));
+                    KzColumn = Convert.ToInt32(readKey.GetValue("KzColumn"));
+                    KrColumn = Convert.ToInt32(readKey.GetValue("KrColumn"));
+                    KpColumn = Convert.ToInt32(readKey.GetValue("KpColumn"));
+                    EkzColumn = Convert.ToInt32(readKey.GetValue("EkzColumn"));
+                    ZachColumn = Convert.ToInt32(readKey.GetValue("ZachColumn"));
+                    OtherColumn = Convert.ToInt32(readKey.GetValue("OtherColumn"));
+                    SpecialColumn = Convert.ToInt32(readKey.GetValue("SpecialColumn"));
+
+                    readKey.Close();
+                }
+
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public void SaveToRegistry(Dictionary<string,object> newValues) 
+        {
+            try
+            {
+                RegistryKey saveKey = Registry.CurrentUser.CreateSubKey("software\\ChairDB\\Import");
+                foreach (string key in newValues.Keys)
+                {
+                    saveKey.SetValue(key, newValues[key]);
+                }
+                saveKey.Close();
+            }
+            catch(Exception err)
+            {
+                MessageBox.Show(err.Message, "Ошибка при сохранении настроек импорта", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }           
+        }
+
+    }
+
+
+
     public static class ImportSettings
     {
-
+        public static Dictionary<string,string> setting=new Dictionary<string,string>();
         public static int StartReadingRow = 7;
         public static int GroupColumn = 1;
         public static int GroupCountColumn = 5;

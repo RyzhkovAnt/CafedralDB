@@ -442,6 +442,9 @@
     <Compile Include="SourceCode\Model\Entities\WorkloadAssign.cs" />
     <Compile Include="SourceCode\Model\Entities\WorkloadCost.cs" />
     <Compile Include="SourceCode\Model\Exporter.cs" />
+    <Compile Include="SourceCode\Model\Exporter\ExportIndPlan.cs" />
+    <Compile Include="SourceCode\Model\Exporter\ExportSemester.cs" />
+    <Compile Include="SourceCode\Model\Exporter\ExportWorkload.cs" />
     <Compile Include="SourceCode\Model\Importer.cs" />
     <Compile Include="SourceCode\Utilities.cs" />
     <EmbeddedResource Include="Forms\Add\Assign\AssignTeachersSpecialForm.resx">

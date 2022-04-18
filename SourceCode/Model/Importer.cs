@@ -13,6 +13,9 @@ namespace CafedralDB.SourceCode.Model
         {
             List<Discipline> disciplines = new List<Discipline>();
 			List<Workload> workloads = new List<Workload>();
+
+			NewImportSetting importSettings = new NewImportSetting();
+			
             #region Read disciplines from Excel
             //opening Excel
             Excel.Application xlApp;
@@ -33,36 +36,36 @@ namespace CafedralDB.SourceCode.Model
             {
                 xlWorkSheet = xlWorkBook.Worksheets[i];
 
-                int counter = ImportSettings.StartReadingRow;
+                int counter = importSettings.StartReadingRow;
 
 				while (xlWorkSheet.GetCellText(counter, 8) != "")
                 {
-                    string group = xlWorkSheet.GetCellText(counter, ImportSettings.GroupColumn);
+                    string group = xlWorkSheet.GetCellText(counter, importSettings.GroupColumn);
 
-                    int groupCount = Convert.ToInt32(xlWorkSheet.GetCellText(counter, ImportSettings.GroupCountColumn));
-                    int studentCount = Convert.ToInt32(xlWorkSheet.GetCellText(counter, ImportSettings.StudentCountColumn));
+                    int groupCount = Convert.ToInt32(xlWorkSheet.GetCellText(counter, importSettings.GroupCountColumn));
+                    int studentCount = Convert.ToInt32(xlWorkSheet.GetCellText(counter, importSettings.StudentCountColumn));
 
-                    string semester = xlWorkSheet.GetCellText(counter, ImportSettings.SemesterColumn);
-                    int weeks = xlWorkSheet.GetCellText(counter, ImportSettings.WeeksColumn) != "" ? 
-						Convert.ToInt32(xlWorkSheet.GetCellText(counter, ImportSettings.WeeksColumn)) : 0;
-                    string disciplineName = xlWorkSheet.GetCellText(counter, ImportSettings.DisciplineNameColumn);
-                    int lectures = xlWorkSheet.GetCellText(counter, ImportSettings.LecturesColumn)!=""?
-						Convert.ToInt32(xlWorkSheet.GetCellText(counter, ImportSettings.LecturesColumn)):0;
-                    int labs = xlWorkSheet.GetCellText(counter, ImportSettings.LabsColumn)!=""? 
-						Convert.ToInt32(xlWorkSheet.GetCellText(counter, ImportSettings.LabsColumn)):0;
-                    int practices = xlWorkSheet.GetCellText(counter, ImportSettings.PracticesColumn)!=""?
-						Convert.ToInt32(xlWorkSheet.GetCellText(counter, ImportSettings.PracticesColumn)):0;
-                    bool kz = xlWorkSheet.GetCellText(counter, ImportSettings.KzColumn)!="";
-                    bool kr = xlWorkSheet.GetCellText(counter, ImportSettings.KrColumn)!="";
-                    bool kp = xlWorkSheet.GetCellText(counter, ImportSettings.KpColumn)!="";
-                    bool ekz = xlWorkSheet.GetCellText(counter, ImportSettings.EkzColumn)!="";
-                    bool zach = xlWorkSheet.GetCellText(counter, ImportSettings.ZachColumn)!="";
+                    string semester = xlWorkSheet.GetCellText(counter, importSettings.SemesterColumn);
+                    int weeks = xlWorkSheet.GetCellText(counter, importSettings.WeeksColumn) != "" ? 
+						Convert.ToInt32(xlWorkSheet.GetCellText(counter, importSettings.WeeksColumn)) : 0;
+                    string disciplineName = xlWorkSheet.GetCellText(counter, importSettings.DisciplineNameColumn);
+                    int lectures = xlWorkSheet.GetCellText(counter, importSettings.LecturesColumn)!=""?
+						Convert.ToInt32(xlWorkSheet.GetCellText(counter, importSettings.LecturesColumn)):0;
+                    int labs = xlWorkSheet.GetCellText(counter, importSettings.LabsColumn)!=""? 
+						Convert.ToInt32(xlWorkSheet.GetCellText(counter, importSettings.LabsColumn)):0;
+                    int practices = xlWorkSheet.GetCellText(counter, importSettings.PracticesColumn)!=""?
+						Convert.ToInt32(xlWorkSheet.GetCellText(counter, importSettings.PracticesColumn)):0;
+                    bool kz = xlWorkSheet.GetCellText(counter, importSettings.KzColumn)!="";
+                    bool kr = xlWorkSheet.GetCellText(counter, importSettings.KrColumn)!="";
+                    bool kp = xlWorkSheet.GetCellText(counter, importSettings.KpColumn)!="";
+                    bool ekz = xlWorkSheet.GetCellText(counter, importSettings.EkzColumn)!="";
+                    bool zach = xlWorkSheet.GetCellText(counter, importSettings.ZachColumn)!="";
                     //Проверить
-					bool isSpecial = xlWorkSheet.GetCellText(counter, ImportSettings.ZachColumn+2) == "";
+					bool isSpecial = xlWorkSheet.GetCellText(counter, importSettings.ZachColumn+2) == "";
 
-                    bool isContract = xlWorkSheet.GetCellText(counter, ImportSettings.ContractColumn) != "";
+                    bool isContract = xlWorkSheet.GetCellText(counter, importSettings.ContractColumn) != "";
 
-					Discipline discipline = new Discipline(counter - ImportSettings.StartReadingRow);
+					Discipline discipline = new Discipline(counter - importSettings.StartReadingRow);
 					int disciplineType = 1;
 					
 					discipline.Descr = disciplineName;
@@ -242,6 +245,7 @@ namespace CafedralDB.SourceCode.Model
                     if(groupID!=-1 && (DataManager.SharedDataManager().GetGroup(groupID).SubgroupCount != groupCount ||
                         DataManager.SharedDataManager().GetGroup(groupID).StudentCount != studentCount))
                     {
+						//сломано
                         var newGroup = new Group(groupID);
                         newGroup.SubgroupCount = groupCount;
                         newGroup.StudentCount = studentCount;

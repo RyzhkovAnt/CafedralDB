@@ -58,14 +58,15 @@
             this.label14 = new System.Windows.Forms.Label();
             this.textBoxOtherColumn = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBoxContractColumn = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.textBoxContractColumn = new System.Windows.Forms.TextBox();
+            this.toDefaultButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(120, 251);
+            this.buttonSave.Location = new System.Drawing.Point(228, 251);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(75, 23);
             this.buttonSave.TabIndex = 0;
@@ -88,6 +89,7 @@
             this.textBoxStartReadingRow.Name = "textBoxStartReadingRow";
             this.textBoxStartReadingRow.Size = new System.Drawing.Size(38, 20);
             this.textBoxStartReadingRow.TabIndex = 2;
+            this.textBoxStartReadingRow.TextChanged += new System.EventHandler(this.textBoxStartReadingRow_TextChanged);
             // 
             // textBoxGroupColumn
             // 
@@ -95,6 +97,7 @@
             this.textBoxGroupColumn.Name = "textBoxGroupColumn";
             this.textBoxGroupColumn.Size = new System.Drawing.Size(38, 20);
             this.textBoxGroupColumn.TabIndex = 4;
+            this.textBoxGroupColumn.TextChanged += new System.EventHandler(this.textBoxGroupColumn_TextChanged);
             // 
             // label2
             // 
@@ -120,6 +123,7 @@
             this.textBoxSemesterColumn.Name = "textBoxSemesterColumn";
             this.textBoxSemesterColumn.Size = new System.Drawing.Size(38, 20);
             this.textBoxSemesterColumn.TabIndex = 4;
+            this.textBoxSemesterColumn.TextChanged += new System.EventHandler(this.textBoxSemesterColumn_TextChanged);
             // 
             // label4
             // 
@@ -136,6 +140,7 @@
             this.textBoxWeekColumn.Name = "textBoxWeekColumn";
             this.textBoxWeekColumn.Size = new System.Drawing.Size(38, 20);
             this.textBoxWeekColumn.TabIndex = 4;
+            this.textBoxWeekColumn.TextChanged += new System.EventHandler(this.textBoxWeekColumn_TextChanged);
             // 
             // label
             // 
@@ -152,6 +157,7 @@
             this.textBoxDisciplineNameColumn.Name = "textBoxDisciplineNameColumn";
             this.textBoxDisciplineNameColumn.Size = new System.Drawing.Size(38, 20);
             this.textBoxDisciplineNameColumn.TabIndex = 4;
+            this.textBoxDisciplineNameColumn.TextChanged += new System.EventHandler(this.textBoxDisciplineNameColumn_TextChanged);
             // 
             // label6
             // 
@@ -168,6 +174,7 @@
             this.textBoxLecturesColumn.Name = "textBoxLecturesColumn";
             this.textBoxLecturesColumn.Size = new System.Drawing.Size(38, 20);
             this.textBoxLecturesColumn.TabIndex = 4;
+            this.textBoxLecturesColumn.TextChanged += new System.EventHandler(this.textBoxLecturesColumn_TextChanged);
             // 
             // label7
             // 
@@ -184,6 +191,7 @@
             this.textBoxLabsColumn.Name = "textBoxLabsColumn";
             this.textBoxLabsColumn.Size = new System.Drawing.Size(38, 20);
             this.textBoxLabsColumn.TabIndex = 4;
+            this.textBoxLabsColumn.TextChanged += new System.EventHandler(this.textBoxLabsColumn_TextChanged);
             // 
             // label8
             // 
@@ -200,6 +208,7 @@
             this.textBoxPracticesColumn.Name = "textBoxPracticesColumn";
             this.textBoxPracticesColumn.Size = new System.Drawing.Size(38, 20);
             this.textBoxPracticesColumn.TabIndex = 2;
+            this.textBoxPracticesColumn.TextChanged += new System.EventHandler(this.textBoxPracticesColumn_TextChanged);
             // 
             // label9
             // 
@@ -216,6 +225,7 @@
             this.textBoxKzColumn.Name = "textBoxKzColumn";
             this.textBoxKzColumn.Size = new System.Drawing.Size(38, 20);
             this.textBoxKzColumn.TabIndex = 4;
+            this.textBoxKzColumn.TextChanged += new System.EventHandler(this.textBoxKzColumn_TextChanged);
             // 
             // label10
             // 
@@ -232,6 +242,7 @@
             this.textBoxKrColumn.Name = "textBoxKrColumn";
             this.textBoxKrColumn.Size = new System.Drawing.Size(38, 20);
             this.textBoxKrColumn.TabIndex = 4;
+            this.textBoxKrColumn.TextChanged += new System.EventHandler(this.textBoxKrColumn_TextChanged);
             // 
             // label11
             // 
@@ -248,6 +259,7 @@
             this.textBoxKpColumn.Name = "textBoxKpColumn";
             this.textBoxKpColumn.Size = new System.Drawing.Size(38, 20);
             this.textBoxKpColumn.TabIndex = 4;
+            this.textBoxKpColumn.TextChanged += new System.EventHandler(this.textBoxKpColumn_TextChanged);
             // 
             // label12
             // 
@@ -264,6 +276,7 @@
             this.textBoxEkzColumn.Name = "textBoxEkzColumn";
             this.textBoxEkzColumn.Size = new System.Drawing.Size(38, 20);
             this.textBoxEkzColumn.TabIndex = 4;
+            this.textBoxEkzColumn.TextChanged += new System.EventHandler(this.textBoxEkzColumn_TextChanged);
             // 
             // label13
             // 
@@ -280,15 +293,16 @@
             this.textBoxZachColumn.Name = "textBoxZachColumn";
             this.textBoxZachColumn.Size = new System.Drawing.Size(38, 20);
             this.textBoxZachColumn.TabIndex = 4;
+            this.textBoxZachColumn.TextChanged += new System.EventHandler(this.textBoxZachColumn_TextChanged);
             // 
             // label14
             // 
             this.label14.AutoSize = true;
             this.label14.Location = new System.Drawing.Point(161, 180);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(44, 13);
+            this.label14.Size = new System.Drawing.Size(100, 13);
             this.label14.TabIndex = 3;
-            this.label14.Text = "Другое";
+            this.label14.Text = "Другое(depricated)";
             // 
             // textBoxOtherColumn
             // 
@@ -334,27 +348,39 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Номера столбцов";
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 182);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(107, 13);
+            this.label5.TabIndex = 6;
+            this.label5.Text = "Договор(depricated)";
+            // 
             // textBoxContractColumn
             // 
             this.textBoxContractColumn.Location = new System.Drawing.Point(108, 179);
             this.textBoxContractColumn.Name = "textBoxContractColumn";
             this.textBoxContractColumn.Size = new System.Drawing.Size(37, 20);
             this.textBoxContractColumn.TabIndex = 5;
+            this.textBoxContractColumn.TextChanged += new System.EventHandler(this.textBoxContractColumn_TextChanged);
             // 
-            // label5
+            // toDefaultButton
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 182);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(51, 13);
-            this.label5.TabIndex = 6;
-            this.label5.Text = "Договор";
+            this.toDefaultButton.Location = new System.Drawing.Point(15, 251);
+            this.toDefaultButton.Name = "toDefaultButton";
+            this.toDefaultButton.Size = new System.Drawing.Size(110, 23);
+            this.toDefaultButton.TabIndex = 6;
+            this.toDefaultButton.Text = "по умолчанию";
+            this.toDefaultButton.UseVisualStyleBackColor = true;
+            this.toDefaultButton.Click += new System.EventHandler(this.toDefaultButton_Click);
             // 
             // ImportSettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(317, 279);
+            this.Controls.Add(this.toDefaultButton);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.textBoxStartReadingRow);
             this.Controls.Add(this.label1);
@@ -402,5 +428,6 @@
 		private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBoxContractColumn;
+        private System.Windows.Forms.Button toDefaultButton;
     }
 }

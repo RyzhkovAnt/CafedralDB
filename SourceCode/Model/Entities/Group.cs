@@ -11,12 +11,12 @@ namespace Model
     /// </summary>
     public class Group
     {
-        int _ID;
-
+        
         public Group(int id)
         {
-            _ID = id;
+            ID = id;
         }
+        public int ID { get; private set; }
 
         public string Name { get; set; }
 

@@ -26,8 +26,10 @@ namespace Model
             Semester semester = DataManager.SharedDataManager().GetSemester(workload.Semester);
             float lec = 0, lab = 0, prac = 0, ekz = 0, kr = 0, kp = 0, zach = 0, kons = 0;
             lec = CalculationSettings.LectureCost * discipline.LectureCount * semester.WeekCount;
-            var subGroupCount =group.SubgroupCount == 1 ? Math.Floor((double)group.StudentCount / 9)<1?1:Math.Floor((double)group.StudentCount / 9) :
-                Math.Floor((double)group.StudentCount / group.SubgroupCount / 9) * group.SubgroupCount;
+
+            var subGroupCount = GetSubGroupCount(group.StudentCount);
+                //group.SubgroupCount == 1 ? Math.Floor((double)group.StudentCount / 9)<1?1:Math.Floor((double)group.StudentCount / 9) :
+                //Math.Floor((double)group.StudentCount / group.SubgroupCount / 9) * group.SubgroupCount;
             lab = CalculationSettings.LabCost * discipline.LabCount * semester.WeekCount * Convert.ToInt32(subGroupCount);
                 //((int)Math.Floor((double)group.StudentCount/9)>0 ? (int)Math.Floor((double)group.StudentCount / 9):1);
             prac = CalculationSettings.PracticeCost * discipline.PracticeCount * semester.WeekCount * group.SubgroupCount;
@@ -82,8 +84,9 @@ namespace Model
             }
 
             workloadCost.UchPracCost = CalculationSettings.UchPr * 5 * discipline.UchPr * group.SubgroupCount;
-            workloadCost.PrPracCost = group.StudyFormID == 1 ? CalculationSettings.PrPr * 5 * discipline.PrPr * group.SubgroupCount :
-                1 * group.StudentCount;
+            workloadCost.PrPracCost = Convert.ToBoolean(discipline.PrPr)? CalculationSettings.PrPr * group.StudentCount:0;
+            //workloadCost.PrPracCost = group.StudyFormID == 1 ? CalculationSettings.PrPr * 5 * discipline.PrPr * group.SubgroupCount :
+            //    1 * group.StudentCount;
             workloadCost.PredDipPracCost = CalculationSettings.PreddipPr * group.StudentCount * discipline.PredDipPr;
                 
             workloadCost.GEKCost = discipline.GEK ? CalculationSettings.GEK * group.StudentCount * 6 : 0;//GEK
@@ -97,13 +100,20 @@ namespace Model
             workloadCost.ASPRukCost = discipline.ASPRuk ? CalculationSettings.AspRuk : 0;//GEK
 
             workloadCost.GosEkz = discipline.GosEkz ?
-                CalculationSettings.GosEkz * group.StudentCount * CalculationSettings.EkzBoard : 0;//Гос Экзамен
+                CalculationSettings.GosEkz * group.StudentCount * CalculationSettings.EkzBoard : 0;//Гос Экзамен 
 
             workloadCost.MagRuk = discipline.MAGRuk ? 
-                group.StudentCount * CalculationSettings.MAGRuk : 0;//Маг диссер
+                group.StudentCount * CalculationSettings.MAGRuk : 0;//Маг диссер 32*studentCount(old) 20+1 * studentCount (new)
             return workloadCost;
         }
-
+        static int GetSubGroupCount(int studentCount)
+        {
+            if (studentCount < 18)
+            {
+                return 1;
+            }
+            return studentCount / 9;
+        }
         public static float GetEmployeeAllWorkloadsCost(int employeeID, int yearID)
 		{
 			List<Workload> workloads = DataManager.SharedDataManager().GetEmployeeWorkloads(employeeID, yearID);

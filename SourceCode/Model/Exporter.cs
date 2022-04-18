@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
 using TemplateEngine.Docx;
+
+
 namespace Model
 {
 	namespace Exporter
@@ -348,7 +350,10 @@ namespace Model
 		{
 			public static void ExportWorkload(string year)
 			{
-				string path = System.Windows.Forms.Application.StartupPath + "\\ExcelTemplates\\WorkloadTemplate.xltx";
+                //CafedralDB.SourceCode.Model.Exporter.ExportWorkload.Export(year);
+                //return;
+
+                string path = System.Windows.Forms.Application.StartupPath + "\\ExcelTemplates\\WorkloadTemplate.xltx";
 
 				Excel.Application ObjExcel = new Excel.Application();
 				Excel.Workbook ObjWorkBook;
@@ -544,6 +549,20 @@ namespace Model
 				sheet.Cells[rowCounters[sheet], 16] = Convert.ToBoolean(reader[15]) ? "+" : "";// РГр
 				sheet.Cells[rowCounters[sheet], 17] = Convert.ToBoolean(reader[16]) ? "+" : "";// КР
 				sheet.Cells[rowCounters[sheet], 18] = Convert.ToBoolean(reader[17]) ? "+" : "";// КП
+
+                sheet.Cells[rowCounters[sheet], 19] = Convert.ToBoolean(reader[18]) ? "+" : "";// Учебная практика
+                sheet.Cells[rowCounters[sheet], 20] = Convert.ToBoolean(reader[19]) ? "+" : "";// Производственная практика
+                sheet.Cells[rowCounters[sheet], 21] = Convert.ToBoolean(reader[20]) ? "+" : "";// Преддипломная практика
+                sheet.Cells[rowCounters[sheet], 23] = Convert.ToBoolean(reader[22]) ? "+" : "";// ГЭК
+                sheet.Cells[rowCounters[sheet], 24] = Convert.ToBoolean(reader[23]) ? "+" : "";// Гак
+                sheet.Cells[rowCounters[sheet], 25] = Convert.ToBoolean(reader[24]) ? "+" : "";// Гак председатель
+                sheet.Cells[rowCounters[sheet], 33] = Convert.ToBoolean(reader[32]) ? "+" : "";// Руководство кафедрой
+
+
+
+
+
+
 
                 /*
                     Заполнение часов начинается с ячейки 34 и имеет след порядок:
