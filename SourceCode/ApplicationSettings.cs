@@ -32,8 +32,7 @@ namespace ApplicationSettings
         public int KpColumn {get;private set;} = 14;
         public int EkzColumn {get;private set;} = 15;
         public int ZachColumn {get;private set;} = 16;
-        public int OtherColumn {get;private set;} = 9;
-        public int ContractColumn {get;private set;} = 19;
+
         public int SpecialColumn {get;private set;} = 18;
 
         public NewImportSetting()
@@ -60,8 +59,6 @@ namespace ApplicationSettings
                 saveKey.SetValue("KpColumn", "14");
                 saveKey.SetValue("EkzColumn", "15");
                 saveKey.SetValue("ZachColumn", "16");
-                saveKey.SetValue("OtherColumn", "9");
-                saveKey.SetValue("ContractColumn", "19");
                 saveKey.SetValue("SpecialColumn", "18");
 
                 saveKey.Close();
@@ -92,7 +89,6 @@ namespace ApplicationSettings
                     KpColumn = Convert.ToInt32(readKey.GetValue("KpColumn"));
                     EkzColumn = Convert.ToInt32(readKey.GetValue("EkzColumn"));
                     ZachColumn = Convert.ToInt32(readKey.GetValue("ZachColumn"));
-                    OtherColumn = Convert.ToInt32(readKey.GetValue("OtherColumn"));
                     SpecialColumn = Convert.ToInt32(readKey.GetValue("SpecialColumn"));
 
                     readKey.Close();
@@ -125,7 +121,10 @@ namespace ApplicationSettings
     }
 
 
-
+    /// <summary>
+    /// Настройки импорта
+    /// </summary>
+    [Obsolete("Старый метод настройки импорта.")]
     public static class ImportSettings
     {
         public static Dictionary<string,string> setting=new Dictionary<string,string>();

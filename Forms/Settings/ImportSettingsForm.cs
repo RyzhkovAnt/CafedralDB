@@ -17,8 +17,6 @@ namespace CafedralDB.Forms.Settings
 		Dictionary<string, object> changedValue;
 		public ImportSettingsForm()
 		{
-
-			//ImportSettings.FromRegistry();
 			InitializeComponent();
 			setting = new NewImportSetting();
 			changedValue = new Dictionary<string, object>();
@@ -36,10 +34,6 @@ namespace CafedralDB.Forms.Settings
 			textBoxKpColumn.Text = setting.KpColumn.ToString();
 			textBoxEkzColumn.Text = setting.EkzColumn.ToString();
 			textBoxZachColumn.Text = setting.ZachColumn.ToString();
-			textBoxOtherColumn.Text = setting.OtherColumn.ToString();
-            textBoxContractColumn.Text = setting.ContractColumn.ToString();
-
-
 		}
 
 		void OnChangeField(string field,string value)
@@ -57,24 +51,9 @@ namespace CafedralDB.Forms.Settings
 		private void buttonSave_Click(object sender, EventArgs e)
 		{
 			
-			//ImportSettings.StartReadingRow = Convert.ToInt32(textBoxStartReadingRow.Text);
-			//ImportSettings.GroupColumn = Convert.ToInt32(textBoxGroupColumn.Text);
-			//ImportSettings.SemesterColumn = Convert.ToInt32(textBoxSemesterColumn.Text);
-			//ImportSettings.WeeksColumn = Convert.ToInt32(textBoxWeekColumn.Text);
-			//ImportSettings.DisciplineNameColumn = Convert.ToInt32(textBoxDisciplineNameColumn.Text);
-			//ImportSettings.LecturesColumn = Convert.ToInt32(textBoxLecturesColumn.Text);
-			//ImportSettings.LabsColumn = Convert.ToInt32(textBoxLabsColumn.Text);
-			//ImportSettings.PracticesColumn = Convert.ToInt32(textBoxPracticesColumn.Text);
-			//ImportSettings.KzColumn = Convert.ToInt32(textBoxKzColumn.Text);
-			//ImportSettings.KrColumn = Convert.ToInt32(textBoxKrColumn.Text);
-			//ImportSettings.KpColumn = Convert.ToInt32(textBoxKpColumn.Text);
-			//ImportSettings.EkzColumn = Convert.ToInt32(textBoxEkzColumn.Text);
-			//ImportSettings.ZachColumn = Convert.ToInt32(textBoxZachColumn.Text);
-			//ImportSettings.OtherColumn = Convert.ToInt32(textBoxOtherColumn.Text);
-   //         ImportSettings.ContractColumn = Convert.ToInt32(textBoxContractColumn.Text);
+			
 			setting.SaveToRegistry(changedValue);
 			MessageBox.Show("Сохранено");
-			//ImportSettings.ToRegistry();
 		}
 
         private void textBoxStartReadingRow_TextChanged(object sender, EventArgs e)
@@ -110,11 +89,6 @@ namespace CafedralDB.Forms.Settings
         private void textBoxLabsColumn_TextChanged(object sender, EventArgs e)
         {
 			OnChangeField("LabsColumn", textBoxLabsColumn.Text);
-		}
-
-        private void textBoxContractColumn_TextChanged(object sender, EventArgs e)
-        {
-			OnChangeField("ContractColumn", textBoxContractColumn.Text);
 		}
 
         private void textBoxPracticesColumn_TextChanged(object sender, EventArgs e)
@@ -163,8 +137,6 @@ namespace CafedralDB.Forms.Settings
 			textBoxKpColumn.Text = setting.KpColumn.ToString();
 			textBoxEkzColumn.Text = setting.EkzColumn.ToString();
 			textBoxZachColumn.Text = setting.ZachColumn.ToString();
-			textBoxOtherColumn.Text = setting.OtherColumn.ToString();
-			textBoxContractColumn.Text = setting.ContractColumn.ToString();
 		}
     }
 }
