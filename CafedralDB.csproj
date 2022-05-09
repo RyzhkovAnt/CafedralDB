@@ -446,6 +446,7 @@
     <Compile Include="SourceCode\Model\Exporter\ExportSemester.cs" />
     <Compile Include="SourceCode\Model\Exporter\ExportWorkload.cs" />
     <Compile Include="SourceCode\Model\Importer.cs" />
+    <Compile Include="SourceCode\Settings\SettingFields.cs" />
     <Compile Include="SourceCode\Utilities.cs" />
     <EmbeddedResource Include="Forms\Add\Assign\AssignTeachersSpecialForm.resx">
       <DependentUpon>AssignTeachersSpecialForm.cs</DependentUpon>

@@ -8,19 +8,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CafedralDB.SourceCode.Settings;
 
 namespace CafedralDB.Forms.Settings
 {
 	public partial class ImportSettingsForm : Form
 	{
 		NewImportSetting setting;
-		Dictionary<string, object> changedValue;
+		Dictionary<Field, object> changedValue;
 		public ImportSettingsForm()
 		{
 			InitializeComponent();
 			setting = new NewImportSetting();
-			changedValue = new Dictionary<string, object>();
-
+			changedValue = new Dictionary<Field, object>();
+			var t = ImportSettingFields.EkzColumn.Value;
 			textBoxStartReadingRow.Text = setting.StartReadingRow.ToString();
 			textBoxGroupColumn.Text = setting.GroupColumn.ToString();
 			textBoxSemesterColumn.Text = setting.SemesterColumn.ToString();
@@ -36,7 +37,7 @@ namespace CafedralDB.Forms.Settings
 			textBoxZachColumn.Text = setting.ZachColumn.ToString();
 		}
 
-		void OnChangeField(string field,string value)
+		void OnChangeField(Field field,string value)
         {
             if (changedValue.ContainsKey(field))
             {
@@ -49,76 +50,74 @@ namespace CafedralDB.Forms.Settings
         }
 
 		private void buttonSave_Click(object sender, EventArgs e)
-		{
-			
-			
+		{		
 			setting.SaveToRegistry(changedValue);
 			MessageBox.Show("Сохранено");
 		}
 
         private void textBoxStartReadingRow_TextChanged(object sender, EventArgs e)
         {
-			OnChangeField("StartReadingRow", textBoxStartReadingRow.Text);
+			OnChangeField(ImportSettingFields.StartReadingRow, textBoxStartReadingRow.Text);
         }
 
         private void textBoxGroupColumn_TextChanged(object sender, EventArgs e)
         {
-			OnChangeField("GroupColumn", textBoxGroupColumn.Text);
+			OnChangeField(ImportSettingFields.GroupColumn, textBoxGroupColumn.Text);
 		}
 
         private void textBoxSemesterColumn_TextChanged(object sender, EventArgs e)
         {
-			OnChangeField("SemesterColumn", textBoxSemesterColumn.Text);
+			OnChangeField(ImportSettingFields.SemesterColumn, textBoxSemesterColumn.Text);
 		}
 
         private void textBoxWeekColumn_TextChanged(object sender, EventArgs e)
         {
-			OnChangeField("WeekColumn", textBoxWeekColumn.Text);
+			OnChangeField(ImportSettingFields.WeeksColumn, textBoxWeekColumn.Text);
 		}
 
         private void textBoxDisciplineNameColumn_TextChanged(object sender, EventArgs e)
         {
-			OnChangeField("DisciplineNameColumn", textBoxDisciplineNameColumn.Text);
+			OnChangeField(ImportSettingFields.DisciplineNameColumn, textBoxDisciplineNameColumn.Text);
 		}
 
         private void textBoxLecturesColumn_TextChanged(object sender, EventArgs e)
         {
-			OnChangeField("LecturesColumn", textBoxLecturesColumn.Text);
+			OnChangeField(ImportSettingFields.LecturesColumn, textBoxLecturesColumn.Text);
 		}
 
         private void textBoxLabsColumn_TextChanged(object sender, EventArgs e)
         {
-			OnChangeField("LabsColumn", textBoxLabsColumn.Text);
+			OnChangeField(ImportSettingFields.LabsColumn, textBoxLabsColumn.Text);
 		}
 
         private void textBoxPracticesColumn_TextChanged(object sender, EventArgs e)
         {
-			OnChangeField("PracticesColumn", textBoxPracticesColumn.Text);
+			OnChangeField(ImportSettingFields.PracticesColumn, textBoxPracticesColumn.Text);
 		}
 
 		private void textBoxKzColumn_TextChanged(object sender, EventArgs e)
         {
-			OnChangeField("KzColumn", textBoxKzColumn.Text);
+			OnChangeField(ImportSettingFields.KzColumn, textBoxKzColumn.Text);
 		}
 
 		private void textBoxKrColumn_TextChanged(object sender, EventArgs e)
         {
-			OnChangeField("KrColumn", textBoxKrColumn.Text);
+			OnChangeField(ImportSettingFields.KrColumn, textBoxKrColumn.Text);
 		}
 
 		private void textBoxKpColumn_TextChanged(object sender, EventArgs e)
         {
-			OnChangeField("KpColumn", textBoxKpColumn.Text);
+			OnChangeField(ImportSettingFields.KpColumn, textBoxKpColumn.Text);
 		}
 
 		private void textBoxEkzColumn_TextChanged(object sender, EventArgs e)
         {
-			OnChangeField("EkzColumn", textBoxEkzColumn.Text);
+			OnChangeField(ImportSettingFields.EkzColumn, textBoxEkzColumn.Text);
 		}
 
 		private void textBoxZachColumn_TextChanged(object sender, EventArgs e)
         {
-			OnChangeField("ZachColumn", textBoxZachColumn.Text);
+			OnChangeField(ImportSettingFields.ZachColumn, textBoxZachColumn.Text);
 		}
 
         private void toDefaultButton_Click(object sender, EventArgs e)
