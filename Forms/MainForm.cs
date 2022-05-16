@@ -210,8 +210,8 @@ namespace CafedralDB
 
 		private void MainForm_Load(object sender, EventArgs e)
 		{
-			ApplicationSettings.CalculationSettings.FromRegistry();
-		}
+            ApplicationSettings.CalculationSettings.FromRegistry();
+        }
 
         private void договорToolStripMenuItem_Click(object sender, EventArgs e)
         {

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CafedralDB.SourceCode.Model.Exporter;
 
 namespace CafedralDB.Forms.Export
 {
@@ -30,7 +31,7 @@ namespace CafedralDB.Forms.Export
             //saveDialog.ShowDialog();
             //filePath = saveDialog.FileName;
 
-            Model.Exporter.IndPlan.ExportIndPlan(teacherID, year);
+            IndPlan.ExportIndPlan(teacherID, year);
         }
 
         private void ExportIndPlan_Load(object sender, EventArgs e)

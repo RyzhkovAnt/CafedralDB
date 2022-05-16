@@ -1,4 +1,4 @@
-﻿namespace Model
+﻿namespace CafedralDB.SourceCode.Model
 {
     /// <summary>
     /// Параметр дисциплины, влияющий на часы

@@ -4,7 +4,7 @@ using System.Data;
 using System.Data.OleDb;
 using System.Collections.Generic;
 using Excel = Microsoft.Office.Interop.Excel;
-using Model;
+using CafedralDB.SourceCode.Model;
 
 namespace CafedralDB.SourceCode.Model.Exporter
 {
@@ -148,8 +148,8 @@ namespace CafedralDB.SourceCode.Model.Exporter
         }
 
         private static void ExportNotAssign(WorkloadCost workloadCost,Group group,Speciality speciality,Faculty faculty,Discipline discipline,
-            
-            Semester semester, Excel.Worksheet sheet, Dictionary<Excel.Worksheet, int> rowCounters)
+
+            CafedralDB.SourceCode.Model.Semester semester, Excel.Worksheet sheet, Dictionary<Excel.Worksheet, int> rowCounters)
         {
             //var workloadId = Convert.ToInt32(reader[1]);
             //var workloadCost = Calculator.GetWorkloadCost(Convert.ToInt32(reader[1]));
@@ -160,6 +160,7 @@ namespace CafedralDB.SourceCode.Model.Exporter
             //var discipline = DataManager.SharedDataManager().GetDiscipline(workload.Discipline);
             //var semester = DataManager.SharedDataManager().GetSemester(workload.Semester);
 
+            CafedralDB.SourceCode.Settings.CalculationSetting calculationSetting = new CafedralDB.SourceCode.Settings.CalculationSetting();
             int groupCount = group.SubgroupCount;
             int studentCount = group.StudentCount;
             var semesterNumber = Convert.ToInt32(semester.Name);
@@ -294,7 +295,7 @@ namespace CafedralDB.SourceCode.Model.Exporter
             //Руководство аспирантами
             if (discipline.ASPRuk)
             {
-                sheet.Cells[rowCounters[sheet], 54] = (group.StudentCount * ApplicationSettings.CalculationSettings.AspRuk);
+                sheet.Cells[rowCounters[sheet], 54] = (group.StudentCount * calculationSetting.AspRuk);
             }
 
             //sheet.Cells[rowCounters[sheet], 51] = Convert.ToBoolean(reader[26]) ?

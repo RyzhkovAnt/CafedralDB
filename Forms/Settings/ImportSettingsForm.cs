@@ -14,14 +14,13 @@ namespace CafedralDB.Forms.Settings
 {
 	public partial class ImportSettingsForm : Form
 	{
-		NewImportSetting setting;
+		ImportSetting setting;
 		Dictionary<Field, object> changedValue;
 		public ImportSettingsForm()
 		{
 			InitializeComponent();
-			setting = new NewImportSetting();
+			setting = new ImportSetting();
 			changedValue = new Dictionary<Field, object>();
-			var t = ImportSettingFields.EkzColumn.Value;
 			textBoxStartReadingRow.Text = setting.StartReadingRow.ToString();
 			textBoxGroupColumn.Text = setting.GroupColumn.ToString();
 			textBoxSemesterColumn.Text = setting.SemesterColumn.ToString();

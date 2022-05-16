@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
 using TemplateEngine.Docx;
-using Model;
+using CafedralDB.SourceCode.Model;
 
 namespace CafedralDB.SourceCode.Model.Exporter
 {

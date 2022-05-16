@@ -30,24 +30,24 @@
 		{
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.buttonSave = new System.Windows.Forms.Button();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.ToDefaultButton = new System.Windows.Forms.Button();
             this.кодDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.parameterNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.valueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.commentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.normasBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.mainDBDataSet = new CafedralDB.MainDBDataSet();
+            this.buttonSave = new System.Windows.Forms.Button();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.ToDefaultButton = new System.Windows.Forms.Button();
             this.normasTableAdapter = new CafedralDB.MainDBDataSetTableAdapters.NormasTableAdapter();
             this.tableAdapterManager = new CafedralDB.MainDBDataSetTableAdapters.TableAdapterManager();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.normasBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mainDBDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.normasBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mainDBDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -66,49 +66,9 @@
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(512, 167);
+            this.dataGridView1.Size = new System.Drawing.Size(636, 279);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
-            // 
-            // buttonSave
-            // 
-            this.buttonSave.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.buttonSave.Location = new System.Drawing.Point(218, 7);
-            this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(75, 23);
-            this.buttonSave.TabIndex = 1;
-            this.buttonSave.Text = "Сохранить";
-            this.buttonSave.UseVisualStyleBackColor = true;
-            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
-            // 
-            // splitContainer1
-            // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Name = "splitContainer1";
-            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.Controls.Add(this.dataGridView1);
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.Controls.Add(this.ToDefaultButton);
-            this.splitContainer1.Panel2.Controls.Add(this.buttonSave);
-            this.splitContainer1.Size = new System.Drawing.Size(512, 213);
-            this.splitContainer1.SplitterDistance = 167;
-            this.splitContainer1.TabIndex = 2;
-            // 
-            // ToDefaultButton
-            // 
-            this.ToDefaultButton.Location = new System.Drawing.Point(12, 2);
-            this.ToDefaultButton.Name = "ToDefaultButton";
-            this.ToDefaultButton.Size = new System.Drawing.Size(75, 23);
-            this.ToDefaultButton.TabIndex = 2;
-            this.ToDefaultButton.Text = "Сбросить";
-            this.ToDefaultButton.UseVisualStyleBackColor = true;
-            this.ToDefaultButton.Click += new System.EventHandler(this.ToDefaultButton_Click);
             // 
             // кодDataGridViewTextBoxColumn
             // 
@@ -151,6 +111,46 @@
             this.mainDBDataSet.DataSetName = "MainDBDataSet";
             this.mainDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
+            // buttonSave
+            // 
+            this.buttonSave.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.buttonSave.Location = new System.Drawing.Point(280, 3);
+            this.buttonSave.Name = "buttonSave";
+            this.buttonSave.Size = new System.Drawing.Size(75, 23);
+            this.buttonSave.TabIndex = 1;
+            this.buttonSave.Text = "Сохранить";
+            this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.dataGridView1);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.ToDefaultButton);
+            this.splitContainer1.Panel2.Controls.Add(this.buttonSave);
+            this.splitContainer1.Size = new System.Drawing.Size(636, 311);
+            this.splitContainer1.SplitterDistance = 279;
+            this.splitContainer1.TabIndex = 2;
+            // 
+            // ToDefaultButton
+            // 
+            this.ToDefaultButton.Location = new System.Drawing.Point(12, 2);
+            this.ToDefaultButton.Name = "ToDefaultButton";
+            this.ToDefaultButton.Size = new System.Drawing.Size(75, 23);
+            this.ToDefaultButton.TabIndex = 2;
+            this.ToDefaultButton.Text = "Сбросить";
+            this.ToDefaultButton.UseVisualStyleBackColor = true;
+            this.ToDefaultButton.Click += new System.EventHandler(this.ToDefaultButton_Click);
+            // 
             // normasTableAdapter
             // 
             this.normasTableAdapter.ClearBeforeFill = true;
@@ -183,18 +183,18 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(512, 213);
+            this.ClientSize = new System.Drawing.Size(636, 311);
             this.Controls.Add(this.splitContainer1);
             this.Name = "Normas";
             this.Text = "Normas";
             this.Load += new System.EventHandler(this.Normas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.normasBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mainDBDataSet)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.normasBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mainDBDataSet)).EndInit();
             this.ResumeLayout(false);
 
 		}

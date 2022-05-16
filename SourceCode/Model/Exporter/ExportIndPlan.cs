@@ -5,8 +5,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
 using TemplateEngine.Docx;
-using Model;
-using Model.Entity;
+using CafedralDB.SourceCode.Model;
+using CafedralDB.SourceCode.Model.Entity;
 
 namespace CafedralDB.SourceCode.Model.Exporter
 {
@@ -96,9 +96,9 @@ namespace CafedralDB.SourceCode.Model.Exporter
                     DescrSheet.Cells[currentRow, ApplicationSettings.ExportSettings.IndPlanSetting.DisciplineDescrColumn] = descr;
                     DescrSheet.Cells[currentRow, ApplicationSettings.ExportSettings.IndPlanSetting.StudentsCountColumn] = reader[4];
                     int countStud = Convert.ToInt32(reader[4]);
-                    Workload workload = DataManager.SharedDataManager().GetWorkload(Convert.ToInt32(reader[21]));
+                    CafedralDB.SourceCode.Model.Entity.Workload workload = DataManager.SharedDataManager().GetWorkload(Convert.ToInt32(reader[21]));
                     WorkloadCost workloadCost = Calculator.GetWorkloadCost(workload.ID);
-
+                    Settings.CalculationSetting calculationSetting = new Settings.CalculationSetting();
                     if (Convert.ToBoolean(reader[20]))
                     {
                         WorkloadAssign assign = DataManager.SharedDataManager().GetWorkloadAssign(Convert.ToInt32(reader[21]), teacherID);
@@ -137,11 +137,11 @@ namespace CafedralDB.SourceCode.Model.Exporter
                     double rukMag = Convert.ToBoolean(reader[16]) ? (30 * Convert.ToInt32(reader[16])) : 0;//рук маг
                     geks = GEK + GAK + GAKpred;
 
-                    ruk += Convert.ToBoolean(reader[11]) ? (countStud * ApplicationSettings.CalculationSettings.DPruk) : 0f;//DPruk
+                    ruk += Convert.ToBoolean(reader[11]) ? (countStud * calculationSetting.DPruk) : 0f;//DPruk
                     ruk += Convert.ToBoolean(reader[12]) ? (1 * Convert.ToInt32(reader[4])) : 0f;//DopuskVkr
                     ruk += Convert.ToBoolean(reader[13]) ? (4 * Convert.ToInt32(reader[4])) : 0f;//retzVKR
                     ruk += Convert.ToBoolean(reader[14]) ? (30 * Convert.ToInt32(reader[4])) : 0f;//DPretz
-                    ruk += Convert.ToBoolean(reader[15]) ? (ApplicationSettings.CalculationSettings.AspRuk * countStud) : 0f;//ASPRuk
+                    ruk += Convert.ToBoolean(reader[15]) ? (calculationSetting.AspRuk * countStud) : 0f;//ASPRuk
                     ruk += rukMag;
                     ruk += Convert.ToBoolean(reader[17]) ? (1 * Convert.ToInt32(reader[4])) : 0f;//MAGRetz
                     ruk += Convert.ToBoolean(reader[18]) ? (1 * Convert.ToInt32(reader[4])) : 0f;//rukKaf
@@ -151,9 +151,9 @@ namespace CafedralDB.SourceCode.Model.Exporter
 
                     string disciplineName = reader[0].ToString();
                     if (disciplineName.ToLower().Contains("норм") && disciplineName.ToLower().Contains("маг"))
-                        other += countStud * ApplicationSettings.CalculationSettings.NormocontrolMag;
+                        other += countStud * calculationSetting.NormocontrolMag;
                     if (disciplineName.ToLower().Contains("доп") && disciplineName.ToLower().Contains("маг"))
-                        other += countStud * ApplicationSettings.CalculationSettings.DopuskDissMag;
+                        other += countStud * calculationSetting.DopuskDissMag;
 
                     ParamsSheet.Cells[currentRow - 1, ApplicationSettings.ExportSettings.IndPlanSetting.DisciplineSettingsStartColumn + 8] = 0;
                     ParamsSheet.Cells[currentRow - 1, ApplicationSettings.ExportSettings.IndPlanSetting.DisciplineSettingsStartColumn + 9] = uchPr;//уч пр.

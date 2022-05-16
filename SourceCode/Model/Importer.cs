@@ -1,10 +1,10 @@
-﻿using Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
 using ApplicationSettings;
-using Model.Entity;
+using CafedralDB.SourceCode.Model.Entity;
+using CafedralDB.SourceCode.Settings;
 namespace CafedralDB.SourceCode.Model
 {
     static class Importer
@@ -14,7 +14,7 @@ namespace CafedralDB.SourceCode.Model
             List<Discipline> disciplines = new List<Discipline>();
 			List<Workload> workloads = new List<Workload>();
 
-			NewImportSetting importSettings = new NewImportSetting();
+			ImportSetting importSettings = new ImportSetting();
 			
             #region Read disciplines from Excel
             //opening Excel

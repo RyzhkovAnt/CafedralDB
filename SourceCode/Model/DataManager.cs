@@ -7,9 +7,9 @@ using System.Data.OleDb;
 using System.Linq;
 using System.Text;
 using static CafedralDB.MainDBDataSet;
-using Model.Entity;
+using CafedralDB.SourceCode.Model.Entity;
 
-namespace Model
+namespace CafedralDB.SourceCode.Model
 {
 	public class DataManager
 	{

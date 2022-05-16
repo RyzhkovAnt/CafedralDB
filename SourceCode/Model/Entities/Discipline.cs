@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Model
+namespace CafedralDB.SourceCode.Model
 {
     /// <summary>
     /// Дисциплина

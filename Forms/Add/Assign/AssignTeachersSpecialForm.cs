@@ -1,5 +1,4 @@
-﻿using Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CafedralDB.SourceCode.Model;
 
 namespace CafedralDB.Forms.Add.Assign
 {
@@ -86,7 +86,7 @@ namespace CafedralDB.Forms.Add.Assign
 				//this.dataTableForAssignsTableAdapter.ClearBeforeFill = true;
 
 				OleDbCommand command = new System.Data.OleDb.OleDbCommand();
-					command.Connection = Model.DataManager.Connection;
+					command.Connection = DataManager.Connection;
 					command.CommandText = @"SELECT        Workload.ID, Discipline.Descr AS Дисциплина, [Group].Descr AS Группа, StudyForm.DescrRus AS Форма, Semester.Descr AS Семестр, StudyYear.ID AS ГодID, StudyYear.StudyYear
 				FROM (((((Discipline INNER JOIN
                          Workload ON Discipline.ID = Workload.Discipline) INNER JOIN
@@ -98,12 +98,12 @@ namespace CafedralDB.Forms.Add.Assign
 
 
 					command.CommandType = global::System.Data.CommandType.Text;
-					Model.DataManager.SharedDataManager();
+					DataManager.SharedDataManager();
 					//Model.DataManager.Connection.Open();
 					//this.dataTableForAssignsTableAdapter.Connection = Model.DataManager.Connection;
 					command.Parameters.AddWithValue("@param", yearID);
 					this.dataTableForAssignsTableAdapter.Adapter.SelectCommand = command;
-					this.dataTableForAssignsTableAdapter.Adapter.SelectCommand.Connection = Model.DataManager.Connection;
+					this.dataTableForAssignsTableAdapter.Adapter.SelectCommand.Connection = DataManager.Connection;
 					this.mainDBDataSet.DataTableForAssigns.Clear();
 					//dataTableForAssignsTableAdapter.Adapter.SelectCommand.Parameters.Clear();
 					//dataTableForAssignsTableAdapter.Adapter.SelectCommand.Parameters.AddWithValue("@param", yearID);

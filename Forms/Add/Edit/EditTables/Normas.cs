@@ -7,14 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CafedralDB.SourceCode.Settings;
 
 namespace CafedralDB.Forms.Add.Edit.EditTables
 {
 	public partial class Normas : Form
 	{
+		CalculationSetting calculationSetting;
 		public Normas()
 		{
 			InitializeComponent();
+			calculationSetting = new CalculationSetting();
 		}
 
 		private void Normas_Load(object sender, EventArgs e)
@@ -34,11 +37,10 @@ namespace CafedralDB.Forms.Add.Edit.EditTables
 			try
 			{
 				this.normasTableAdapter.Update(this.mainDBDataSet.Normas);
+				calculationSetting.ReadFromDataBase();
+				calculationSetting.SaveCurrentInRegistry();
 
-                ApplicationSettings.CalculationSettings.FromDataBase();
-                ApplicationSettings.CalculationSettings.ToRegistry();
-
-            }
+			}
 			catch (Exception err)
 			{
 				MessageBox.Show(err.Message);
@@ -49,10 +51,7 @@ namespace CafedralDB.Forms.Add.Edit.EditTables
         {
             try
             {
-				ApplicationSettings.CalculationSettings.ToDefault();
-				ApplicationSettings.CalculationSettings.FromRegistry();
-				ApplicationSettings.CalculationSettings.ToDataBase();
-				
+				calculationSetting.ToDefault();				
 				this.normasTableAdapter.Fill(this.mainDBDataSet.Normas);
 			}
 			catch(Exception err)
