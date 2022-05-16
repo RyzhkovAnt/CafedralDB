@@ -63,8 +63,6 @@ namespace CafedralDB.SourceCode.Model
                     //Проверить
 					bool isSpecial = xlWorkSheet.GetCellText(counter, importSettings.ZachColumn+2) == "";
 
-                    bool isContract = xlWorkSheet.GetCellText(counter, importSettings.ContractColumn) != "";
-
 					Discipline discipline = new Discipline(counter - importSettings.StartReadingRow);
 					int disciplineType = 1;
 					
@@ -82,7 +80,6 @@ namespace CafedralDB.SourceCode.Model
 						discipline.Ekz = ekz;
 						discipline.Zach = zach;
 						discipline.Kz = kz;
-						discipline.Contract = isContract;
 					}
 					else
 					{
