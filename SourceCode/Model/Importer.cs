@@ -239,15 +239,28 @@ namespace CafedralDB.SourceCode.Model
                         DataManager.SharedDataManager().SetSemester(newSemester);
                     }
 					//Актуализация информации о группе в БД
-                    if(groupID!=-1 && (DataManager.SharedDataManager().GetGroup(groupID).SubgroupCount != groupCount ||
-                        DataManager.SharedDataManager().GetGroup(groupID).StudentCount != studentCount))
+                    if (groupID != -1)
                     {
-						//сломано
-                        var newGroup = new Group(groupID);
-                        newGroup.SubgroupCount = groupCount;
-                        newGroup.StudentCount = studentCount;
-                        DataManager.SharedDataManager().SetGroup(newGroup);
-                    }
+						var groupData=DataManager.SharedDataManager().GetGroup(groupID);
+						bool groupChange = false;
+						if(groupData.SubgroupCount != groupCount)
+                        {
+							groupData.SubgroupCount = groupCount;
+							groupChange = true;
+
+						}
+						if(groupData.StudentCount != studentCount)
+                        {
+							groupData.StudentCount = studentCount;
+							groupChange=true;
+                        }
+                        if (groupChange)
+                        {
+							DataManager.SharedDataManager().SetGroup(groupData);
+						}
+					}
+					//Добавить проверку рабочего плана
+					//если в дисциплине ошибка запоминать название дисциплины и выводить в МО и прерывать импорт.
 				}
 				
 			}

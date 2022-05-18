@@ -72,12 +72,12 @@ namespace CafedralDB.SourceCode.Settings
                             }
                         }
                     }
+                    readkey.Close();
                 }
                 else
                 {
                     ReadFromDataBase();
                 }
-                readkey.Close();
             }
             catch (Exception err)
             {
@@ -100,7 +100,7 @@ namespace CafedralDB.SourceCode.Settings
                 {
                     var tmp = (Field)field.GetValue(null);
                     savekey.SetValue(tmp.Name, tmp.DefaultValue.ToString());
-                    SaveToDataBase(cn, tmp.DataBaseName, (float)tmp.DefaultValue);
+                    SaveToDataBase(cn, tmp.DataBaseName, Convert.ToSingle(tmp.DefaultValue));
                 }
                 savekey.Close();
             }
@@ -124,7 +124,7 @@ namespace CafedralDB.SourceCode.Settings
                     {
                         if (curProps[i].Name == field.Name)
                         {
-                            var tmp = (float)curProps[i].GetValue(null);
+                            var tmp = (float)curProps[i].GetValue(this);
                             var fieldName = (Field)field.GetValue(null);
                             savekey.SetValue(fieldName.Name, tmp.ToString());
 
@@ -216,7 +216,7 @@ namespace CafedralDB.SourceCode.Settings
             cmd.Connection = cn;
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = query;
-            cmd.Parameters.Add("@p1", System.Data.OleDb.OleDbType.Single).Value = value;
+            cmd.Parameters.Add("@p1", System.Data.OleDb.OleDbType.Single).Value = Math.Round(value,2);
             cmd.Parameters.Add("@p2", System.Data.OleDb.OleDbType.Char).Value = column;
             cmd.ExecuteNonQuery();
         }

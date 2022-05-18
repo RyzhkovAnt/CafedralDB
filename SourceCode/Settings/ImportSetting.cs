@@ -73,6 +73,24 @@ namespace CafedralDB.SourceCode.Settings
                     }
                     readKey.Close();
                 }
+                else
+                {
+                    var tmpFields = this.GetType().GetProperties();
+                    var inputType = typeof(ImportSettingFields);
+                    foreach (var field in inputType.GetFields())
+                    {
+                        for (int i = 0; i < tmpFields.Length; i++)
+                        {
+                            if (tmpFields[i].Name == field.Name)
+                            {
+                                var newValue = (Field)field.GetValue(null);
+                                tmpFields[i].SetValue(this, newValue.DefaultValue);
+                                break;
+                            }
+                        }
+                        //если дошли до конца то параметра нет
+                    }
+                }
 
             }
             catch (Exception err)

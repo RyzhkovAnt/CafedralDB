@@ -562,6 +562,9 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
+    <None Include="ClassDiagram3.cd" />
     <None Include="WordTemplate\ContractTemlate.docx" />
     <None Include="SourceCode\ClassDiagram1.cd" />
     <Resource Include="Images\Icon_13-512.png" />
