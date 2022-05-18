@@ -6,8 +6,7 @@ using System.Data;
 using System.Data.OleDb;
 using TemplateEngine.Docx;
 
-
-namespace Model
+namespace CafedralDB.SourceCode.Model
 {
 	namespace Exporter
 	{
@@ -99,6 +98,7 @@ namespace Model
                         int countStud = Convert.ToInt32(reader[4]);
                         Entity.Workload workload = DataManager.SharedDataManager().GetWorkload(Convert.ToInt32(reader[21]));
                         WorkloadCost workloadCost = Calculator.GetWorkloadCost(workload.ID);
+                        CafedralDB.SourceCode.Settings.CalculationSetting calculationSetting = new CafedralDB.SourceCode.Settings.CalculationSetting();
 
                         if (Convert.ToBoolean(reader[20]))
                         {
@@ -138,11 +138,11 @@ namespace Model
                         double rukMag = Convert.ToBoolean(reader[16]) ? (30 * Convert.ToInt32(reader[16])) : 0;//рук маг
                         geks = GEK + GAK + GAKpred;
 
-                        ruk += Convert.ToBoolean(reader[11]) ? (countStud * ApplicationSettings.CalculationSettings.DPruk) : 0f;//DPruk
+                        ruk += Convert.ToBoolean(reader[11]) ? (countStud * calculationSetting.DPruk) : 0f;//DPruk
                         ruk += Convert.ToBoolean(reader[12]) ? (1 * Convert.ToInt32(reader[4])) : 0f;//DopuskVkr
                         ruk += Convert.ToBoolean(reader[13]) ? (4 * Convert.ToInt32(reader[4])) : 0f;//retzVKR
                         ruk += Convert.ToBoolean(reader[14]) ? (30 * Convert.ToInt32(reader[4])) : 0f;//DPretz
-                        ruk += Convert.ToBoolean(reader[15]) ? (ApplicationSettings.CalculationSettings.AspRuk * countStud) : 0f;//ASPRuk
+                        ruk += Convert.ToBoolean(reader[15]) ? (calculationSetting.AspRuk * countStud) : 0f;//ASPRuk
                         ruk += rukMag;
                         ruk += Convert.ToBoolean(reader[17]) ? (1 * Convert.ToInt32(reader[4])) : 0f;//MAGRetz
                         ruk += Convert.ToBoolean(reader[18]) ? (1 * Convert.ToInt32(reader[4])) : 0f;//rukKaf
@@ -152,9 +152,9 @@ namespace Model
 
                         string disciplineName = reader[0].ToString();
                         if (disciplineName.ToLower().Contains("норм") && disciplineName.ToLower().Contains("маг"))
-                            other += countStud * ApplicationSettings.CalculationSettings.NormocontrolMag;
+                            other += countStud * calculationSetting.NormocontrolMag;
                         if (disciplineName.ToLower().Contains("доп") && disciplineName.ToLower().Contains("маг"))
-                            other += countStud * ApplicationSettings.CalculationSettings.DopuskDissMag;
+                            other += countStud * calculationSetting.DopuskDissMag;
 
                         ParamsSheet.Cells[currentRow - 1, ApplicationSettings.ExportSettings.IndPlanSetting.DisciplineSettingsStartColumn + 8] = 0;
                         ParamsSheet.Cells[currentRow - 1, ApplicationSettings.ExportSettings.IndPlanSetting.DisciplineSettingsStartColumn + 9] = uchPr;//уч пр.
@@ -524,6 +524,7 @@ namespace Model
 
 			private static void ExportNotAssign(OleDbDataReader reader, Excel.Worksheet sheet, Dictionary<Excel.Worksheet, int> rowCounters, int countStud)
 			{
+                CafedralDB.SourceCode.Settings.CalculationSetting calculationSetting = new CafedralDB.SourceCode.Settings.CalculationSetting();
                 var workloadCost = Calculator.GetWorkloadCost(Convert.ToInt32(reader[1]));
                 int groupCount = Convert.ToInt32(reader[35]);
                 int studentCount= Convert.ToInt32(reader[8]);
@@ -665,7 +666,7 @@ namespace Model
                     (4 * countStud).ToString() : "";//рец дисс.
 
 				sheet.Cells[rowCounters[sheet], 54] = Convert.ToBoolean(reader[29]) ?
-                    (countStud * ApplicationSettings.CalculationSettings.AspRuk) : 0f; //AspRuk
+                    (countStud * calculationSetting.AspRuk) : 0f; //AspRuk
 
                 string disciplineName = reader[4].ToString().ToLower();
 
@@ -695,6 +696,8 @@ namespace Model
 
 			private static void ExportAssigned(OleDbDataReader reader, Excel.Worksheet sheet, Dictionary<Excel.Worksheet, int> rowCounters, int countStud)
 			{
+
+                CafedralDB.SourceCode.Settings.CalculationSetting calculationSetting = new CafedralDB.SourceCode.Settings.CalculationSetting();
 				string disciplineName = reader[4].ToString();
 				sheet.Cells[rowCounters[sheet], 1] = rowCounters[sheet] - 5;
 				sheet.Cells[rowCounters[sheet], 2] = reader[4].ToString();
@@ -713,23 +716,23 @@ namespace Model
 				sheet.Cells[rowCounters[sheet], 16] = Convert.ToBoolean(reader[15]) ? "1" : "";
 				sheet.Cells[rowCounters[sheet], 17] = Convert.ToBoolean(reader[16]) ? "1" : "";
 				sheet.Cells[rowCounters[sheet], 18] = Convert.ToBoolean(reader[17]) ? "1" : "";
-				sheet.Cells[rowCounters[sheet], 19 + 23] = Convert.ToInt32(reader[18]) != 0 ? (Convert.ToInt32(reader[18]) * ApplicationSettings.CalculationSettings.UchPr) : 0;//уч пр.
-				sheet.Cells[rowCounters[sheet], 20 + 23] = Convert.ToInt32(reader[19]) != 0 ? (Convert.ToInt32(reader[19]) * ApplicationSettings.CalculationSettings.PrPr) : 0;//пр пр.
-				sheet.Cells[rowCounters[sheet], 21 + 23] = Convert.ToInt32(reader[20]) != 0 ? (Convert.ToInt32(reader[20]) * ApplicationSettings.CalculationSettings.PreddipPr) : 0;//преддип пр.
-				sheet.Cells[rowCounters[sheet], 22 + 23] = Convert.ToInt32(reader[33]) != 0 ? (Convert.ToInt32(reader[33]) * ApplicationSettings.CalculationSettings.NIIR * countStud) : 0;//нир
-				((Excel.Range)(sheet.Cells[rowCounters[sheet], 24 + 23])).Value = Convert.ToBoolean(reader[22]) ? (ApplicationSettings.CalculationSettings.GEK * countStud) : 0;//ГЭК.
-				sheet.Cells[rowCounters[sheet], 25 + 23] = Convert.ToBoolean(reader[23]) ? (ApplicationSettings.CalculationSettings.GAK * countStud) : 0;//ГAК.
-				sheet.Cells[rowCounters[sheet], 26 + 23] = Convert.ToBoolean(reader[24]) ? (ApplicationSettings.CalculationSettings.GAKPred * countStud) : 0;//ГAКпред.
-				sheet.Cells[rowCounters[sheet], 27 + 23] = Convert.ToBoolean(reader[25]) ? (ApplicationSettings.CalculationSettings.DPruk * countStud) : 0;//допуск
+				sheet.Cells[rowCounters[sheet], 19 + 23] = Convert.ToInt32(reader[18]) != 0 ? (Convert.ToInt32(reader[18]) * calculationSetting.UchPr) : 0;//уч пр.
+				sheet.Cells[rowCounters[sheet], 20 + 23] = Convert.ToInt32(reader[19]) != 0 ? (Convert.ToInt32(reader[19]) * calculationSetting.PrPr) : 0;//пр пр.
+				sheet.Cells[rowCounters[sheet], 21 + 23] = Convert.ToInt32(reader[20]) != 0 ? (Convert.ToInt32(reader[20]) * calculationSetting.PreddipPr) : 0;//преддип пр.
+				sheet.Cells[rowCounters[sheet], 22 + 23] = Convert.ToInt32(reader[33]) != 0 ? (Convert.ToInt32(reader[33]) * calculationSetting.NIIR * countStud) : 0;//нир
+				((Excel.Range)(sheet.Cells[rowCounters[sheet], 24 + 23])).Value = Convert.ToBoolean(reader[22]) ? (calculationSetting.GEK * countStud) : 0;//ГЭК.
+				sheet.Cells[rowCounters[sheet], 25 + 23] = Convert.ToBoolean(reader[23]) ? (calculationSetting.GAK * countStud) : 0;//ГAК.
+				sheet.Cells[rowCounters[sheet], 26 + 23] = Convert.ToBoolean(reader[24]) ? (calculationSetting.GAKPred * countStud) : 0;//ГAКпред.
+				sheet.Cells[rowCounters[sheet], 27 + 23] = Convert.ToBoolean(reader[25]) ? (calculationSetting.DPruk * countStud) : 0;//допуск
 				sheet.Cells[rowCounters[sheet], 28 + 23] = Convert.ToBoolean(reader[26]) ? (4 * countStud).ToString() : "";//рец дисс.
 				sheet.Cells[rowCounters[sheet], 32 + 23] = Convert.ToBoolean(reader[30]) ? (30 * Convert.ToInt32(reader[30])).ToString() : "";//рук маг
-				sheet.Cells[rowCounters[sheet], 31 + 23] = Convert.ToBoolean(reader[29]) ? (countStud * ApplicationSettings.CalculationSettings.AspRuk) : 0f;
+				sheet.Cells[rowCounters[sheet], 31 + 23] = Convert.ToBoolean(reader[29]) ? (countStud * calculationSetting.AspRuk) : 0f;
 				if (disciplineName.ToLower().Contains("норм") && disciplineName.ToLower().Contains("маг"))
-					sheet.Cells[rowCounters[sheet], 32 + 23] = countStud * ApplicationSettings.CalculationSettings.NormocontrolMag;
+					sheet.Cells[rowCounters[sheet], 32 + 23] = countStud * calculationSetting.NormocontrolMag;
 				if (disciplineName.ToLower().Contains("доп") && disciplineName.ToLower().Contains("маг"))
-					sheet.Cells[rowCounters[sheet], 32 + 23] = countStud * ApplicationSettings.CalculationSettings.DopuskDissMag;
+					sheet.Cells[rowCounters[sheet], 32 + 23] = countStud * calculationSetting.DopuskDissMag;
 				if (disciplineName.ToLower().Contains("рук") && (disciplineName.ToLower().Contains("нир")|| disciplineName.ToLower().Contains("ниир")))
-					sheet.Cells[rowCounters[sheet], 22 + 23] = Convert.ToInt32(reader[33]) != 0 ? (Convert.ToInt32(reader[33]) * ApplicationSettings.CalculationSettings.NIIRRukAsp * countStud) : 0;//нир
+					sheet.Cells[rowCounters[sheet], 22 + 23] = Convert.ToInt32(reader[33]) != 0 ? (Convert.ToInt32(reader[33]) * calculationSetting.NIIRRukAsp * countStud) : 0;//нир
 				rowCounters[sheet]++;
 			}
 		}

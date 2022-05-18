@@ -1,10 +1,10 @@
-﻿using Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
 using ApplicationSettings;
-using Model.Entity;
+using CafedralDB.SourceCode.Model.Entity;
+using CafedralDB.SourceCode.Settings;
 namespace CafedralDB.SourceCode.Model
 {
     static class Importer
@@ -14,7 +14,7 @@ namespace CafedralDB.SourceCode.Model
             List<Discipline> disciplines = new List<Discipline>();
 			List<Workload> workloads = new List<Workload>();
 
-			NewImportSetting importSettings = new NewImportSetting();
+			ImportSetting importSettings = new ImportSetting();
 			
             #region Read disciplines from Excel
             //opening Excel
@@ -63,8 +63,6 @@ namespace CafedralDB.SourceCode.Model
                     //Проверить
 					bool isSpecial = xlWorkSheet.GetCellText(counter, importSettings.ZachColumn+2) == "";
 
-                    bool isContract = xlWorkSheet.GetCellText(counter, importSettings.ContractColumn) != "";
-
 					Discipline discipline = new Discipline(counter - importSettings.StartReadingRow);
 					int disciplineType = 1;
 					
@@ -82,7 +80,6 @@ namespace CafedralDB.SourceCode.Model
 						discipline.Ekz = ekz;
 						discipline.Zach = zach;
 						discipline.Kz = kz;
-						discipline.Contract = isContract;
 					}
 					else
 					{
@@ -242,15 +239,28 @@ namespace CafedralDB.SourceCode.Model
                         DataManager.SharedDataManager().SetSemester(newSemester);
                     }
 					//Актуализация информации о группе в БД
-                    if(groupID!=-1 && (DataManager.SharedDataManager().GetGroup(groupID).SubgroupCount != groupCount ||
-                        DataManager.SharedDataManager().GetGroup(groupID).StudentCount != studentCount))
+                    if (groupID != -1)
                     {
-						//сломано
-                        var newGroup = new Group(groupID);
-                        newGroup.SubgroupCount = groupCount;
-                        newGroup.StudentCount = studentCount;
-                        DataManager.SharedDataManager().SetGroup(newGroup);
-                    }
+						var groupData=DataManager.SharedDataManager().GetGroup(groupID);
+						bool groupChange = false;
+						if(groupData.SubgroupCount != groupCount)
+                        {
+							groupData.SubgroupCount = groupCount;
+							groupChange = true;
+
+						}
+						if(groupData.StudentCount != studentCount)
+                        {
+							groupData.StudentCount = studentCount;
+							groupChange=true;
+                        }
+                        if (groupChange)
+                        {
+							DataManager.SharedDataManager().SetGroup(groupData);
+						}
+					}
+					//Добавить проверку рабочего плана
+					//если в дисциплине ошибка запоминать название дисциплины и выводить в МО и прерывать импорт.
 				}
 				
 			}

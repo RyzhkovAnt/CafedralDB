@@ -2,67 +2,251 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-
-
+using CafedralDB.SourceCode.Settings;
+using CafedralDB.SourceCode.Model;
 namespace ApplicationSettings
 {
-
     interface ISetting
     {   
         void LoadFromRegistry();
-        void SaveToRegistry(Dictionary<string, object> newValues);
+        void SaveToRegistry(Dictionary<Field, object> newValues);
         void ToDefault();
 
     }
 
-    public class NewImportSetting : ISetting
+    public class NewCalculationSetting:ISetting
     {
-        public int StartReadingRow { get; private set; } = 7;
-        public int GroupColumn {get;private set;} = 1;
-        public int GroupCountColumn {get;private set;} = 5;
-        public int StudentCountColumn {get;private set;} = 2;
-        public int SemesterColumn {get;private set;} = 6;
-        public int WeeksColumn {get;private set;} = 7;
-        public int DisciplineNameColumn {get;private set;} = 8;
-        public int LecturesColumn {get;private set;} = 10;
-        public int PracticesColumn {get;private set;} = 11;
-        public int LabsColumn {get;private set;} = 12;
-        public int KzColumn {get;private set;} = 17;
-        public int KrColumn {get;private set;} = 13;
-        public int KpColumn {get;private set;} = 14;
-        public int EkzColumn {get;private set;} = 15;
-        public int ZachColumn {get;private set;} = 16;
-        public int OtherColumn {get;private set;} = 9;
-        public int ContractColumn {get;private set;} = 19;
-        public int SpecialColumn {get;private set;} = 18;
+        public float LectureCost { get; private set; } = 1;
+        public float LabCost {get;private set;} = 1;
+        public float PracticeCost {get;private set;} = 1;
+        public float KonsCost {get;private set;} = 0.05f;
+        public float EkzCost {get;private set;} = 0.33f;
+        public float KRCost {get;private set;} = 2;
+        public float KPCost {get;private set;} = 3;
+        public float ZachCost {get;private set;} = 0.25f;
 
-        public NewImportSetting()
+        public float RGR {get;private set;} = 0.25f;
+        public float UchPr {get;private set;} = 4;
+        public float PrPr {get;private set;} = 2;
+        public float PreddipPr {get;private set;} = 1;
+        public float KzZaoch {get;private set;} = 0.25f;
+        public float GEK {get;private set;} = 0.25f;
+        public float GAK {get;private set;} = 0.5f;
+        public float GAKPred { get; private set; } = 0.25f;
+        public float DPruk {get; private set;}= 14;
+        public float DopuskVKR {get; private set;}= 0.5f;
+        public float RetzVKR {get; private set;}= 0.25f;
+        public float DPRetz {get; private set;}= 0.25f;
+        public float MAGRuk {get; private set;}= 36;
+        public float MagRetz {get; private set;}= 0.25f;
+        public float RukKaf {get; private set;}= 60;
+        public float NIIR {get; private set;}= 3.0f;
+        public float NIIRRukMag {get; private set;}= 0.25f;
+        public float ASPpractice {get; private set;}= 0.25f;
+        public float NIIRRukAsp{get; private set;} = 0.25f;
+        public float DopuskDissMag{get; private set;} = 1;
+        public float NormocontrolMag {get; private set;}= 1;
+        public float DopuskBak {get; private set;}= 0.5f;
+        public float NormocontrolBak {get; private set;}= 0.5f;
+        public float AspRuk {get; private set;}= 50f;
+        public float GosEkz {get; private set;}= 0.5f;
+        public float EkzBoard {get; private set;}= 6;
+        public NewCalculationSetting()
         {
             LoadFromRegistry();
         }
+        public void SaveToRegistry(Dictionary<Field,object>newValues)
+        {
+            try
+            {
+                RegistryKey saveKey = Registry.CurrentUser.CreateSubKey("software\\ChairDB\\CalculationSettings");
+                foreach (Field key in newValues.Keys)
+                {
+                    saveKey.SetValue(key.Name, newValues[key]);
+                }
+                saveKey.Close();
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message, "Ошибка при сохранении настроек импорта", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public void LoadFromRegistry()
+        {
+            try
+            {
+                RegistryKey readKey = Registry.CurrentUser.OpenSubKey(@"software\ChairDB\CalculationSettings");
+                if (readKey != null)
+                {
+                    LectureCost = Convert.ToSingle(readKey.GetValue("LectureCost"));
+                    LabCost = Convert.ToSingle(readKey.GetValue("LabCost"));
+                    PracticeCost = Convert.ToSingle(readKey.GetValue("PracticeCost"));
+                    KonsCost = Convert.ToSingle(readKey.GetValue("KonsCost"));
+                    EkzCost = Convert.ToSingle(readKey.GetValue("EkzCost"));
+                    KRCost = Convert.ToSingle(readKey.GetValue("KRCost"));
+                    KPCost = Convert.ToSingle(readKey.GetValue("KPCost"));
+                    ZachCost = Convert.ToSingle(readKey.GetValue("ZachCost"));
+
+                    RGR = Convert.ToSingle(readKey.GetValue("RGR"));
+                    UchPr = Convert.ToInt32(readKey.GetValue("UchPr"));
+                    PrPr = Convert.ToInt32(readKey.GetValue("PrPr"));
+                    PreddipPr = Convert.ToSingle(readKey.GetValue("PreddipPr"));
+                    KzZaoch = Convert.ToSingle(readKey.GetValue("KzZaoch"));
+                    GEK = Convert.ToSingle(readKey.GetValue("GEK"));
+                    GAK = Convert.ToSingle(readKey.GetValue("GAK"));
+                    GAKPred = Convert.ToSingle(readKey.GetValue("GAKPred"));
+                    DPruk = Convert.ToSingle(readKey.GetValue("DPruk"));
+                    DopuskVKR = Convert.ToSingle(readKey.GetValue("DopuskVKR"));
+                    RetzVKR = Convert.ToSingle(readKey.GetValue("RetzVKR"));
+                    DPRetz = Convert.ToSingle(readKey.GetValue("DPRetz"));
+                    MAGRuk = Convert.ToSingle(readKey.GetValue("MAGRuk"));
+                    MagRetz = Convert.ToSingle(readKey.GetValue("MagRetz"));
+                    RukKaf = Convert.ToSingle(readKey.GetValue("RukKaf"));
+                    NIIR = Convert.ToSingle(readKey.GetValue("NIIR"));
+                    NIIRRukMag = Convert.ToSingle(readKey.GetValue("NIIRRukMag"));
+                    ASPpractice = Convert.ToSingle(readKey.GetValue("ASPpractice"));
+                    NIIRRukAsp = Convert.ToSingle(readKey.GetValue("NIIRRukAsp"));
+                    DopuskDissMag = Convert.ToSingle(readKey.GetValue("DopuskDissMag"));
+                    NormocontrolMag = Convert.ToSingle(readKey.GetValue("NormocontrolMag"));
+                    DopuskBak = Convert.ToSingle(readKey.GetValue("DopuskBak"));
+                    NormocontrolBak = Convert.ToSingle(readKey.GetValue("NormocontrolBak"));
+                    GosEkz = Convert.ToSingle(readKey.GetValue("GosEkz"));
+                    EkzBoard = Convert.ToInt32(readKey.GetValue("EkzBoard"));
+                    readKey.Close();
+                }
+                else
+                {
+                    ReadFromDataBase();
+                }
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message, "Ошибка при чтении настроек расчета", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        void ReadFromDataBase()
+        {
+            try
+            {
+                bool res = false;
+                DataManager.SharedDataManager();
+                var cn = new System.Data.OleDb.OleDbConnection(DataManager.Connection.ConnectionString);
+                var cmd = new System.Data.OleDb.OleDbCommand();
+                cn.Open();
+                cmd.Connection = cn;
+                cmd.CommandType = System.Data.CommandType.Text;
+                cmd.CommandText = "Select ParameterName, Value From Normas";
+                System.Data.OleDb.OleDbDataReader reader = cmd.ExecuteReader();
+                // while there is another record present
+                res = reader.HasRows;
+                Dictionary<string, float> parameters = new Dictionary<string, float>();
+                if (res)
+                {
+                    while (reader.Read())
+                    {
+                        string name = reader[0].ToString();
+                        float value = Convert.ToSingle(reader[1]);
+                        parameters.Add(name, value);
+                    }
+                }
+
+                LectureCost = parameters["Лекция"];
+                LabCost = parameters["Практическая работа"];
+                PracticeCost = parameters["Лабораторная работа"];
+                KonsCost = parameters["Консультация"];
+                EkzCost = parameters["Экзамен"];
+                KRCost = parameters["КР"];
+                KPCost = parameters["КП"];
+                ZachCost = parameters["Зачет"];
+                RGR = parameters["РГР"];
+                UchPr = parameters["Учебная практика"];
+                PrPr = parameters["Производственная практика"];
+                PreddipPr = parameters["Преддипломная практика"];
+                KzZaoch = parameters["Контрольные задания заочников"];
+                GEK = parameters["ГЭК"];
+                GAK = parameters["ГАК"];
+                GAKPred = parameters["ГАК председатель"];
+                DPruk = parameters["ДП руководство"];
+                DopuskVKR = parameters["Допуск к ВКР"];
+                RetzVKR = parameters["Рецензия ВКР"];
+                DPRetz = parameters["ДП рецензии"];
+                MAGRuk = parameters["Магистранты руководство"];
+                MagRetz = parameters["Магистранты рецензирование"];
+                RukKaf = parameters["Руководство кафедрой"];
+                NIIR = parameters["Научная работа"];
+                NIIRRukMag = parameters["Руководство НИИР магистра"];
+                ASPpractice = parameters["Практика аспирантов"];
+                NIIRRukAsp = parameters["Руководство НИИР аспирантов"];
+                DopuskDissMag = parameters["Допуск к защите диссертации магистрантов"];
+                NormocontrolMag = parameters["Нормоконтроль  диссертации магистрантов"];
+                DopuskBak = parameters["Допуск к защите бакалавров"];
+                NormocontrolBak = parameters["Нормоконтроль бакалавров"];
+                GosEkz = parameters["Государственный экзамен"];
+                EkzBoard = parameters["Кол-во членов экз. комиссии"];
+                cn.Close();
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show("Не удалось загрузить настройки:\r\n" + err.Message + "\r\n" + err.StackTrace);
+            }
+        }
+        void SaveToDataBase()
+        {
+
+        }
+        void UpdateDataBase(System.Data.OleDb.OleDbConnection cn, string column, float value)
+        {
+            string query = "UPDATE Normas SET [Value]=? WHERE ParameterName=?";
+            var cmd = new System.Data.OleDb.OleDbCommand();
+            cmd.Connection = cn;
+            cmd.CommandType = System.Data.CommandType.Text;
+            cmd.CommandText = query;
+            cmd.Parameters.Add("@p1", System.Data.OleDb.OleDbType.Single).Value = value;
+            cmd.Parameters.Add("@p2", System.Data.OleDb.OleDbType.Char).Value = column;
+            cmd.ExecuteNonQuery();
+        }
+
         public void ToDefault()
         {
             try
             {
-                Registry.CurrentUser.DeleteSubKey("software\\ChairDB\\Import");
-                RegistryKey saveKey = Registry.CurrentUser.CreateSubKey("software\\ChairDB\\Import");
-                saveKey.SetValue("StartReadingRow", "7");
-                saveKey.SetValue("GroupColumn", "1");
-                saveKey.SetValue("GroupCountColumn", "5");
-                saveKey.SetValue("WeeksColumn", "7");
-                saveKey.SetValue("DisciplineNameColumn", "8");
-                saveKey.SetValue("LecturesColumn", "10");
-                saveKey.SetValue("LabsColumn", "12");
-                saveKey.SetValue("SemesterColumn", "6");
-                saveKey.SetValue("PracticesColumn", "11");
-                saveKey.SetValue("KzColumn", "17");
-                saveKey.SetValue("KrColumn", "13");
-                saveKey.SetValue("KpColumn", "14");
-                saveKey.SetValue("EkzColumn", "15");
-                saveKey.SetValue("ZachColumn", "16");
-                saveKey.SetValue("OtherColumn", "9");
-                saveKey.SetValue("ContractColumn", "19");
-                saveKey.SetValue("SpecialColumn", "18");
+                RegistryKey saveKey = Registry.CurrentUser.CreateSubKey(@"software\ChairDB\CalculationSettings");
+                saveKey.SetValue("LectureCost", 1f);
+                saveKey.SetValue("LabCost", 1f);
+                saveKey.SetValue("PracticeCost", 1f);
+                saveKey.SetValue("KonsCost", 0.05f);
+                saveKey.SetValue("EkzCost", 0.33f);
+                saveKey.SetValue("KRCost", 2f);
+                saveKey.SetValue("KPCost", 3f);
+                saveKey.SetValue("ZachCost", 0.25f);
+
+                saveKey.SetValue("RGR", 0.25f);
+                saveKey.SetValue("UchPr", 4f);
+                saveKey.SetValue("PrPr", 2f);
+                saveKey.SetValue("PreddipPr", 1f);
+                saveKey.SetValue("KzZaoch", 0.25f);
+                saveKey.SetValue("GEK", 0.25f);
+                saveKey.SetValue("GAK", 0.5f);
+                saveKey.SetValue("GAKPred", 0.25f);
+                saveKey.SetValue("DPruk", 14f);
+                saveKey.SetValue("DopuskVKR", 0.25f);
+                saveKey.SetValue("RetzVKR", 0.25f);
+                saveKey.SetValue("DPRetz", 0.25f);
+                saveKey.SetValue("MAGRuk", 36f);
+                saveKey.SetValue("MagRetz", 0.25f);
+                saveKey.SetValue("RukKaf", 60f);
+                saveKey.SetValue("NIIR", 3f);
+                saveKey.SetValue("NIIRRukMag", 0.25f);
+                saveKey.SetValue("ASPpractice", 0.25f);
+                saveKey.SetValue("NIIRRukAsp", 0.25f);
+                saveKey.SetValue("DopuskDissMag", 1f);
+                saveKey.SetValue("NormocontrolMag", 1f);
+                saveKey.SetValue("DopuskBak", 0.5f);
+                saveKey.SetValue("NormocontrolBak", 0.5f);
+                saveKey.SetValue("AspRuk", 50f);
+                saveKey.SetValue("GosEkz", 0.5f);
+                saveKey.SetValue("EkzBoard", 6f);
 
                 saveKey.Close();
             }
@@ -71,61 +255,12 @@ namespace ApplicationSettings
                 MessageBox.Show(err.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        public void LoadFromRegistry() 
-        {
-            try
-            {
-                RegistryKey readKey = Registry.CurrentUser.OpenSubKey(@"software\ChairDB\Import");
-                if (readKey != null)
-                {
-                    StartReadingRow = Convert.ToInt32(readKey.GetValue("StartReadingRow"));
-                    GroupColumn = Convert.ToInt32(readKey.GetValue("GroupColumn"));
-                    GroupCountColumn = Convert.ToInt32(readKey.GetValue("GroupCountColumn"));
-                    SemesterColumn = Convert.ToInt32(readKey.GetValue("SemesterColumn"));
-                    WeeksColumn = Convert.ToInt32(readKey.GetValue("WeeksColumn"));
-                    DisciplineNameColumn = Convert.ToInt32(readKey.GetValue("DisciplineNameColumn"));
-                    LecturesColumn = Convert.ToInt32(readKey.GetValue("LecturesColumn"));
-                    LabsColumn = Convert.ToInt32(readKey.GetValue("LabsColumn"));
-                    PracticesColumn = Convert.ToInt32(readKey.GetValue("PracticesColumn"));
-                    KzColumn = Convert.ToInt32(readKey.GetValue("KzColumn"));
-                    KrColumn = Convert.ToInt32(readKey.GetValue("KrColumn"));
-                    KpColumn = Convert.ToInt32(readKey.GetValue("KpColumn"));
-                    EkzColumn = Convert.ToInt32(readKey.GetValue("EkzColumn"));
-                    ZachColumn = Convert.ToInt32(readKey.GetValue("ZachColumn"));
-                    OtherColumn = Convert.ToInt32(readKey.GetValue("OtherColumn"));
-                    SpecialColumn = Convert.ToInt32(readKey.GetValue("SpecialColumn"));
-
-                    readKey.Close();
-                }
-
-            }
-            catch (Exception err)
-            {
-                MessageBox.Show(err.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        public void SaveToRegistry(Dictionary<string,object> newValues) 
-        {
-            try
-            {
-                RegistryKey saveKey = Registry.CurrentUser.CreateSubKey("software\\ChairDB\\Import");
-                foreach (string key in newValues.Keys)
-                {
-                    saveKey.SetValue(key, newValues[key]);
-                }
-                saveKey.Close();
-            }
-            catch(Exception err)
-            {
-                MessageBox.Show(err.Message, "Ошибка при сохранении настроек импорта", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }           
-        }
-
     }
 
-
-
+    /// <summary>
+    /// Настройки импорта
+    /// </summary>
+    [Obsolete("Старый метод настройки импорта.")]
     public static class ImportSettings
     {
         public static Dictionary<string,string> setting=new Dictionary<string,string>();
@@ -246,6 +381,7 @@ namespace ApplicationSettings
         }
     }
 
+    [Obsolete("Старый метод настроек расчета")]
     public static class CalculationSettings
     {
         public static float LectureCost = 1;
@@ -390,8 +526,8 @@ namespace ApplicationSettings
             try
             {
                 bool res = false;
-                Model.DataManager.SharedDataManager();
-                var cn = new System.Data.OleDb.OleDbConnection(Model.DataManager.Connection.ConnectionString);
+                DataManager.SharedDataManager();
+                var cn = new System.Data.OleDb.OleDbConnection(DataManager.Connection.ConnectionString);
                 var cmd = new System.Data.OleDb.OleDbCommand();
                 cn.Open();
                 cmd.Connection = cn;
@@ -467,8 +603,8 @@ namespace ApplicationSettings
             try
             {
                 bool res = false;
-                Model.DataManager.SharedDataManager();
-                var cn = new System.Data.OleDb.OleDbConnection(Model.DataManager.Connection.ConnectionString);
+                DataManager.SharedDataManager();
+                var cn = new System.Data.OleDb.OleDbConnection(DataManager.Connection.ConnectionString);
                 cn.Open();
 
                 UpdateDataBase(cn, "Лекция", LectureCost);

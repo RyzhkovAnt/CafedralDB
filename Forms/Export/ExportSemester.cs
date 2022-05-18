@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CafedralDB.SourceCode.Model.Exporter;
 
 namespace CafedralDB.Forms.Export
 {
@@ -29,7 +30,7 @@ namespace CafedralDB.Forms.Export
 
 		private void buttonExport_Click(object sender, EventArgs e)
 		{
-			Model.Exporter.Semester.ExportSemester(comboBoxYear.SelectedValue.ToString(), comboBoxSemester.SelectedItem.ToString());
+			Semester.ExportSemester(comboBoxYear.SelectedValue.ToString(), comboBoxSemester.SelectedItem.ToString());
 		}
 	}
 }

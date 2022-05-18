@@ -446,6 +446,10 @@
     <Compile Include="SourceCode\Model\Exporter\ExportSemester.cs" />
     <Compile Include="SourceCode\Model\Exporter\ExportWorkload.cs" />
     <Compile Include="SourceCode\Model\Importer.cs" />
+    <Compile Include="SourceCode\Settings\CalculationSetting.cs" />
+    <Compile Include="SourceCode\Settings\ImportSetting.cs" />
+    <Compile Include="SourceCode\Settings\ISetting.cs" />
+    <Compile Include="SourceCode\Settings\SettingFields.cs" />
     <Compile Include="SourceCode\Utilities.cs" />
     <EmbeddedResource Include="Forms\Add\Assign\AssignTeachersSpecialForm.resx">
       <DependentUpon>AssignTeachersSpecialForm.cs</DependentUpon>
@@ -558,6 +562,9 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
+    <None Include="ClassDiagram3.cd" />
     <None Include="WordTemplate\ContractTemlate.docx" />
     <None Include="SourceCode\ClassDiagram1.cd" />
     <Resource Include="Images\Icon_13-512.png" />

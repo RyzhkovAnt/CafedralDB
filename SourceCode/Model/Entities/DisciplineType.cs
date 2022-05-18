@@ -1,4 +1,4 @@
-﻿namespace Model
+﻿namespace CafedralDB.SourceCode.Model
 {
 	/// <summary>
 	/// Тип дисциплины

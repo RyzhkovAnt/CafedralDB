@@ -55,11 +55,7 @@
             this.textBoxEkzColumn = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.textBoxZachColumn = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.textBoxOtherColumn = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.textBoxContractColumn = new System.Windows.Forms.TextBox();
             this.toDefaultButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -295,30 +291,10 @@
             this.textBoxZachColumn.TabIndex = 4;
             this.textBoxZachColumn.TextChanged += new System.EventHandler(this.textBoxZachColumn_TextChanged);
             // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(161, 180);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(100, 13);
-            this.label14.TabIndex = 3;
-            this.label14.Text = "Другое(depricated)";
-            // 
-            // textBoxOtherColumn
-            // 
-            this.textBoxOtherColumn.Location = new System.Drawing.Point(253, 180);
-            this.textBoxOtherColumn.Name = "textBoxOtherColumn";
-            this.textBoxOtherColumn.Size = new System.Drawing.Size(38, 20);
-            this.textBoxOtherColumn.TabIndex = 4;
-            // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.textBoxContractColumn);
             this.groupBox1.Controls.Add(this.textBoxLabsColumn);
-            this.groupBox1.Controls.Add(this.textBoxOtherColumn);
             this.groupBox1.Controls.Add(this.textBoxZachColumn);
-            this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.textBoxEkzColumn);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.textBoxKpColumn);
@@ -347,23 +323,6 @@
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Номера столбцов";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 182);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(107, 13);
-            this.label5.TabIndex = 6;
-            this.label5.Text = "Договор(depricated)";
-            // 
-            // textBoxContractColumn
-            // 
-            this.textBoxContractColumn.Location = new System.Drawing.Point(108, 179);
-            this.textBoxContractColumn.Name = "textBoxContractColumn";
-            this.textBoxContractColumn.Size = new System.Drawing.Size(37, 20);
-            this.textBoxContractColumn.TabIndex = 5;
-            this.textBoxContractColumn.TextChanged += new System.EventHandler(this.textBoxContractColumn_TextChanged);
             // 
             // toDefaultButton
             // 
@@ -423,11 +382,7 @@
 		private System.Windows.Forms.TextBox textBoxEkzColumn;
 		private System.Windows.Forms.Label label13;
 		private System.Windows.Forms.TextBox textBoxZachColumn;
-		private System.Windows.Forms.Label label14;
-		private System.Windows.Forms.TextBox textBoxOtherColumn;
 		private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBoxContractColumn;
         private System.Windows.Forms.Button toDefaultButton;
     }
 }

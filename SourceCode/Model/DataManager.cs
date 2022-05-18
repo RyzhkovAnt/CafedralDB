@@ -7,9 +7,9 @@ using System.Data.OleDb;
 using System.Linq;
 using System.Text;
 using static CafedralDB.MainDBDataSet;
-using Model.Entity;
+using CafedralDB.SourceCode.Model.Entity;
 
-namespace Model
+namespace CafedralDB.SourceCode.Model
 {
 	public class DataManager
 	{
@@ -1583,16 +1583,17 @@ namespace Model
 			using (OleDbConnection con = new OleDbConnection(connString))
 			using (OleDbCommand command = con.CreateCommand())
 			{
-				command.CommandText = "UPDATE Group " +
-				"SET Descr = ?, Speciality = ?, Qualification = ?, StudyForm = ?, StudentCount = ?, EntryYear = ?" +
-				"WHERE(ID = ?)";
+				command.CommandText = "UPDATE [Group] " +
+				"SET [Group].Descr = ?, [Group].Speciality = ?, [Group].Qualification = ?, [Group].StudyForm = ?, [Group].StudentCount = ?, [Group].EntryYear = ?, [Group].SubgroupCount = ? " + 
+				"WHERE ID = ?";
 				command.Parameters.Add("@p1", OleDbType.VarChar).Value = item.Name;
 				command.Parameters.Add("@p2", OleDbType.Integer).Value = item.Speciality;
 				command.Parameters.Add("@p3", OleDbType.Integer).Value = item.StudyQualification;
 				command.Parameters.Add("@p4", OleDbType.Integer).Value = item.StudyFormID;
 				command.Parameters.Add("@p5", OleDbType.Integer).Value = item.StudentCount;
 				command.Parameters.Add("@p6", OleDbType.Integer).Value = item.EntryYear;
-				command.Parameters.Add("@p7", OleDbType.Integer).Value = item.ID;
+				command.Parameters.Add("@p7", OleDbType.Integer).Value = item.SubgroupCount;
+				command.Parameters.Add("@p8", OleDbType.Integer).Value = item.ID;
 				con.Open();
 				command.ExecuteNonQuery();
 			}
