@@ -6,7 +6,7 @@ using CafedralDB.SourceCode.Settings;
 using ApplicationSettings;
 namespace CafedralDB.SourceCode.Model
 {
-	public static class Calculator
+    public static class Calculator
 	{
 		public static float GetWorkloadTotalCost(int workloadID)
 		{
@@ -28,14 +28,12 @@ namespace CafedralDB.SourceCode.Model
             CalculationSetting calculationSetting = new CalculationSetting();
 
             float lec = 0, lab = 0, prac = 0, ekz = 0, kr = 0, kp = 0, zach = 0, kons = 0;
-            lec = calculationSetting.LectureCost * discipline.LectureCount * semester.WeekCount;
+            int subGroupCount = GetSubGroupCount(group.StudentCount);
 
-            var subGroupCount = GetSubGroupCount(group.StudentCount);
-                //group.SubgroupCount == 1 ? Math.Floor((double)group.StudentCount / 9)<1?1:Math.Floor((double)group.StudentCount / 9) :
-                //Math.Floor((double)group.StudentCount / group.SubgroupCount / 9) * group.SubgroupCount;
-            lab = calculationSetting.LabCost * discipline.LabCount * semester.WeekCount * Convert.ToInt32(subGroupCount);
-                //((int)Math.Floor((double)group.StudentCount/9)>0 ? (int)Math.Floor((double)group.StudentCount / 9):1);
+            lec = calculationSetting.LectureCost * discipline.LectureCount * semester.WeekCount;
+            lab = calculationSetting.LabCost * discipline.LabCount * semester.WeekCount * subGroupCount;
             prac = calculationSetting.PracticeCost * discipline.PracticeCount * semester.WeekCount * group.SubgroupCount;
+
             workloadCost.LectureCost = lec; 
             workloadCost.LabCost= lab;
             workloadCost.PracticeCost= prac;

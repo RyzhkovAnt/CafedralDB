@@ -40,6 +40,7 @@
             this.studyYearTableAdapter1 = new CafedralDB.MainDBDataSetTableAdapters.StudyYearTableAdapter();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.EmployeeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainDBDataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.StudyYearBindingSource)).BeginInit();
@@ -47,7 +48,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(128, 97);
+            this.button1.Location = new System.Drawing.Point(125, 126);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(119, 38);
             this.button1.TabIndex = 0;
@@ -60,7 +61,7 @@
             this.Teacher_comboBox.DataSource = this.EmployeeBindingSource;
             this.Teacher_comboBox.DisplayMember = "EmployeeName";
             this.Teacher_comboBox.FormattingEnabled = true;
-            this.Teacher_comboBox.Location = new System.Drawing.Point(31, 25);
+            this.Teacher_comboBox.Location = new System.Drawing.Point(27, 25);
             this.Teacher_comboBox.Name = "Teacher_comboBox";
             this.Teacher_comboBox.Size = new System.Drawing.Size(121, 21);
             this.Teacher_comboBox.TabIndex = 1;
@@ -95,14 +96,10 @@
             // Semester_comboBox
             // 
             this.Semester_comboBox.FormattingEnabled = true;
-            this.Semester_comboBox.Items.AddRange(new object[] {
-            "Осенний",
-            "Весенний"});
-            this.Semester_comboBox.Location = new System.Drawing.Point(225, 70);
+            this.Semester_comboBox.Location = new System.Drawing.Point(225, 83);
             this.Semester_comboBox.Name = "Semester_comboBox";
             this.Semester_comboBox.Size = new System.Drawing.Size(121, 21);
             this.Semester_comboBox.TabIndex = 3;
-            this.Semester_comboBox.Visible = false;
             // 
             // employeeTableAdapter1
             // 
@@ -115,7 +112,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(48, 6);
+            this.label1.Location = new System.Drawing.Point(44, 6);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(86, 13);
             this.label1.TabIndex = 4;
@@ -131,11 +128,21 @@
             this.label2.Text = "Учебный год";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(263, 67);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(51, 13);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Семестр";
+            // 
             // ExportContract
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(376, 151);
+            this.ClientSize = new System.Drawing.Size(376, 176);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.Semester_comboBox);
@@ -166,5 +173,6 @@
         private System.Windows.Forms.BindingSource StudyYearBindingSource;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
     }
 }

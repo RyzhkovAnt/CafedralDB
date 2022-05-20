@@ -21,17 +21,12 @@ namespace CafedralDB.Forms.Export
         private void buttonExport_Click(object sender, EventArgs e)
         {
             string filePath;
-            //string teacherName = comboBoxTeacher.SelectedValue.ToString();
             string year = comboBoxYear.SelectedValue.ToString();
 			int teacherID = Convert.ToInt32(comboBoxTeacher.SelectedValue);
-            //SaveFileDialog saveDialog = new SaveFileDialog();
-            //saveDialog.FileName = String.Format("Инд.план {0}({1}).xls",teacherName, year);
-            //saveDialog.Filter = "Excel files (*.xls)|*.xls|All files (*.*)|*.*";
-            //saveDialog.FilterIndex = 1;
-            //saveDialog.ShowDialog();
-            //filePath = saveDialog.FileName;
 
-            IndPlan.ExportIndPlan(teacherID, year);
+
+            SourceCode.Model.Exporter.ExportIndPlan.Export(teacherID, year);
+            //IndPlan.ExportIndPlan(teacherID, year);
         }
 
         private void ExportIndPlan_Load(object sender, EventArgs e)

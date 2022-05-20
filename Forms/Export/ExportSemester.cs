@@ -25,12 +25,14 @@ namespace CafedralDB.Forms.Export
             // TODO: This line of code loads data into the 'mainDBDataSet.StudyYear' table. You can move, or remove it, as needed.
             this.studyYearTableAdapter.Fill(this.mainDBDataSet.StudyYear);
 			comboBoxSemester.SelectedIndex = 0;
+            comboBoxSemester.DataSource = Enum.GetValues(typeof(SourceCode.Utilities.SemesterName));
 
 		}
 
 		private void buttonExport_Click(object sender, EventArgs e)
 		{
-			Semester.ExportSemester(comboBoxYear.SelectedValue.ToString(), comboBoxSemester.SelectedItem.ToString());
+            var selectedSemester=(SourceCode.Utilities.SemesterName)comboBoxSemester.SelectedItem;
+            SourceCode.Model.Exporter.ExportSemester.Export(comboBoxYear.SelectedValue.ToString(), selectedSemester);
 		}
 	}
 }

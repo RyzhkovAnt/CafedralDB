@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using CafedralDB.SourceCode.Model.Exporter;
+using CafedralDB.SourceCode;
 
 namespace CafedralDB.Forms.Export
 {
@@ -16,12 +16,14 @@ namespace CafedralDB.Forms.Export
         public ExportContract()
         {
             InitializeComponent();
+            Semester_comboBox.DataSource=Enum.GetValues(typeof(Utilities.SemesterName));
+            Semester_comboBox.SelectedIndex=0;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Contract.ExportContract(Convert.ToInt32(Teacher_comboBox.SelectedValue),
-                        Year_comboBox.SelectedValue.ToString(),Semester_comboBox.SelectedItem.ToString());
+            var selectedSemester = (Utilities.SemesterName)Semester_comboBox.SelectedItem;
+            SourceCode.Model.Exporter.ExportContract.Export(Convert.ToInt32(Teacher_comboBox.SelectedValue), Year_comboBox.SelectedValue.ToString(), selectedSemester);
         }
 
         private void ExportContract_Load(object sender, EventArgs e)

@@ -10,6 +10,7 @@ namespace CafedralDB.SourceCode.Model
 {
 	namespace Exporter
 	{
+        [Obsolete("Страрый класс экспорта индивидуального плана")]
 		public static class IndPlan
 		{
 			public static void ExportIndPlan(int teacherID, string year)
@@ -171,26 +172,26 @@ namespace CafedralDB.SourceCode.Model
                 cn.Close();
             }
 		}
-
+        [Obsolete("Страрый класс экспорта отчета за семестр")]
 		public static class Semester
 		{
-			public static void ExportSemester(string year, string semester)
+			public static void ExportSemester(string year, Utilities.SemesterName semester)
 			{
                 
 				string path = System.Windows.Forms.Application.StartupPath + "\\ExcelTemplates\\SemesterTemplate.xltx";
-				string semesterParam;
+				string semesterParam=Utilities.getSemesterConditionString(semester);
                 float FIT_sum = 0.0f, MSF_sum = 0.0f, Mag_Sum = 0.0f, IDPO_sum = 0.0f;
                 float FIT_lecSum = 0.0f, MSF_lecSum = 0.0f, Mag_lecSum = 0.0f, IDPO_lecSum = 0.0f;
                 float contractSum = 0.0f, indPlanSum = 0.0f;
 
-				if (semester == "Осенний")
-				{
-					semesterParam = "(Semester.Descr = '1'  OR  Semester.Descr = '3'  OR  Semester.Descr = '5'  OR  Semester.Descr = '7'  OR  Semester.Descr = '9'  OR  Semester.Descr = '11')";
-				}
-				else
-				{
-					semesterParam = "(Semester.Descr = '2'  OR  Semester.Descr = '4'  OR  Semester.Descr = '6'  OR Semester.Descr = '8'  OR  Semester.Descr = '10'  OR  Semester.Descr = '12')";
-				}
+				//if (semester == "Осенний")
+				//{
+				//	semesterParam = "(Semester.Descr = '1'  OR  Semester.Descr = '3'  OR  Semester.Descr = '5'  OR  Semester.Descr = '7'  OR  Semester.Descr = '9'  OR  Semester.Descr = '11')";
+				//}
+				//else
+				//{
+				//	semesterParam = "(Semester.Descr = '2'  OR  Semester.Descr = '4'  OR  Semester.Descr = '6'  OR Semester.Descr = '8'  OR  Semester.Descr = '10'  OR  Semester.Descr = '12')";
+				//}
 
 				Dictionary<string, int> counts = new Dictionary<string, int>() { { "ФИТ", 0 }, { "МСФ", 0 }, { "ИДПО", 0 }, { "МАГ", 0 } };
                 int rowCounter = 0;
@@ -736,7 +737,7 @@ namespace CafedralDB.SourceCode.Model
 				rowCounters[sheet]++;
 			}
 		}
-
+        [Obsolete("Старый класс экспорта контракта")]
         public static class Contract
         {
             public static void ExportContract(int teacherID, string year, string semester)
@@ -797,7 +798,7 @@ namespace CafedralDB.SourceCode.Model
                 string nowDate = DateTime.Now.Date.ToShortDateString();
                 string dateWithTime = string.Format("{0}-{1}",nowDate,nowTime.ToString(@"hh\.mm\.ss"));
                 string filename = string.Format("Contract of {0} - {1}({2}).docx", TeacherName, year, dateWithTime);
-                string outpath = "Contracts\\" + filename;
+                string outpath = System.Windows.Forms.Application.StartupPath + "\\Contracts\\" + filename;
                 string[] prefixTags = ApplicationSettings.ExportSettings.ContractSetting.GetPrefixTag();
                 File.Copy(path, outpath);               
                 TableContent tableContent = new TableContent("Discipline table");
@@ -828,7 +829,7 @@ namespace CafedralDB.SourceCode.Model
                 }
                 
                 var _path = System.Windows.Forms.Application.StartupPath+"\\" + outpath;
-                System.Diagnostics.Process.Start(_path);
+                System.Diagnostics.Process.Start(outpath);
             }
 
             static List<FieldContent> FillTableOfTrainingTask(List<ContractDiscr> contractDiscrs,string[] prefixTags)

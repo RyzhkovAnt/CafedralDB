@@ -10,6 +10,10 @@ using CafedralDB.SourceCode.Model.Entity;
 
 namespace CafedralDB.SourceCode.Model.Exporter
 {
+    /// <summary>
+    /// Экспорт индивидуального плана
+    ///  Необходимо проверить правильность заполнения
+    /// </summary>
     public static class ExportIndPlan
     {
         public static void Export(int teacherID, string year)
@@ -32,29 +36,27 @@ namespace CafedralDB.SourceCode.Model.Exporter
             ObjWorkSheet.Cells[ApplicationSettings.ExportSettings.IndPlanSetting.TeacherFIORowCell[0],
              ApplicationSettings.ExportSettings.IndPlanSetting.TeacherFIORowCell[1]] = teacher.Name;
 
-            PrintSemester(teacherID, "Осенний", year, ObjWorkBook);
-            PrintSemester(teacherID, "Весенний", year, ObjWorkBook);
+            PrintSemester(teacherID, Utilities.SemesterName.Осенний, year, ObjWorkBook);
+            PrintSemester(teacherID, Utilities.SemesterName.Весенний, year, ObjWorkBook);
 
             ObjExcel.Visible = true;
             ObjExcel.UserControl = true;
 
         }
 
-        private static void PrintSemester(int teacherID, string semester, string year, Excel.Workbook objWorkBook)
+        private static void PrintSemester(int teacherID, Utilities.SemesterName semester, string year, Excel.Workbook objWorkBook)
         {
-            string semesterParam;
+            var semesterParam=Utilities.getSemesterConditionString(semester);
             int DisciplineDescrList;
             int DisciplineParamsList;
 
-            if (semester == "Осенний")
+            if (semester == Utilities.SemesterName.Осенний)
             {
-                semesterParam = "(Semester.Descr = '1'  OR  Semester.Descr = '3'  OR  Semester.Descr = '5'  OR  Semester.Descr = '7'  OR  Semester.Descr = '9'  OR  Semester.Descr = '11')";
                 DisciplineDescrList = 2;
                 DisciplineParamsList = 4;
             }
             else
             {
-                semesterParam = "(Semester.Descr = '2'  OR  Semester.Descr = '4'  OR  Semester.Descr = '6'  OR Semester.Descr = '8'  OR  Semester.Descr = '10'  OR  Semester.Descr = '12')";
                 DisciplineDescrList = 3;
                 DisciplineParamsList = 5;
             }
@@ -81,6 +83,32 @@ namespace CafedralDB.SourceCode.Model.Exporter
             cmd.Parameters.AddWithValue("@param2", teacherID);
             System.Data.OleDb.OleDbDataReader reader = cmd.ExecuteReader();
 
+            /*
+            0 - Discipline.Descr,
+            1 - Faculty.Descr AS Expr1,
+            2 - Speciality.Descr AS Expr2,
+            3 - [Group].EntryYear,"
+            4 - [Group].StudentCount,
+            5 - Semester.WeekCount,
+            6 - DisciplineType.Descr AS Expr3,
+            7 - StudyYear.StudyYear,
+            8 - WorkloadAssign.Teacher,
+            9 - Discipline.KonsZaoch,
+            10 - Discipline.GAKPred,
+            11 - Discipline.DPruk,
+            12 - Discipline.DopuskVKR,
+            13 - Discipline.RetzVKR,
+            14 - Discipline.DPretz,"
+            15 - Discipline.ASPRuk,
+            16 - Discipline.MAGRuk,
+            17 - Discipline.MAGRetz,
+            18 - Discipline.RukKaf,
+            19 - Discipline.NIIR,
+            20 - Discipline.isSpecial,"
+            21 - Workload.ID 
+             
+             */
+
 
             if (reader.HasRows)
             {
@@ -90,16 +118,21 @@ namespace CafedralDB.SourceCode.Model.Exporter
                 while (reader.Read())
                 {
                     DescrSheet.Cells[currentRow, ApplicationSettings.ExportSettings.IndPlanSetting.DisciplineNameColumn] = reader[0].ToString();
+
+
                     int entry = DataManager.SharedDataManager().GetStudyYear(Convert.ToInt32(reader[3])).Year;
                     int cource = Convert.ToInt32(year) - entry + 1;
+                    var workload = DataManager.SharedDataManager().GetWorkload(Convert.ToInt32(reader[21]));
+
+                    var discipline = DataManager.SharedDataManager().GetDiscipline(workload.Discipline);
+
                     string descr = string.Format("{0},{1},{2} курс", reader[1], reader[2], cource);
-                    DescrSheet.Cells[currentRow, ApplicationSettings.ExportSettings.IndPlanSetting.DisciplineDescrColumn] = descr;
-                    DescrSheet.Cells[currentRow, ApplicationSettings.ExportSettings.IndPlanSetting.StudentsCountColumn] = reader[4];
+                    DescrSheet.Cells[currentRow, ApplicationSettings.ExportSettings.IndPlanSetting.DisciplineDescrColumn] = discipline.Descr;// descr;
+                    DescrSheet.Cells[currentRow, ApplicationSettings.ExportSettings.IndPlanSetting.StudentsCountColumn] = reader[4];//studentCount
                     int countStud = Convert.ToInt32(reader[4]);
-                    CafedralDB.SourceCode.Model.Entity.Workload workload = DataManager.SharedDataManager().GetWorkload(Convert.ToInt32(reader[21]));
                     WorkloadCost workloadCost = Calculator.GetWorkloadCost(workload.ID);
                     Settings.CalculationSetting calculationSetting = new Settings.CalculationSetting();
-                    if (Convert.ToBoolean(reader[20]))
+                    if (discipline.Special)
                     {
                         WorkloadAssign assign = DataManager.SharedDataManager().GetWorkloadAssign(Convert.ToInt32(reader[21]), teacherID);
                         countStud = assign.StudentsCount;
@@ -134,10 +167,15 @@ namespace CafedralDB.SourceCode.Model.Exporter
                     double GEK = workloadCost.GEKCost;
                     double GAKpred = workloadCost.GAKPredCost;
                     double GAK = workloadCost.GAKCost;
-                    double rukMag = Convert.ToBoolean(reader[16]) ? (30 * Convert.ToInt32(reader[16])) : 0;//рук маг
+
+                    var DPruk = workloadCost.DPRukCost;
+                    var AspRuk = workloadCost.ASPRukCost;
+                    var _rukMag = workloadCost.MagRuk;
+                    
+                    double rukMag = Convert.ToBoolean(reader[16]) ? (30 * Convert.ToInt32(reader[16])) : 0;//рук маг _rukMag
                     geks = GEK + GAK + GAKpred;
 
-                    ruk += Convert.ToBoolean(reader[11]) ? (countStud * calculationSetting.DPruk) : 0f;//DPruk
+                    ruk += Convert.ToBoolean(reader[11]) ? (countStud * calculationSetting.DPruk) : 0f;//DPruk DPruk
                     ruk += Convert.ToBoolean(reader[12]) ? (1 * Convert.ToInt32(reader[4])) : 0f;//DopuskVkr
                     ruk += Convert.ToBoolean(reader[13]) ? (4 * Convert.ToInt32(reader[4])) : 0f;//retzVKR
                     ruk += Convert.ToBoolean(reader[14]) ? (30 * Convert.ToInt32(reader[4])) : 0f;//DPretz

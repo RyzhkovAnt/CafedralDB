@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="CafedralDB.exe" size="1805824">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="CafedralDB.exe" size="1848320">
       <assemblyIdentity name="CafedralDB" version="1.0.0.0" language="neutral" processorArchitecture="amd64" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>yCFNQQKLy/YqneVj3JG9bKBaTm529ovo3Nbb+U7/CQU=</dsig:DigestValue>
+        <dsig:DigestValue>uwEPMe/+LBJDM8E8DfR/rokd0w7RS7Yvs5rAcftcg+o=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -1268,7 +1268,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>l2V8guQXPBWeCONLrFivz2jlMED0S23wRzpmqCArF6Q=</dsig:DigestValue>
+      <dsig:DigestValue>BzJKYtRbkIOg0cEYdrNNILOt21JsuB+X0PkY/7Fhlx4=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

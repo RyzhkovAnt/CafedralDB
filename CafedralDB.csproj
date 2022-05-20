@@ -442,6 +442,7 @@
     <Compile Include="SourceCode\Model\Entities\WorkloadAssign.cs" />
     <Compile Include="SourceCode\Model\Entities\WorkloadCost.cs" />
     <Compile Include="SourceCode\Model\Exporter.cs" />
+    <Compile Include="SourceCode\Model\Exporter\ExportContract.cs" />
     <Compile Include="SourceCode\Model\Exporter\ExportIndPlan.cs" />
     <Compile Include="SourceCode\Model\Exporter\ExportSemester.cs" />
     <Compile Include="SourceCode\Model\Exporter\ExportWorkload.cs" />
@@ -565,7 +566,9 @@
     <None Include="ClassDiagram1.cd" />
     <None Include="ClassDiagram2.cd" />
     <None Include="ClassDiagram3.cd" />
-    <None Include="WordTemplate\ContractTemlate.docx" />
+    <EmbeddedResource Include="WordTemplate\ContractTemlate.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <None Include="SourceCode\ClassDiagram1.cd" />
     <Resource Include="Images\Icon_13-512.png" />
     <Resource Include="Images\Icon_17-512.png" />
