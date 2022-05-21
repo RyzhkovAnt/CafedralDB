@@ -1247,9 +1247,9 @@ namespace CafedralDB.SourceCode.Model
 		#endregion
 
 		#region SetData
-		public void AssignTeacher(int workloadID, int teacherID, int studCount = 0)
+		public void AssignTeacher(int workloadID, int teacherID, int studCount = 0,bool isContract=false)
 		{
-			string insertSql = "INSERT INTO WorkloadAssign (Workload,Teacher, StudentCount) VALUES(@workloadID, @teacherID, @studentCount)";
+			string insertSql = "INSERT INTO WorkloadAssign (Workload,Teacher, StudentCount,isContract) VALUES(@workloadID, @teacherID, @studentCount,@isContract)";
 
 			using (OleDbConnection myConnection = new OleDbConnection(connString))
 			{
@@ -1260,6 +1260,7 @@ namespace CafedralDB.SourceCode.Model
 				cmd.Parameters.AddWithValue("@workloadID", workloadID);
 				cmd.Parameters.AddWithValue("@teacherID", teacherID);
 				cmd.Parameters.AddWithValue("@studentCount", studCount);
+				cmd.Parameters.AddWithValue("@isContract",isContract);
 				cmd.ExecuteNonQuery();
 				myConnection.Close();
 			}

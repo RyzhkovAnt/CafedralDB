@@ -37,7 +37,8 @@ namespace CafedralDB.Forms.Add.Assign
 				int teacherID = Convert.ToInt32(dataGridViewFreeTeachers.SelectedRows[0].Cells[0].Value);
 				int workloadID = this.mainDBDataSet.DataTableForAssigns.ElementAt(dataGridView1.SelectedRows[0].Index).ID;
 				int studCount = Convert.ToInt32(textBoxStudentCount.Text);
-				DataManager.SharedDataManager().AssignTeacher(workloadID, teacherID, studCount);
+				bool isContract = contractCheckBox.Checked;
+				DataManager.SharedDataManager().AssignTeacher(workloadID, teacherID, studCount,isContract);
 				FindAssigns(workloadID);
 				UpdateSumms();
 			}
@@ -73,6 +74,7 @@ namespace CafedralDB.Forms.Add.Assign
 				FindAssigns(workloadID);
 
 				textBoxWorkloadHours.Text = Calculator.GetWorkloadTotalCost(workloadID).ToString();
+				contractCheckBox.Checked=false
 			}
 		}
 
