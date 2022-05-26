@@ -19,7 +19,7 @@ namespace CafedralDB.SourceCode.Model.Exporter
                 "Group.ID = Workload.Group) ON Semester.ID = Workload.Semester) ON " +
                 "StudyYear.ID = Workload.StudyYear) INNER JOIN(Employee INNER JOIN " +
                 "WorkloadAssign ON Employee.ID = WorkloadAssign.Teacher) ON Workload.ID = WorkloadAssign.Workload " +
-                "WHERE ((Discipline.Contr) = True) AND((StudyYear.StudyYear) =[param1]) AND((WorkloadAssign.Teacher) =[@param2]) AND " + Utilities.getSemesterConditionString(semester);
+                "WHERE ((WorkloadAssign.isContract) = True) AND((StudyYear.StudyYear) =[param1]) AND((WorkloadAssign.Teacher) =[@param2]) AND " + Utilities.getSemesterConditionString(semester);
             DataManager.SharedDataManager();
             var cn = new OleDbConnection(DataManager.Connection.ConnectionString);
             var cmd = new OleDbCommand();

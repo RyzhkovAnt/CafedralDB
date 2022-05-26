@@ -15,9 +15,12 @@ namespace CafedralDB.Forms.Add.Assign
 {
     public partial class AssignTeachersSimpleForm : Form
     {
-        public AssignTeachersSimpleForm()
+
+		List<WorkloadAssign> currentAssign;
+		public AssignTeachersSimpleForm()
         {
             InitializeComponent();
+			currentAssign = new List<WorkloadAssign>();
         }
 
         private void AssignTeachersSimpleForm_Load(object sender, EventArgs e)
@@ -58,9 +61,10 @@ namespace CafedralDB.Forms.Add.Assign
 		private void dataGridView1_SelectionChanged(object sender, EventArgs e)
 		{
 			//найти выбранную из датагрида нагрузку
-			//обновить таблицы свободных и назначенных преподов
+			//обновить таблицы свободных и назначенных преподователей
+			//	при изменений выбора назначенного преподавателя обновлять значение чекбокса Договор 
 			//подсчитать всего часов сколько
-
+			
 			if (dataGridView1.SelectedRows.Count == 1)
 			{
 				int workloadID = this.mainDBDataSet.DataTableForAssigns.ElementAt(dataGridView1.SelectedRows[0].Index).ID;
@@ -74,7 +78,7 @@ namespace CafedralDB.Forms.Add.Assign
 				FindAssigns(workloadID);
 
 				textBoxWorkloadHours.Text = Calculator.GetWorkloadTotalCost(workloadID).ToString();
-				contractCheckBox.Checked=false
+				//contractCheckBox.Checked = false;
 			}
 		}
 
@@ -137,14 +141,14 @@ namespace CafedralDB.Forms.Add.Assign
 
 		public void FindAssigns(int workloadID)
 		{
-			List<WorkloadAssign> assigns = DataManager.SharedDataManager().GetWorkloadAssigns(workloadID);
+			currentAssign = DataManager.SharedDataManager().GetWorkloadAssigns(workloadID);
 
 			List<Employee> all = DataManager.SharedDataManager().GetEmployees();
 			List<Employee> assigned = new List<Employee>();
 
-			for(int i=0;i<assigns.Count;i++)
+			for(int i=0;i< currentAssign.Count;i++)
 			{
-				int teacherID = assigns[i].EmployeeID;
+				int teacherID = currentAssign[i].EmployeeID;
 
 				Employee foundedAssign = all.Find(x => x.ID == teacherID);
 				assigned.Add(foundedAssign);
@@ -208,5 +212,33 @@ namespace CafedralDB.Forms.Add.Assign
 
 			dataGridView1.Sort(dataGridView1.Columns[5], ListSortDirection.Ascending);
 		}
-	}
+
+        private void dataGridViewAssignedTeachers_SelectionChanged(object sender, EventArgs e)
+        {
+			if (dataGridViewAssignedTeachers.SelectedCells.Count > 0)
+			{
+				int selectedrowindex = dataGridViewAssignedTeachers.SelectedCells[0].RowIndex;
+				DataGridViewRow selectedRow = dataGridViewAssignedTeachers.Rows[selectedrowindex];
+				var cellValue = Convert.ToInt32(selectedRow.Cells[0].Value);
+				
+				foreach(WorkloadAssign assign in currentAssign)
+                {
+                    if (assign.EmployeeID == cellValue)
+                    {
+						contractCheckBox.Checked = assign.IsContract;
+                    }
+                }
+            }
+            else
+            {
+				contractCheckBox.Checked = false;
+			}
+
+
+		}
+
+        private void contractCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+        }
+    }
 }

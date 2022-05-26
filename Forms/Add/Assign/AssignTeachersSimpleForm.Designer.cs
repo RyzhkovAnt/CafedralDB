@@ -342,6 +342,7 @@
             this.dataGridViewAssignedTeachers.ShowEditingIcon = false;
             this.dataGridViewAssignedTeachers.Size = new System.Drawing.Size(153, 150);
             this.dataGridViewAssignedTeachers.TabIndex = 14;
+            this.dataGridViewAssignedTeachers.SelectionChanged += new System.EventHandler(this.dataGridViewAssignedTeachers_SelectionChanged);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -422,6 +423,7 @@
             this.contractCheckBox.TabIndex = 18;
             this.contractCheckBox.Text = "Договор";
             this.contractCheckBox.UseVisualStyleBackColor = true;
+            this.contractCheckBox.CheckedChanged += new System.EventHandler(this.contractCheckBox_CheckedChanged);
             // 
             // AssignTeachersSimpleForm
             // 

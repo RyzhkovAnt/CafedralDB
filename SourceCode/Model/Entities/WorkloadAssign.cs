@@ -22,5 +22,7 @@ namespace CafedralDB.SourceCode.Model
         public int StudentsCount { get; set; }
 
         public int Weeks { get; set; }
+
+        public bool IsContract { get; set; }
     }
 }

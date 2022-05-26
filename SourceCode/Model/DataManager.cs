@@ -1217,6 +1217,7 @@ namespace CafedralDB.SourceCode.Model
 					item.StudentsCount = Convert.ToInt32(reader[3]);
 				if (reader[4] != System.DBNull.Value)
 					item.Weeks = Convert.ToInt32(reader[4]);
+				item.IsContract = Convert.ToBoolean(reader[5]);
 				result.Add(item);
 			}
 			cn.Close();
