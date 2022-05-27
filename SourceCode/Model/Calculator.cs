@@ -125,5 +125,11 @@ namespace CafedralDB.SourceCode.Model
 			}
 			return result;
 		}
+
+        public static double getCountOfLectureHoure(int semesterLength,int lectureCount)
+        {
+            var setting = new CalculationSetting();
+            return setting.LectureCost * lectureCount * semesterLength;
+        }
 	}
 }
