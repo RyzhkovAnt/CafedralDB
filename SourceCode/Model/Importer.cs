@@ -208,7 +208,7 @@ namespace CafedralDB.SourceCode.Model
 
                     if (!Entities.Сurriculum.checkWorkPlan(workPlanDiscipline))
                     {
-						answer.Add(String.Format("Дисциплина '{0}' не соответствует учебному плану\n", disciplineName));
+						answer.Add(String.Format("Дисциплина '{0}'(семестр {1}) не соответствует учебному плану\n", disciplineName,semester));
 						res = false;
                     }
 

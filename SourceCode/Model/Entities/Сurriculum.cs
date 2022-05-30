@@ -14,7 +14,7 @@ namespace CafedralDB.SourceCode.Model.Entities
         public bool Ekz { get; private set; }
         public bool Zach { get; private set; }
         public bool IsPractice { get; private set; }
-        public CurriculumDiscipline(string _name, string _semester, int _lectureCount, int _labCount, int _practiceCount = 0, bool _courseWork = false, bool _ekz = false, bool _zach = false,bool _isPractice=false)
+        public CurriculumDiscipline(string _name, string _semester, int _lectureCount, int _labCount, int _practiceCount = 0, bool _courseWork = false, bool _ekz = false, bool _zach = false, bool _isPractice = false)
         {
             Name = _name;
             Semester = _semester;
@@ -37,7 +37,7 @@ namespace CafedralDB.SourceCode.Model.Entities
             var props = this.GetType().GetProperties();
             foreach (var prop in props)
             {
-                if(prop.GetValue(this).ToString()!= prop.GetValue(compared).ToString())
+                if (prop.GetValue(this).ToString() != prop.GetValue(compared).ToString())
                 {
                     return false;
                 }
@@ -52,13 +52,13 @@ namespace CafedralDB.SourceCode.Model.Entities
     }
     internal static class Сurriculum
     {
-        static Dictionary<int, int> Semesters = new Dictionary<int, int>{ 
-            {1,15 }, { 2, 15 }, 
-            { 3, 15 }, { 4, 15 }, 
-            { 5, 15 }, { 6, 15 }, 
-            { 7, 15 }, { 8 , 13 }, 
-            { 9, 12 }, { 10, 14 }, 
-            { 11, 13 }, { 12, 10 } }; 
+        static Dictionary<int, int> Semesters = new Dictionary<int, int>{
+            {1,15 }, { 2, 15 },
+            { 3, 15 }, { 4, 15 },
+            { 5, 15 }, { 6, 15 },
+            { 7, 15 }, { 8 , 13 },
+            { 9, 12 }, { 10, 14 },
+            { 11, 13 }, { 12, 10 } };
         static List<CurriculumDiscipline> Curriculums = new List<CurriculumDiscipline>() { 
             //семестр 1
         new CurriculumDiscipline(_name: "Информатика и программирование",
@@ -485,6 +485,289 @@ namespace CafedralDB.SourceCode.Model.Entities
                 _ekz:false,
                 _zach:false,
                 _isPractice:true),
+            // Магистры 9 семестр
+        new CurriculumDiscipline(
+                _name: "Интеллектуальный анализ данных",
+                _semester: "9",
+                _lectureCount: 1,
+                _labCount: 2,
+                _practiceCount: 0,
+                _courseWork: true,
+                _ekz: true,
+                _zach: false),
+        new CurriculumDiscipline(
+                _name: "Компьютерные технологии",
+                _semester: "9",
+                _lectureCount: 1,
+                _labCount: 2,
+                _practiceCount: 0,
+                _courseWork: false,
+                _ekz: false,
+                _zach: true ),
+        new CurriculumDiscipline(
+                _name: "Надежность информационных систем",
+                _semester: "9",
+                _lectureCount: 1,
+                _labCount: 2,
+                _practiceCount: 0,
+                _courseWork: false,
+                _ekz: true,
+                _zach: false
+                ),
+        new CurriculumDiscipline(
+                _name: "Интеллектуальные информационные системы",
+                _semester: "9",
+                _lectureCount: 1,
+                _labCount: 1,
+                _practiceCount: 0,
+                _courseWork: true,
+                _ekz: true,
+                _zach: false ),
+        new CurriculumDiscipline(
+                _name: "Новые технологии в разработке программных систем",
+                _semester: "9",
+                _lectureCount: 1,
+                _labCount: 2,
+                _practiceCount: 0,
+                _courseWork: false,
+                _ekz: true,
+                _zach: false ),
+        new CurriculumDiscipline(
+                _name: "Учебная практика, ознакомительная",
+                _semester: "9",
+                _lectureCount: 0,
+                _labCount: 0,
+                _practiceCount: 0,
+                _courseWork: false,
+                _ekz: false,
+                _zach: false,
+                _isPractice: true ),
+            //семестр 10
+        new CurriculumDiscipline(
+                _name: "Интеллектуальный анализ данных",
+                _semester: "10",
+                _lectureCount: 1,
+                _labCount: 2,
+                _practiceCount: 0,
+                _courseWork: false,
+                _ekz: true,
+                _zach: false ),
+        new CurriculumDiscipline(
+                _name: "Моделирование",
+                _semester: "10",
+                _lectureCount: 1,
+                _labCount: 2,
+                _practiceCount: 0,
+                _courseWork: true,
+                _ekz: true,
+                _zach: false ),
+        new CurriculumDiscipline(
+                _name: "Теория принятия решений",
+                _semester: "10",
+                _lectureCount: 1,
+                _labCount: 1,
+                _practiceCount: 0,
+                _courseWork: false,
+                _ekz: true,
+                _zach: false ),
+        new CurriculumDiscipline(
+                _name: "Теория мягких вычислений",
+                _semester: "10",
+                _lectureCount: 1,
+                _labCount: 1,
+                _practiceCount: 0,
+                _courseWork: false,
+                _ekz: true,
+                _zach: false ),
+        new CurriculumDiscipline(
+                _name: "Интеллектуальные информационные системы",
+                _semester: "10",
+                _lectureCount: 1,
+                _labCount: 2,
+                _practiceCount: 0,
+                _courseWork: false,
+                _ekz: false,
+                _zach: true),
+
+        new CurriculumDiscipline(
+                _name: "Новые технологии в разработке программных систем",
+                _semester: "10",
+                _lectureCount: 1,
+                _labCount: 2,
+                _practiceCount: 0,
+                _courseWork: true,
+                _ekz: true,
+                _zach: false ),
+        new CurriculumDiscipline(
+                _name: "Производственная практика, научно-исследовательская работа",
+                _semester: "10",
+                _lectureCount: 0,
+                _labCount: 0,
+                _practiceCount: 0,
+                _courseWork: false,
+                _ekz: false,
+                _zach: false,
+                _isPractice: true ),
+            //Семестр 11
+        new CurriculumDiscipline(
+                _name: "Научно-практический семинар",
+                _semester: "11",
+                _lectureCount: 1,
+                _labCount: 2,
+                _practiceCount: 0,
+                _courseWork: false,
+                _ekz: false,
+                _zach: true ),
+        new CurriculumDiscipline(
+                _name: "Интеллектуальный анализ текстов",
+                _semester: "11",
+                _lectureCount: 2,
+                _labCount: 2,
+                _practiceCount: 0,
+                _courseWork: true,
+                _ekz: true,
+                _zach: false ),
+        new CurriculumDiscipline(
+                _name: "Искусственные нейронные сети",
+                _semester: "11",
+                _lectureCount: 1,
+                _labCount: 2,
+                _practiceCount: 0,
+                _courseWork: true,
+                _ekz: true,
+                _zach: false ),
+        new CurriculumDiscipline(
+                _name: "Параллельные вычисления на кластерах и многоядерных компьютерах",
+                _semester: "11",
+                _lectureCount: 2,
+                _labCount: 3,
+                _practiceCount: 0,
+                _courseWork: false,
+                _ekz: true,
+                _zach: false ),
+        new CurriculumDiscipline(
+                _name: "Параллельные вычисления в интеллектуальных системах",
+                _semester: "11",
+                _lectureCount: 2,
+                _labCount: 3,
+                _practiceCount: 0,
+                _courseWork: false,
+                _ekz: true,
+                _zach: false ),
+        new CurriculumDiscipline(
+                _name: "Вычислительный эксперимент",
+                _semester: "11",
+                _lectureCount: 1,
+                _labCount: 3,
+                _practiceCount: 0,
+                _courseWork: false,
+                _ekz: true,
+                _zach: false ),
+        new CurriculumDiscipline(
+                _name: "Производственная практика, научно-исследовательская работа",
+                _semester: "11",
+                _lectureCount: 0,
+                _labCount: 0,
+                _practiceCount: 0,
+                _courseWork: false,
+                _ekz: false,
+                _zach: false,
+                _isPractice: true ),
+            //Семестр 12
+        new CurriculumDiscipline(
+                _name: "Интеллектуальный анализ текстов",
+                _semester: "12",
+                _lectureCount: 2,
+                _labCount: 2,
+                _practiceCount: 0,
+                _courseWork: false,
+                _ekz: true,
+                _zach: false ),
+        new CurriculumDiscipline(
+                _name: "Искусственные нейронные сети",
+                _semester: "12",
+                _lectureCount: 2,
+                _labCount: 2,
+                _practiceCount: 0,
+                _courseWork: false,
+                _ekz: true,
+                _zach: false ),
+        new CurriculumDiscipline(
+               _name: "Методология программной инженерии",
+                _semester:"12",
+                _lectureCount: 1,
+                _labCount: 2,
+                _practiceCount: 0,
+                _courseWork: false,
+                _ekz: false,
+                _zach: true ),
+        new CurriculumDiscipline(
+                _name: "Параллельные вычисления на кластерах и многоядерных компьютерах",
+                _semester: "12",
+                _lectureCount: 2,
+                _labCount: 2,
+                _practiceCount: 0,
+                _courseWork: false,
+                _ekz: true,
+                _zach: false ),
+        new CurriculumDiscipline(
+                _name: "Параллельные вычисления в интеллектуальных системах",
+                _semester: "12",
+                _lectureCount: 2,
+                _labCount: 2,
+                _practiceCount: 0,
+                _courseWork: false,
+                _ekz: true,
+                _zach: false ),
+        new CurriculumDiscipline(
+                _name: "Вычислительный эксперимент",
+                _semester: "12",
+                _lectureCount: 1,
+                _labCount: 2,
+                _practiceCount: 0,
+                _courseWork: true,
+                _ekz: false,
+                _zach: true ),
+        new CurriculumDiscipline(
+                _name: "Производственная практика, проектная",
+                _semester: "12",
+                _lectureCount: 0,
+                _labCount: 0,
+                _practiceCount: 0,
+                _courseWork: false,
+                _ekz: false,
+                _zach: false,
+                _isPractice: true ),
+        new CurriculumDiscipline(
+                _name: "Преддипломная практика",
+                _semester: "12",
+                _lectureCount: 0,
+                _labCount: 0,
+                _practiceCount: 0,
+                _courseWork: false,
+                _ekz: false,
+                _zach: false,
+                _isPractice: true ),
+        new CurriculumDiscipline(
+                _name: "Подготовка к сдаче и сдача государственного экзамена",
+                _semester: "12",
+                _lectureCount: 0,
+                _labCount: 0,
+                _practiceCount: 0,
+                _courseWork: false,
+                _ekz: false,
+                _zach: false,
+                _isPractice: true ),
+        new CurriculumDiscipline(
+                _name: "Выполнение и защита выпускной квалификационной работы",
+                _semester: "12",
+                _lectureCount: 0,
+                _labCount: 0,
+                _practiceCount: 0,
+                _courseWork: false,
+                _ekz: false,
+                _zach: false,
+                _isPractice: true ),
         };
 
         internal static bool checkWorkPlan(CurriculumDiscipline discipline)
@@ -500,7 +783,7 @@ namespace CafedralDB.SourceCode.Model.Entities
             return false;
         }
 
-        internal static bool checkSemesterLength(int semester,int weekCount)
+        internal static bool checkSemesterLength(int semester, int weekCount)
         {
             return Semesters[semester] == weekCount;
         }
