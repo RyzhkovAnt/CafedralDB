@@ -109,7 +109,7 @@ namespace CafedralDB.SourceCode.Model.Exporter
                     totalRow[j] += value;
                     if (prefixTags[j] == "Total")
                         value = totalColumn;
-                    fieldContents.Add(new FieldContent(tag, value == 0 ? "" : value.ToString()));
+                    fieldContents.Add(new FieldContent(tag, value == 0 ? "" : Math.Round(value,1).ToString()));
                 }
                 totalColumn = 0;
             }
@@ -119,7 +119,7 @@ namespace CafedralDB.SourceCode.Model.Exporter
                 {
                     tag = prefixTags[j] + "_total";
                     totalAll += totalRow[j];
-                    fieldContents.Add(new FieldContent(tag, totalRow[j] == 0 ? "" : totalRow[j].ToString()));
+                    fieldContents.Add(new FieldContent(tag, totalRow[j] == 0 ? "" : Math.Round(totalRow[j],1).ToString()));
                 }
             }
 
@@ -144,30 +144,30 @@ namespace CafedralDB.SourceCode.Model.Exporter
                     else
                         return list[index].Group;
                 case "Lecture":
-                    return index >= list.Count ? "" : list[index].LectureCost.ToString();
+                    return index >= list.Count ? "" : Math.Round(list[index].LectureCost,1).ToString();
                 case "Pract":
-                    return index >= list.Count ? "" : list[index].PracticeCost.ToString();
+                    return index >= list.Count ? "" : Math.Round(list[index].PracticeCost,1).ToString();
                 case "Lab":
-                    return index >= list.Count ? "" : list[index].LabCost.ToString();
+                    return index >= list.Count ? "" : Math.Round(list[index].LabCost,1).ToString();
                 case "Kr":
-                    return index >= list.Count ? "" : list[index].KRCost.ToString();
+                    return index >= list.Count ? "" : Math.Round(list[index].KRCost,1).ToString();
                 case "Kp":
-                    return index >= list.Count ? "" : list[index].KPCost.ToString();
+                    return index >= list.Count ? "" : Math.Round(list[index].KPCost,1).ToString();
                 case "Nir":
-                    return index >= list.Count ? "" : list[index].NIIRCost.ToString();
+                    return index >= list.Count ? "" : Math.Round(list[index].NIIRCost,1).ToString();
                 case "RukPract":
-                    return index >= list.Count ? "" : (list[index].PredDipPracCost
-                        + list[index].PrPracCost + list[index].UchPracCost).ToString();
+                    return index >= list.Count ? "" : Math.Round(list[index].PredDipPracCost
+                        + list[index].PrPracCost + list[index].UchPracCost,1).ToString();
                 case "Cons":
-                    return index >= list.Count ? "" : list[index].KonsCost.ToString();
+                    return index >= list.Count ? "" : Math.Round(list[index].KonsCost,1).ToString();
                 case "Zach":
-                    return index >= list.Count ? "" : list[index].ZachCost.ToString();
+                    return index >= list.Count ? "" : Math.Round(list[index].ZachCost,1).ToString();
                 case "Ekz":
-                    return index >= list.Count ? "" : list[index].EkzCost.ToString();
+                    return index >= list.Count ? "" : Math.Round(list[index].EkzCost,1).ToString();
                 case "Vkr":
-                    return index >= list.Count ? "" : list[index].DPRukCost.ToString();
+                    return index >= list.Count ? "" : Math.Round(list[index].DPRukCost,1).ToString();
                 case "Gek":
-                    return index >= list.Count ? "" : list[index].GEKCost.ToString();
+                    return index >= list.Count ? "" : Math.Round(list[index].GEKCost,1).ToString();
                 case "RecVkr":
                     return index >= list.Count ? "" : "";
                 default:
