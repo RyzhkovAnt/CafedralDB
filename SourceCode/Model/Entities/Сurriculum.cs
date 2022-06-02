@@ -37,7 +37,9 @@ namespace CafedralDB.SourceCode.Model.Entities
             var props = this.GetType().GetProperties();
             foreach (var prop in props)
             {
-                if (prop.GetValue(this).ToString() != prop.GetValue(compared).ToString())
+                var val1 = prop.GetValue(this).ToString();
+                var val2 = prop.GetValue(compared).ToString();
+                if (val1!=val2)
                 {
                     return false;
                 }
@@ -775,7 +777,7 @@ namespace CafedralDB.SourceCode.Model.Entities
 
             foreach (var item in Curriculums)
             {
-                if (item.Name == discipline.Name)
+                if (item.Name == discipline.Name && item.Semester==discipline.Semester)
                 {
                     return item.Equals(discipline);
                 }
