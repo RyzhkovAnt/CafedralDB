@@ -70,7 +70,7 @@ namespace CafedralDB.SourceCode.Model.Exporter
                 " INNER JOIN (Workload INNER JOIN [Group] ON Workload.[Group] = Group.ID) ON Discipline.ID = Workload.Discipline) " +
                 "ON Qualification.ID = Group.Qualification) ON Semester.ID = Workload.Semester) ON Speciality.ID = Group.Speciality) " +
                 "ON StudyYear.ID = Workload.StudyYear) INNER JOIN WorkloadAssign ON Workload.ID = WorkloadAssign.Workload " +
-                "WHERE (Discipline.Contr = FALSE) AND (StudyYear.StudyYear=[@param1]) AND (WorkloadAssign.Teacher=[@param2]) AND " + semesterParam;
+                "WHERE (WorkloadAssign.isContract = FALSE) AND (StudyYear.StudyYear=[@param1]) AND (WorkloadAssign.Teacher=[@param2]) AND " + semesterParam;
 
             DataManager.SharedDataManager();
             var cn = new System.Data.OleDb.OleDbConnection(DataManager.Connection.ConnectionString);

@@ -5,155 +5,68 @@ using Excel = Microsoft.Office.Interop.Excel;
 using ApplicationSettings;
 using CafedralDB.SourceCode.Model.Entity;
 using CafedralDB.SourceCode.Settings;
-using GemBox.Spreadsheet;
 namespace CafedralDB.SourceCode.Model
 {
     static class Importer
     {
-		public static void ImportWithGemBox(string path, string year)
+        public static void ImportDataFromExcel(string path, string year)
         {
-			SpreadsheetInfo.SetLicense("FREE-LIMITED-KEY");
-
-			ExcelFile workbook = ExcelFile.Load(path);
-			ImportSetting importSettings = new ImportSetting();
-			string result = "";
-			MessageBox.Show(workbook.Worksheets.Count + "");
-			try
-			{
-				foreach (ExcelWorksheet sheet in workbook.Worksheets)
-				{
-					MessageBox.Show(sheet.Rows.Count + "");
-					for (int i = 6; i < 12; i++)
-					{
-						try
-						{
-							
-							MessageBox.Show("AllocatedCells:" + sheet.Rows[i].AllocatedCells.Count);
-							foreach(ExcelCell cell in sheet.Rows[i].AllocatedCells)
-                            {
-								result += cell.Value?.ToString() ?? "EMPTY";
-								result += " | ";
-								//Работает в виртуалке
-								//попробовать перебирать в цикле for
-								// будет не красиво,
-								// если не будет работать то хз что делать
-                            }
-							result += "\n";
-							//string group = sheet.Rows[i].AllocatedCells[1].Value?.ToString() ?? "EMPTY";
-							////Convert.ToString(xlWorkSheet.Cells[counter, importSettings.GroupColumn].Value2);
-
-							//int groupCount = Convert.ToInt32(sheet.Rows[i].AllocatedCells[importSettings.GroupCountColumn - 1].Value?.ToString() ?? "1");
-							////Convert.ToInt32(Convert.ToString(xlWorkSheet.Cells[counter, importSettings.GroupCountColumn].Value2));
-							//int studentCount = Convert.ToInt32(sheet.Rows[i].AllocatedCells[importSettings.StudentCountColumn - 1].Value?.ToString() ?? "0");
-							////Convert.ToString(xlWorkSheet.Cells[counter, importSettings.StudentCountColumn].Value2)
-
-							//string semester = sheet.Rows[i].AllocatedCells[importSettings.SemesterColumn - 1].Value?.ToString() ?? "EMPTY";
-							////Convert.ToString(xlWorkSheet.Cells[counter, importSettings.SemesterColumn].Value2);
-							//int weeks = Convert.ToInt32(sheet.Rows[i].AllocatedCells[importSettings.WeeksColumn - 1].Value?.ToString() ?? "0");
-							////Convert.ToString(xlWorkSheet.Cells[counter, importSettings.WeeksColumn].Value2) != null ?
-							////Convert.ToInt32(Convert.ToString(xlWorkSheet.Cells[counter, importSettings.WeeksColumn].Value2)) : 0;
-							//string disciplineName = sheet.Rows[i].AllocatedCells[importSettings.DisciplineNameColumn - 1].Value?.ToString() ?? "EMPTY";
-							////Convert.ToString(xlWorkSheet.Cells[counter, importSettings.DisciplineNameColumn].Value2);
-							//int lectures = Convert.ToInt32(sheet.Rows[i].AllocatedCells[importSettings.LecturesColumn - 1].Value?.ToString() ?? "0");
-							////Convert.ToString(xlWorkSheet.Cells[counter, importSettings.LecturesColumn].Value2) != null ?
-							////	Convert.ToInt32(Convert.ToString(xlWorkSheet.Cells[counter, importSettings.LecturesColumn].Value2)) : 0;
-							//int labs = Convert.ToInt32(sheet.Rows[i].AllocatedCells[importSettings.LabsColumn - 1].Value?.ToString() ?? "0");
-							////Convert.ToString(xlWorkSheet.Cells[counter, importSettings.LabsColumn].Value2) != null ?
-							////Convert.ToInt32(Convert.ToString(xlWorkSheet.Cells[counter, importSettings.LabsColumn].Value2)) : 0;
-							//int practices = Convert.ToInt32(sheet.Rows[i].AllocatedCells[importSettings.PracticesColumn - 1].Value?.ToString() ?? "0");
-							////Convert.ToString(xlWorkSheet.Cells[counter, importSettings.PracticesColumn].Value2) != null ?
-							////	Convert.ToInt32(Convert.ToString(xlWorkSheet.Cells[counter, importSettings.PracticesColumn].Value2)) : 0;
-							//bool kz = sheet.Rows[i].AllocatedCells[importSettings.KzColumn - 1].Value != null;
-							////Convert.ToString(xlWorkSheet.Cells[counter, importSettings.KzColumn].Value2) != null;
-							//bool kr = sheet.Rows[i].AllocatedCells[importSettings.KrColumn - 1].Value != null;
-							////Convert.ToString(xlWorkSheet.Cells[counter, importSettings.KrColumn].Value2) != null;
-							//bool kp = sheet.Rows[i].AllocatedCells[importSettings.KpColumn - 1].Value != null;
-							////Convert.ToString(xlWorkSheet.Cells[counter, importSettings.KpColumn].Value2) != null;
-							//bool ekz = sheet.Rows[i].AllocatedCells[importSettings.EkzColumn - 1].Value != null;
-							////Convert.ToString(xlWorkSheet.Cells[counter, importSettings.EkzColumn].Value2) != null;
-							//bool zach = sheet.Rows[i].AllocatedCells[importSettings.ZachColumn - 1].Value != null;
-							////Convert.ToString(xlWorkSheet.Cells[counter, importSettings.ZachColumn].Value2) != null;
-
-							////Проверить
-							//bool isSpecial = sheet.Rows[i].AllocatedCells[importSettings.ZachColumn + 1].Value != null;
-							////Convert.ToString(xlWorkSheet.Cells[counter, importSettings.ZachColumn + 2].Value2) == null;
-
-							//result += String.Format("{0} - {1} - {2} - {3} - {4} - {5} - lec:{6} - prac:{7} - lab:{8}\n", group, groupCount, studentCount, semester, weeks, disciplineName, lectures, practices, labs);
-
-						}
-						catch (Exception ex)
-						{
-							MessageBox.Show("current j=" + i + " \n" + ex.Message);
-						}
-
-					}
-					MessageBox.Show(result);
-				}
-			}catch (Exception ex)
-            {
-				MessageBox.Show("Херня с листами\n"+ex.Message);
-            }
-		}
-
-		public static void ImportDataFromExcel(string path, string year)
-		{
-			List<Discipline> disciplines = new List<Discipline>();
+            List<Discipline> disciplines = new List<Discipline>();
 			List<Workload> workloads = new List<Workload>();
 
 			ImportSetting importSettings = new ImportSetting();
-				#region Read disciplines from Excel
-			//opening Excel
-			Excel.Application xlApp;
-				Excel.Workbook xlWorkBook;
-				Excel.Worksheet xlWorkSheet;
-				object misValue = System.Reflection.Missing.Value;
+			
+            #region Read disciplines from Excel
+            //opening Excel
+            Excel.Application xlApp;
+            Excel.Workbook xlWorkBook;
+            Excel.Worksheet xlWorkSheet;
+            object misValue = System.Reflection.Missing.Value;
 
-				xlApp = new Excel.Application();
-				xlWorkBook = xlApp.Workbooks.Open(path, 0, true, 5, "", "", true, Excel.XlPlatform.xlWindows,
-					"\t", false, false, 0, true, 1, 0);
-				xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
+            xlApp = new Excel.Application();
+            xlWorkBook = xlApp.Workbooks.Open(path, 0, true, 5, "", "", true, Excel.XlPlatform.xlWindows,
+				"\t", false, false, 0, true, 1, 0);
+            xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
 
-				int counter = importSettings.StartReadingRow;
+			//Reading data
+			bool res = true;
+			HashSet<string> answer =new HashSet<string>();
+			//Проход по обоим листам
+			for (int i = 1; i <= 1; i++)
+            {
+                xlWorkSheet = xlWorkBook.Worksheets[i];
 
-			try
-			{
-				//Reading data
-				bool res = true;
-				HashSet<string> answer = new HashSet<string>();
-				//Проход по обоим листам
+                int counter = importSettings.StartReadingRow;
 
-				xlWorkSheet = xlWorkBook.Worksheets[1];
-				//var test = Convert.ToString(xlWorkSheet.Cells[100,100].Value2);
-				//MessageBox.Show(test==""?"empty":test==null?"null":test);
-				while (Convert.ToString(xlWorkSheet.Cells[counter, 8].Value2) != null)
-				{
-					string group = Convert.ToString(xlWorkSheet.Cells[counter, importSettings.GroupColumn].Value2);
+				while (xlWorkSheet.GetCellText(counter, 8) != "")
+                {
+                    string group = xlWorkSheet.GetCellText(counter, importSettings.GroupColumn);
 
-					int groupCount = Convert.ToInt32(Convert.ToString(xlWorkSheet.Cells[counter, importSettings.GroupCountColumn].Value2));
-					int studentCount = Convert.ToInt32(Convert.ToString(xlWorkSheet.Cells[counter, importSettings.StudentCountColumn].Value2));
+                    int groupCount = Convert.ToInt32(xlWorkSheet.GetCellText(counter, importSettings.GroupCountColumn));
+                    int studentCount = Convert.ToInt32(xlWorkSheet.GetCellText(counter, importSettings.StudentCountColumn));
 
-					string semester = Convert.ToString(xlWorkSheet.Cells[counter, importSettings.SemesterColumn].Value2);
-					int weeks = Convert.ToString(xlWorkSheet.Cells[counter, importSettings.WeeksColumn].Value2) != null ?
-						Convert.ToInt32(Convert.ToString(xlWorkSheet.Cells[counter, importSettings.WeeksColumn].Value2)) : 0;
-					string disciplineName = Convert.ToString(xlWorkSheet.Cells[counter, importSettings.DisciplineNameColumn].Value2);
-					int lectures = Convert.ToString(xlWorkSheet.Cells[counter, importSettings.LecturesColumn].Value2) != null ?
-						Convert.ToInt32(Convert.ToString(xlWorkSheet.Cells[counter, importSettings.LecturesColumn].Value2)) : 0;
-					int labs = Convert.ToString(xlWorkSheet.Cells[counter, importSettings.LabsColumn].Value2) != null ?
-						Convert.ToInt32(Convert.ToString(xlWorkSheet.Cells[counter, importSettings.LabsColumn].Value2)) : 0;
-					int practices = Convert.ToString(xlWorkSheet.Cells[counter, importSettings.PracticesColumn].Value2) != null ?
-						Convert.ToInt32(Convert.ToString(xlWorkSheet.Cells[counter, importSettings.PracticesColumn].Value2)) : 0;
-					bool kz = Convert.ToString(xlWorkSheet.Cells[counter, importSettings.KzColumn].Value2) != null;
-					bool kr = Convert.ToString(xlWorkSheet.Cells[counter, importSettings.KrColumn].Value2) != null;
-					bool kp = Convert.ToString(xlWorkSheet.Cells[counter, importSettings.KpColumn].Value2) != null;
-					bool ekz = Convert.ToString(xlWorkSheet.Cells[counter, importSettings.EkzColumn].Value2) != null;
-					bool zach = Convert.ToString(xlWorkSheet.Cells[counter, importSettings.ZachColumn].Value2) != null;
-
+                    string semester = xlWorkSheet.GetCellText(counter, importSettings.SemesterColumn);
+                    int weeks = xlWorkSheet.GetCellText(counter, importSettings.WeeksColumn) != "" ? 
+						Convert.ToInt32(xlWorkSheet.GetCellText(counter, importSettings.WeeksColumn)) : 0;
+                    string disciplineName = xlWorkSheet.GetCellText(counter, importSettings.DisciplineNameColumn);
+                    int lectures = xlWorkSheet.GetCellText(counter, importSettings.LecturesColumn)!=""?
+						Convert.ToInt32(xlWorkSheet.GetCellText(counter, importSettings.LecturesColumn)):0;
+                    int labs = xlWorkSheet.GetCellText(counter, importSettings.LabsColumn)!=""? 
+						Convert.ToInt32(xlWorkSheet.GetCellText(counter, importSettings.LabsColumn)):0;
+                    int practices = xlWorkSheet.GetCellText(counter, importSettings.PracticesColumn)!=""?
+						Convert.ToInt32(xlWorkSheet.GetCellText(counter, importSettings.PracticesColumn)):0;
+                    bool kz = xlWorkSheet.GetCellText(counter, importSettings.KzColumn)!="";
+                    bool kr = xlWorkSheet.GetCellText(counter, importSettings.KrColumn)!="";
+                    bool kp = xlWorkSheet.GetCellText(counter, importSettings.KpColumn)!="";
+                    bool ekz = xlWorkSheet.GetCellText(counter, importSettings.EkzColumn)!="";
+                    bool zach = xlWorkSheet.GetCellText(counter, importSettings.ZachColumn)!="";
+                    
 					//Проверить
-					bool isSpecial = Convert.ToString(xlWorkSheet.Cells[counter, importSettings.ZachColumn + 2].Value2) == null;
+					bool isSpecial = xlWorkSheet.GetCellText(counter, importSettings.ZachColumn+2) == "";
 
 					Discipline discipline = new Discipline(counter - importSettings.StartReadingRow);
 					int disciplineType = 1;
-
+					
 					discipline.Descr = disciplineName;
 
 					//disciplineName = disciplineName.ToLower();
@@ -177,51 +90,51 @@ namespace CafedralDB.SourceCode.Model
 
 						if (disciplineName.Contains("практ"))
 						{
-							if (disciplineName.ToLower().Contains("уч"))
+							if (disciplineName.Contains("уч"))
 							{
 								discipline.UchPr = practices;
 								disciplineType = 3;
 							}
-							else if (disciplineName.ToLower().Contains("преддип"))
+							else if (disciplineName.Contains("преддип"))
 							{
 								discipline.PredDipPr = practices;
 								disciplineType = 3;
 							}
-							else if (disciplineName.ToLower().Contains("произв"))
+							else if (disciplineName.Contains("произв"))
 							{
 								discipline.PrPr = practices;
 								disciplineType = 3;
 							}
-							else if ((disciplineName.ToLower().Contains("науч") && disciplineName.ToLower().Contains("иссл"))
-								|| disciplineName.ToLower().Contains("нир"))
+							else if ((disciplineName.Contains("науч") && disciplineName.Contains("иссл")) 
+								|| disciplineName.Contains("нир"))
 							{
 								discipline.NIIR = practices;
 								disciplineType = 2;
 							}
 						}
 
-						else if (disciplineName.ToLower().Contains("конс") && disciplineName.ToLower().Contains("заоч"))
+						else if (disciplineName.Contains("конс") && disciplineName.Contains("заоч"))
 						{
 							discipline.KonsZaoch = true;
 							disciplineType = 3;
 						}
 
-						else if (disciplineName.ToLower().Contains("гэк"))
-						{
-							discipline.GEK = true;
-							disciplineType = 3;
-						}
+                        else if (disciplineName.Contains("гэк"))
+                        {
+                            discipline.GEK = true;
+                            disciplineType = 3;
+                        }
 
-						else if (disciplineName.ToLower().Contains("гос") && disciplineName.ToLower().Contains("экз"))
+                        else if (disciplineName.Contains("гос") && disciplineName.Contains("экз"))
 						{
 							disciplineType = 3;
 							discipline.GosEkz = true;
 							//Добавить в таблицу и классы Гос Экзамен
 						}
 
-						else if (disciplineName.ToLower().Contains("гак"))
+						else if (disciplineName.Contains("гак"))
 						{
-							if (disciplineName.ToLower().Contains("предс"))
+							if (disciplineName.Contains("предс"))
 							{
 								discipline.GAKPred = true;
 							}
@@ -232,14 +145,14 @@ namespace CafedralDB.SourceCode.Model
 							disciplineType = 3;
 						}
 
-						else if (disciplineName.ToLower().Contains("вып") && disciplineName.ToLower().Contains("раб"))
+						else if (disciplineName.Contains("вып") && disciplineName.Contains("раб"))
 						{
 							discipline.DPRuk = true;
 							disciplineType = 2;
 						}
-						else if (disciplineName.ToLower().Contains("диссер"))
+						else if (disciplineName.Contains("диссер") )
 						{
-							if (disciplineName.ToLower().Contains("маг"))
+							if (disciplineName.Contains("маг"))
 							{
 								discipline.MAGRuk = true;
 							}
@@ -250,14 +163,14 @@ namespace CafedralDB.SourceCode.Model
 							disciplineType = 2;
 						}
 
-						else if (disciplineName.ToLower().Contains("рук"))
+						else if (disciplineName.Contains("рук"))
 						{
-							if (disciplineName.ToLower().Contains("каф"))
+							if (disciplineName.Contains("каф"))
 							{
 								discipline.RukKaf = true;
 								disciplineType = 3;
 							}
-							if (disciplineName.ToLower().Contains("асп"))
+							if (disciplineName.Contains("асп"))
 							{
 								discipline.ASPRuk = true;
 								disciplineType = 2;
@@ -266,26 +179,26 @@ namespace CafedralDB.SourceCode.Model
 					}
 					discipline.DepartmentID = 1;
 
-					var workPlanDiscipline = new Entities.CurriculumDiscipline(
-						_name: disciplineName,
-						_semester: semester,
-						_lectureCount: lectures,
-						_labCount: labs,
-						_practiceCount: practices,
-						_courseWork: kr || kp,
-						_ekz: ekz,
-						_zach: zach);
+					var workPlanDiscipline = new Entities.CurriculumDiscipline(_name: disciplineName,
+							_semester: semester,
+							_lectureCount: lectures,
+							_labCount: labs,
+							_practiceCount: practices,
+							_courseWork: kr || kp,
+							_ekz: ekz,
+							_zach: zach,
+							_isPractice: discipline.UchPr != 0 || discipline.PrPr != 0 || discipline.PredDipPr != 0);
 
 
 					discipline.TypeID = DataManager.SharedDataManager().FindTypeByName(disciplineName);
 
 					//year - надо чтоб: int(year) - semester/2
 					int course = 1;
-					//Ввести проверку, что если семестр болльше 8(для рассчета курса магистров)
-					if (semester != "")
-						course = (int)Math.Ceiling(Convert.ToInt32(semester) / 2f);
-					if (course >= 5)
-						course -= 4;
+                    //Ввести проверку, что если семестр болльше 8(для рассчета курса магистров)
+					if (semester!="")
+						course = (int)Math.Ceiling(Convert.ToInt32(semester)/2f);
+                    if (course >= 5)
+                        course -= 4;
 					int entryYear = (Convert.ToInt32(year) - course + 1);
 					int specialityID = DataManager.SharedDataManager().GetSpecialityIDByName(group);
 					int semesterID = DataManager.SharedDataManager().GetSemesterIDByName(semester);
@@ -295,11 +208,11 @@ namespace CafedralDB.SourceCode.Model
 
                     if (!Entities.Сurriculum.checkWorkPlan(workPlanDiscipline))
                     {
-                        answer.Add(String.Format("Дисциплина '{0}'(семестр {1}) не соответствует учебному плану\n", disciplineName, semester));
-                        res = false;
+						answer.Add(String.Format("Дисциплина '{0}'(семестр {1}) не соответствует учебному плану\n", disciplineName,semester));
+						res = false;
                     }
 
-                    if (specialityID == -1)
+					if (specialityID == -1)
 					{
 						answer.Add("Не найдена специальность - " + group + "\n");
 						res = false;
@@ -328,7 +241,7 @@ namespace CafedralDB.SourceCode.Model
 					workload.Semester = semesterID;
 					workload.Year = yearID;
 					workload.Group = groupID;
-
+					
 					if (res)
 					{
 						disciplines.Add(discipline);
@@ -336,102 +249,99 @@ namespace CafedralDB.SourceCode.Model
 					}
 					res = true;
 					counter++;
-
+					
 					//Актуализация длительности семестра в БД
-					if (DataManager.SharedDataManager().GetSemester(semesterID).WeekCount != weeks)
-					{
-						var newSemester = new Semester(semesterID);
-						newSemester.WeekCount = weeks;
-						newSemester.Name = semesterID.ToString();
-						DataManager.SharedDataManager().SetSemester(newSemester);
-					}
+                    if(DataManager.SharedDataManager().GetSemester(semesterID).WeekCount!=weeks)
+                    {
+                        var newSemester = new Semester(semesterID);
+                        newSemester.WeekCount = weeks;
+                        newSemester.Name = semesterID.ToString();
+                        DataManager.SharedDataManager().SetSemester(newSemester);
+                    }
 					//Актуализация информации о группе в БД
-					if (groupID != -1)
-					{
-						var groupData = DataManager.SharedDataManager().GetGroup(groupID);
+                    if (groupID != -1)
+                    {
+						var groupData=DataManager.SharedDataManager().GetGroup(groupID);
 						bool groupChange = false;
-						if (groupData.SubgroupCount != groupCount)
-						{
+						if(groupData.SubgroupCount != groupCount)
+                        {
 							groupData.SubgroupCount = groupCount;
 							groupChange = true;
 
 						}
-						if (groupData.StudentCount != studentCount)
-						{
+						if(groupData.StudentCount != studentCount)
+                        {
 							groupData.StudentCount = studentCount;
-							groupChange = true;
-						}
-						if (groupChange)
-						{
+							groupChange=true;
+                        }
+                        if (groupChange)
+                        {
 							DataManager.SharedDataManager().SetGroup(groupData);
 						}
 					}
 					//Добавить проверку рабочего плана
 					//если в дисциплине ошибка запоминать название дисциплины и выводить в МО и прерывать импорт.
 				}
-
-
-				if (answer.Count > 0)
+				
+			}
+			if (answer.Count > 0)
+			{
+				string log = "";
+				foreach (string logstring in answer)
+					log += logstring;
+				MessageBox.Show(log);
+			}
+			if (DataManager.SharedDataManager().CheckDisciplinesAtYearExist(year))
+			{
+				DialogResult result=MessageBox.Show("Этот год уже присутствует!\nОчистить?", "Очистка данных", MessageBoxButtons.YesNo);
+				if(result == DialogResult.Yes)
 				{
-					string log = "";
-					foreach (string logstring in answer)
-						log += logstring;
-					MessageBox.Show(log);
+					DataManager.SharedDataManager().ClearYear(year);
 				}
-				if (DataManager.SharedDataManager().CheckDisciplinesAtYearExist(year))
+			}
+
+			for (int i=0;i<disciplines.Count;i++)
+			{
+				Discipline discipline = disciplines[i];
+				Workload workload = workloads[i];
+
+				int DisciplineID = DataManager.SharedDataManager().AddDiscipline(discipline);
+
+				workload.Discipline = DisciplineID;
+
+				int workloadID = DataManager.SharedDataManager().AddWorkload(workload);
+				int specID = DataManager.SharedDataManager().GetSpecialityIDByGroupID(workload.Group);
+				int lastYearAssign = DataManager.SharedDataManager().FindLastWorkloadAssign(workload, discipline.Descr, specID);
+
+				if(lastYearAssign!=-1)
 				{
-					DialogResult result = MessageBox.Show("Этот год уже присутствует!\nОчистить?", "Очистка данных", MessageBoxButtons.YesNo);
-					if (result == DialogResult.Yes)
-					{
-						DataManager.SharedDataManager().ClearYear(year);
-					}
+					WorkloadAssign assign = new WorkloadAssign(0);
+					assign.EmployeeID = lastYearAssign;
+					assign.WorkloadID = workloadID;
+					DataManager.SharedDataManager().AddWorkloadAssign(assign);
+
 				}
+			}
 
-				for (int i = 0; i < disciplines.Count; i++)
-				{
-					Discipline discipline = disciplines[i];
-					Workload workload = workloads[i];
+            //closing Excel
+            xlWorkBook.Close(true, misValue, misValue);
+            xlApp.Quit();
 
-					int DisciplineID = DataManager.SharedDataManager().AddDiscipline(discipline);
+            Utilities.ReleaseObject(xlWorkSheet);// releaseObject(xlWorkSheet);
+            Utilities.ReleaseObject(xlWorkBook);//releaseObject(xlWorkBook);
+            Utilities.ReleaseObject(xlApp);//releaseObject(xlApp);
+            #endregion
 
-					workload.Discipline = DisciplineID;
-
-					int workloadID = DataManager.SharedDataManager().AddWorkload(workload);
-					int specID = DataManager.SharedDataManager().GetSpecialityIDByGroupID(workload.Group);
-					int lastYearAssign = DataManager.SharedDataManager().FindLastWorkloadAssign(workload, discipline.Descr, specID);
-
-					if (lastYearAssign != -1)
-					{
-						WorkloadAssign assign = new WorkloadAssign(0);
-						assign.EmployeeID = lastYearAssign;
-						assign.WorkloadID = workloadID;
-						DataManager.SharedDataManager().AddWorkloadAssign(assign);
-
-					}
-				}
-			}catch (Exception ex)
-            {
-				MessageBox.Show(ex.Message+"\ncounter:"+counter);
-            }
-			//closing Excel
-			xlWorkBook.Close(true, misValue, misValue);
-			xlApp.Quit();
-
-			Utilities.ReleaseObject(xlWorkSheet);// releaseObject(xlWorkSheet);
-			Utilities.ReleaseObject(xlWorkBook);//releaseObject(xlWorkBook);
-			Utilities.ReleaseObject(xlApp);//releaseObject(xlApp);
-			#endregion
-
-			//int DisciplineID = DataManager.SharedDataManager().AddDiscipline();
-			//'запишем данные в таблицу Дисциплина
-			//strSQL = "INSERT INTO Disciplina (descr,chair_id,lecture,practice,lab,KZzaoch,kr,kp,ekz,zach) VALUES (" & _
-			//"'" & name & "'" & "," & "1," & lec & "," & pr & "," & lab & "," & kz & "," & kr & "," & kp & "," & ekz & ",""" & zach & """)"
+            //int DisciplineID = DataManager.SharedDataManager().AddDiscipline();
+            //'запишем данные в таблицу Дисциплина
+            //strSQL = "INSERT INTO Disciplina (descr,chair_id,lecture,practice,lab,KZzaoch,kr,kp,ekz,zach) VALUES (" & _
+            //"'" & name & "'" & "," & "1," & lec & "," & pr & "," & lab & "," & kz & "," & kr & "," & kp & "," & ekz & ",""" & zach & """)"
 
 
-			#region Past workload to Database
+            #region Past workload to Database
 
-			#endregion
-		}
+            #endregion
+        }
 
 		private static void releaseObject(object obj)
         {

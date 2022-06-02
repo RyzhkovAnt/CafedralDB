@@ -452,6 +452,7 @@
     <Compile Include="SourceCode\Model\Entities\Workload.cs" />
     <Compile Include="SourceCode\Model\Entities\WorkloadAssign.cs" />
     <Compile Include="SourceCode\Model\Entities\WorkloadCost.cs" />
+    <Compile Include="SourceCode\Model\Entities\Сurriculum.cs" />
     <Compile Include="SourceCode\Model\Exporter.cs" />
     <Compile Include="SourceCode\Model\Exporter\ExportContract.cs" />
     <Compile Include="SourceCode\Model\Exporter\ExportIndPlan.cs" />

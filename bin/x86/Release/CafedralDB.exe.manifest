@@ -42,26 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BouncyCastle.Crypto.dll" size="2609152">
-      <assemblyIdentity name="BouncyCastle.Crypto" version="1.8.9.0" publicKeyToken="0E99375E54769942" language="neutral" />
-      <hash>
-        <dsig:Transforms>
-          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-        </dsig:Transforms>
-        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>MzkDx9IqJwmORfxkt3omSqIgYFz70+MpwgDX5LQsiBw=</dsig:DigestValue>
-      </hash>
-    </dependentAssembly>
-  </dependency>
-  <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="CafedralDB.exe" size="1870848">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="CafedralDB.exe" size="1861632">
       <assemblyIdentity name="CafedralDB" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>CD6uodxA6YUpk5tuFfoS/3GH9JbqYHdaT+Ii0LoqRuE=</dsig:DigestValue>
+        <dsig:DigestValue>XuwGdNCmP1uvTdRJK22D/Ehz0ryZ8reQT67CEkaoaDQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -74,18 +62,6 @@
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
         <dsig:DigestValue>poeWiknlhBNq1OeIpsSUWt4fCGjpLQslgLOzl2R98Uc=</dsig:DigestValue>
-      </hash>
-    </dependentAssembly>
-  </dependency>
-  <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="GemBox.Spreadsheet.dll" size="7193600">
-      <assemblyIdentity name="GemBox.Spreadsheet" version="49.0.0.1017" publicKeyToken="B1B72C69714D4847" language="neutral" processorArchitecture="msil" />
-      <hash>
-        <dsig:Transforms>
-          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-        </dsig:Transforms>
-        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>qSfhaCpqceXrZkp0wj4mapBPEoSrrAq5VtSGLEdiL84=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -1292,7 +1268,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>BzJKYtRbkIOg0cEYdrNNILOt21JsuB+X0PkY/7Fhlx4=</dsig:DigestValue>
+      <dsig:DigestValue>BzpFksmx/IC3Y2EPhjBcNb67diz4VBsHYbJ1ePSLQ6U=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>
