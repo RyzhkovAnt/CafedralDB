@@ -156,7 +156,9 @@ namespace CafedralDB.SourceCode.Model
 
 					discipline.Descr = disciplineName;
 
-					disciplineName = disciplineName.ToLower();
+					//disciplineName = disciplineName.ToLower();
+
+
 
 					if (!isSpecial)
 					{
