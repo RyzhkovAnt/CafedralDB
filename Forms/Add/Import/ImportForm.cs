@@ -35,7 +35,7 @@ namespace CafedralDB.Forms.Add.Import
         private void buttonImport_Click(object sender, EventArgs e)
         {
             OpenFileDialog openDialog = new OpenFileDialog();
-            openDialog.FileName = String.Format("Данные.xls");
+            openDialog.FileName = String.Format("Данные.xlsx");
             openDialog.Filter = "Excel files (*.xls*)|*.xls*|All files (*.*)|*.*";
             openDialog.FilterIndex = 1;
            DialogResult res =  openDialog.ShowDialog();
@@ -44,11 +44,11 @@ namespace CafedralDB.Forms.Add.Import
             string year = comboBoxYear.SelectedValue.ToString();
 			if (res == DialogResult.OK || res == DialogResult.Yes)
 			{
-				SourceCode.Model.Importer.ImportDataFromExcel(filePath, year);
-
-				//CheckImportForm checkImportForm = new CheckImportForm();
-				//checkImportForm.Show();
-				MessageBox.Show("Операция завершена!");
+                SourceCode.Model.Importer.ImportDataFromExcel(filePath, year);
+                //SourceCode.Model.Importer.ImportWithGemBox(filePath, year);
+                CheckImportForm checkImportForm = new CheckImportForm();
+                //checkImportForm.Show();
+                MessageBox.Show("Операция завершена!");
 			}
         }
 

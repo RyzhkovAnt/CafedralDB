@@ -13,7 +13,7 @@ namespace CafedralDB.SourceCode
         #region Excel exstension methods
         public static string GetCellText(this Microsoft.Office.Interop.Excel.Worksheet worksheet, int row, int column)
         {
-            return ((Microsoft.Office.Interop.Excel.Range)worksheet.Cells[row, column]).Text;
+            return  Convert.ToString(((Microsoft.Office.Interop.Excel.Range)worksheet.Cells[row, column]).Value);
         }
 
         public static void ReleaseObject(object obj)
