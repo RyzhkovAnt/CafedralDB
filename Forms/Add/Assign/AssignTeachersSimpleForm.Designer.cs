@@ -63,6 +63,7 @@
             this.Summ = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.textBoxStudentCount = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.contractCheckBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableForAssignsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainDBDataSet)).BeginInit();
@@ -223,7 +224,7 @@
             // 
             // buttonFree
             // 
-            this.buttonFree.Location = new System.Drawing.Point(209, 362);
+            this.buttonFree.Location = new System.Drawing.Point(209, 389);
             this.buttonFree.Name = "buttonFree";
             this.buttonFree.Size = new System.Drawing.Size(75, 23);
             this.buttonFree.TabIndex = 8;
@@ -341,6 +342,7 @@
             this.dataGridViewAssignedTeachers.ShowEditingIcon = false;
             this.dataGridViewAssignedTeachers.Size = new System.Drawing.Size(153, 150);
             this.dataGridViewAssignedTeachers.TabIndex = 14;
+            this.dataGridViewAssignedTeachers.SelectionChanged += new System.EventHandler(this.dataGridViewAssignedTeachers_SelectionChanged);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -412,11 +414,23 @@
             this.label5.TabIndex = 16;
             this.label5.Text = "Студентов";
             // 
+            // contractCheckBox
+            // 
+            this.contractCheckBox.AutoSize = true;
+            this.contractCheckBox.Location = new System.Drawing.Point(209, 362);
+            this.contractCheckBox.Name = "contractCheckBox";
+            this.contractCheckBox.Size = new System.Drawing.Size(70, 17);
+            this.contractCheckBox.TabIndex = 18;
+            this.contractCheckBox.Text = "Договор";
+            this.contractCheckBox.UseVisualStyleBackColor = true;
+            this.contractCheckBox.CheckedChanged += new System.EventHandler(this.contractCheckBox_CheckedChanged);
+            // 
             // AssignTeachersSimpleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(839, 424);
+            this.Controls.Add(this.contractCheckBox);
             this.Controls.Add(this.textBoxStudentCount);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.dataGridViewEmployeeSumms);
@@ -489,5 +503,6 @@
 		private System.Windows.Forms.DataGridViewCheckBoxColumn Assigned;
 		private System.Windows.Forms.TextBox textBoxStudentCount;
 		private System.Windows.Forms.Label label5;
-	}
+        private System.Windows.Forms.CheckBox contractCheckBox;
+    }
 }

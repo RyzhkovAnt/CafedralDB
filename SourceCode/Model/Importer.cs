@@ -60,7 +60,8 @@ namespace CafedralDB.SourceCode.Model
                     bool kp = xlWorkSheet.GetCellText(counter, importSettings.KpColumn)!="";
                     bool ekz = xlWorkSheet.GetCellText(counter, importSettings.EkzColumn)!="";
                     bool zach = xlWorkSheet.GetCellText(counter, importSettings.ZachColumn)!="";
-                    //Проверить
+                    
+					//Проверить
 					bool isSpecial = xlWorkSheet.GetCellText(counter, importSettings.ZachColumn+2) == "";
 
 					Discipline discipline = new Discipline(counter - importSettings.StartReadingRow);
@@ -68,7 +69,9 @@ namespace CafedralDB.SourceCode.Model
 					
 					discipline.Descr = disciplineName;
 
-					disciplineName = disciplineName.ToLower();
+					//disciplineName = disciplineName.ToLower();
+
+
 
 					if (!isSpecial)
 					{
@@ -176,6 +179,17 @@ namespace CafedralDB.SourceCode.Model
 					}
 					discipline.DepartmentID = 1;
 
+					var workPlanDiscipline = new Entities.CurriculumDiscipline(_name: disciplineName,
+							_semester: semester,
+							_lectureCount: lectures,
+							_labCount: labs,
+							_practiceCount: practices,
+							_courseWork: kr || kp,
+							_ekz: ekz,
+							_zach: zach,
+							_isPractice: discipline.UchPr != 0 || discipline.PrPr != 0 || discipline.PredDipPr != 0);
+
+
 					discipline.TypeID = DataManager.SharedDataManager().FindTypeByName(disciplineName);
 
 					//year - надо чтоб: int(year) - semester/2
@@ -191,6 +205,12 @@ namespace CafedralDB.SourceCode.Model
 					int yearID = DataManager.SharedDataManager().GetYearIDByName(year.ToString());
 					int entryYearID = DataManager.SharedDataManager().GetYearIDByName(entryYear.ToString());
 					int groupID = DataManager.SharedDataManager().GetGroupIDByYearAndSpeciality(entryYearID, specialityID);
+
+                    if (!Entities.Сurriculum.checkWorkPlan(workPlanDiscipline))
+                    {
+						answer.Add(String.Format("Дисциплина '{0}'(семестр {1}) не соответствует учебному плану\n", disciplineName,semester));
+						res = false;
+                    }
 
 					if (specialityID == -1)
 					{

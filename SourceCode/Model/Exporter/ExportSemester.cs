@@ -20,6 +20,8 @@ namespace CafedralDB.SourceCode.Model.Exporter
 			Dictionary<string, int> counts = new Dictionary<string, int>() { { "ФИТ", 0 }, { "МСФ", 0 }, { "ИДПО", 0 }, { "МАГ", 0 } };
 			int rowCounter = 0;
 
+			
+
 			string strSQL = "SELECT Speciality.Descr, Discipline.Descr, Group.StudentCount, Semester.WeekCount, Discipline.LectureCount, Workload.ID, Faculty.Descr, Group.EntryYear, Group.Qualification, Group.StudyForm, Discipline.Contr " +
 				"FROM StudyYear INNER JOIN((Faculty INNER JOIN Speciality ON Faculty.ID = Speciality.Faculty) " +
 				"INNER JOIN(Semester INNER JOIN ([Group] INNER JOIN (Discipline INNER JOIN Workload ON Discipline.ID = Workload.Discipline) ON Group.ID = Workload.Group) ON " +
@@ -37,7 +39,7 @@ namespace CafedralDB.SourceCode.Model.Exporter
 			7 - Group.EntryYear, 
 			8 - Group.Qualification, 
 			9 - Group.StudyForm, 
-			10 - Discipline.Contr
+			10 - Discipline.Contr - not use
 			 */
 
 			DataManager.SharedDataManager();
@@ -72,13 +74,24 @@ namespace CafedralDB.SourceCode.Model.Exporter
 					var entryYear = Convert.ToInt32(reader[7]);
 					var qualification = reader[8].ToString();
 					var studyForm = reader[9].ToString();
-					var isContract = Convert.ToBoolean(reader[10]);
+					var isContract = true;
 					var cource = Convert.ToInt32(year) - entryYear + 1;
 					var workloadTotal = Calculator.GetWorkloadTotalCost(workloadId);
 					var lectureFact = lectureCount * weekCount;
 
 					rowCounter = ApplicationSettings.ExportSettings.SemesterSetting.FITStartRow;
-
+					var workloadAssigns=DataManager.SharedDataManager().GetWorkloadAssigns(workloadId);
+                    if (workloadAssigns.Count != 0)
+                    {
+						foreach(var assign in workloadAssigns)
+                        {
+							isContract = isContract && assign.IsContract;
+                        }
+                    }
+                    else
+                    {
+						isContract = false;
+                    }
 					int index = 0;
 					// Если форма обучения не очная
 					if (Convert.ToInt32(studyForm) != 1)
