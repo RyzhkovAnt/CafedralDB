@@ -57,12 +57,16 @@
             this.textBoxZachColumn = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.toDefaultButton = new System.Windows.Forms.Button();
+            this.textBoxStudentCountColumn = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.textBoxGroupCountColumn = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(228, 251);
+            this.buttonSave.Location = new System.Drawing.Point(228, 262);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(75, 23);
             this.buttonSave.TabIndex = 0;
@@ -293,6 +297,10 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label14);
+            this.groupBox1.Controls.Add(this.textBoxGroupCountColumn);
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.textBoxStudentCountColumn);
             this.groupBox1.Controls.Add(this.textBoxLabsColumn);
             this.groupBox1.Controls.Add(this.textBoxZachColumn);
             this.groupBox1.Controls.Add(this.textBoxEkzColumn);
@@ -319,14 +327,14 @@
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Location = new System.Drawing.Point(12, 32);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(298, 213);
+            this.groupBox1.Size = new System.Drawing.Size(340, 224);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Номера столбцов";
             // 
             // toDefaultButton
             // 
-            this.toDefaultButton.Location = new System.Drawing.Point(15, 251);
+            this.toDefaultButton.Location = new System.Drawing.Point(12, 262);
             this.toDefaultButton.Name = "toDefaultButton";
             this.toDefaultButton.Size = new System.Drawing.Size(110, 23);
             this.toDefaultButton.TabIndex = 6;
@@ -334,11 +342,45 @@
             this.toDefaultButton.UseVisualStyleBackColor = true;
             this.toDefaultButton.Click += new System.EventHandler(this.toDefaultButton_Click);
             // 
+            // textBoxStudentCountColumn
+            // 
+            this.textBoxStudentCountColumn.Location = new System.Drawing.Point(107, 183);
+            this.textBoxStudentCountColumn.Name = "textBoxStudentCountColumn";
+            this.textBoxStudentCountColumn.Size = new System.Drawing.Size(38, 20);
+            this.textBoxStudentCountColumn.TabIndex = 5;
+            this.textBoxStudentCountColumn.TextChanged += new System.EventHandler(this.textBoxStudentCountColumn_TextChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 186);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(95, 13);
+            this.label5.TabIndex = 6;
+            this.label5.Text = "Кол-во студентов";
+            // 
+            // textBoxGroupCountColumn
+            // 
+            this.textBoxGroupCountColumn.Location = new System.Drawing.Point(254, 186);
+            this.textBoxGroupCountColumn.Name = "textBoxGroupCountColumn";
+            this.textBoxGroupCountColumn.Size = new System.Drawing.Size(37, 20);
+            this.textBoxGroupCountColumn.TabIndex = 7;
+            this.textBoxGroupCountColumn.TextChanged += new System.EventHandler(this.textBoxGroupCountColumn_TextChanged);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(162, 186);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(72, 13);
+            this.label14.TabIndex = 8;
+            this.label14.Text = "Кол-во групп";
+            // 
             // ImportSettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(317, 279);
+            this.ClientSize = new System.Drawing.Size(364, 295);
             this.Controls.Add(this.toDefaultButton);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.textBoxStartReadingRow);
@@ -384,5 +426,9 @@
 		private System.Windows.Forms.TextBox textBoxZachColumn;
 		private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button toDefaultButton;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox textBoxGroupCountColumn;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox textBoxStudentCountColumn;
     }
 }

@@ -34,6 +34,8 @@ namespace CafedralDB.Forms.Settings
 			textBoxKpColumn.Text = setting.KpColumn.ToString();
 			textBoxEkzColumn.Text = setting.EkzColumn.ToString();
 			textBoxZachColumn.Text = setting.ZachColumn.ToString();
+			textBoxStudentCountColumn.Text = setting.StudentCountColumn.ToString();
+			textBoxGroupCountColumn.Text = setting.GroupCountColumn.ToString();
 		}
 
 		void OnChangeField(Field field,string value)
@@ -118,6 +120,16 @@ namespace CafedralDB.Forms.Settings
         {
 			OnChangeField(ImportSettingFields.ZachColumn, textBoxZachColumn.Text);
 		}
+        private void textBoxStudentCountColumn_TextChanged(object sender, EventArgs e)
+        {
+			OnChangeField(ImportSettingFields.StudentCountColumn,textBoxStudentCountColumn.Text);
+        }
+
+        private void textBoxGroupCountColumn_TextChanged(object sender, EventArgs e)
+        {
+			OnChangeField(ImportSettingFields.GroupCountColumn, textBoxGroupCountColumn.Text);
+
+		}
 
         private void toDefaultButton_Click(object sender, EventArgs e)
         {
@@ -136,5 +148,6 @@ namespace CafedralDB.Forms.Settings
 			textBoxEkzColumn.Text = setting.EkzColumn.ToString();
 			textBoxZachColumn.Text = setting.ZachColumn.ToString();
 		}
-    }
+
+	}
 }

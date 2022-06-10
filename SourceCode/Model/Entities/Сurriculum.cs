@@ -127,8 +127,9 @@ namespace CafedralDB.SourceCode.Model.Entities
                 _practiceCount:0,
                 _courseWork:false,
                 _ekz:false,
-                _zach:false,
-                _isPractice:true),
+                _zach:false
+                //_isPractice:true
+            ),
         // 3 семестр
         new CurriculumDiscipline(_name: "Компьютерная математика",
                 _semester: "3",
@@ -226,8 +227,9 @@ namespace CafedralDB.SourceCode.Model.Entities
                 _practiceCount:0,
                 _courseWork:false,
                 _ekz:false,
-                _zach:false,
-                _isPractice:true),
+                _zach:false
+                //_isPractice:true
+            ),
             //семестр 5
         new CurriculumDiscipline(_name: "Базы данных",
                 _semester: "5",
@@ -341,8 +343,9 @@ namespace CafedralDB.SourceCode.Model.Entities
                 _practiceCount:0,
                 _courseWork:false,
                 _ekz:false,
-                _zach:false,
-                _isPractice:true),
+                _zach:false
+                //_isPractice:true
+            ),
             // Семестр 7
         new CurriculumDiscipline(_name: "Объектно-ориентированное программирование экономических информационных систем",
                 _semester: "7",
@@ -467,26 +470,29 @@ namespace CafedralDB.SourceCode.Model.Entities
                 _practiceCount:0,
                 _courseWork:false,
                 _ekz:false,
-                _zach:false,
-                _isPractice:true),
+                _zach:false
+                //_isPractice:true
+            ),
         new CurriculumDiscipline(_name: "Подготовка к сдаче и сдача государственного экзамена",
                 _semester: "8",
                 _lectureCount:0,
                 _labCount:0,
                 _practiceCount:0,
                 _courseWork:false,
-                _ekz:false,
-                _zach:false,
-                _isPractice:true),
+                _ekz:true,
+                _zach:false
+                //_isPractice:true
+            ),
         new CurriculumDiscipline(_name: "Выполнение и защита выпускной квалификационной работы",
                 _semester: "8",
                 _lectureCount:0,
                 _labCount:0,
                 _practiceCount:0,
                 _courseWork:false,
-                _ekz:false,
-                _zach:false,
-                _isPractice:true),
+                _ekz:true,
+                _zach:false
+                //_isPractice:true
+            ),
             // Магистры 9 семестр
         new CurriculumDiscipline(
                 _name: "Интеллектуальный анализ данных",
@@ -542,8 +548,9 @@ namespace CafedralDB.SourceCode.Model.Entities
                 _practiceCount: 0,
                 _courseWork: false,
                 _ekz: false,
-                _zach: false,
-                _isPractice: true ),
+                _zach: false
+                //_isPractice: true 
+            ),
             //семестр 10
         new CurriculumDiscipline(
                 _name: "Интеллектуальный анализ данных",
@@ -608,8 +615,9 @@ namespace CafedralDB.SourceCode.Model.Entities
                 _practiceCount: 0,
                 _courseWork: false,
                 _ekz: false,
-                _zach: false,
-                _isPractice: true ),
+                _zach: false
+                //_isPractice: true 
+            ),
             //Семестр 11
         new CurriculumDiscipline(
                 _name: "Научно-практический семинар",
@@ -673,8 +681,9 @@ namespace CafedralDB.SourceCode.Model.Entities
                 _practiceCount: 0,
                 _courseWork: false,
                 _ekz: false,
-                _zach: false,
-                _isPractice: true ),
+                _zach: false
+                //_isPractice: true
+            ),
             //Семестр 12
         new CurriculumDiscipline(
                 _name: "Интеллектуальный анализ текстов",
@@ -738,8 +747,9 @@ namespace CafedralDB.SourceCode.Model.Entities
                 _practiceCount: 0,
                 _courseWork: false,
                 _ekz: false,
-                _zach: false,
-                _isPractice: true ),
+                _zach: false
+                //_isPractice: true 
+            ),
         new CurriculumDiscipline(
                 _name: "Преддипломная практика",
                 _semester: "12",
@@ -748,8 +758,9 @@ namespace CafedralDB.SourceCode.Model.Entities
                 _practiceCount: 0,
                 _courseWork: false,
                 _ekz: false,
-                _zach: false,
-                _isPractice: true ),
+                _zach: false
+                //_isPractice: true 
+            ),
         new CurriculumDiscipline(
                 _name: "Подготовка к сдаче и сдача государственного экзамена",
                 _semester: "12",
@@ -758,8 +769,9 @@ namespace CafedralDB.SourceCode.Model.Entities
                 _practiceCount: 0,
                 _courseWork: false,
                 _ekz: false,
-                _zach: false,
-                _isPractice: true ),
+                _zach: false
+                //_isPractice: true 
+            ),
         new CurriculumDiscipline(
                 _name: "Выполнение и защита выпускной квалификационной работы",
                 _semester: "12",
@@ -768,8 +780,9 @@ namespace CafedralDB.SourceCode.Model.Entities
                 _practiceCount: 0,
                 _courseWork: false,
                 _ekz: false,
-                _zach: false,
-                _isPractice: true ),
+                _zach: false
+                //_isPractice: true
+            ),
         };
 
         internal static bool checkWorkPlan(CurriculumDiscipline discipline)
