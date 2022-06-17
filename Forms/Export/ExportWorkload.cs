@@ -27,7 +27,8 @@ namespace CafedralDB.Forms.Export
 
 		private void buttonExport_Click(object sender, EventArgs e)
 		{
-			Workload.ExportWorkload(comboBoxYear.SelectedValue.ToString());
+            SourceCode.Model.Exporter.ExportWorkload.Export(comboBoxYear.SelectedValue.ToString());
+			//Workload.ExportWorkload(comboBoxYear.SelectedValue.ToString());
 		}
 	}
 }

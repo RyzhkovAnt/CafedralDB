@@ -5,8 +5,6 @@ VisualStudioVersion = 17.1.32328.378
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CafedralDB", "CafedralDB.csproj", "{44DA936F-29BB-4D6A-905D-FD508FDAB55E}"
 EndProject
-Project("{840C416C-B8F3-42BC-B0DD-F6BB14C9F8CB}") = "AI Setup Project", "..\AI Setup Project\AI Setup Project.aiproj", "{85201FA5-8B19-4778-9AF6-49F39A8E572D}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		32bit|Any CPU = 32bit|Any CPU
@@ -56,21 +54,6 @@ Global
 		{44DA936F-29BB-4D6A-905D-FD508FDAB55E}.Release|x64.Build.0 = Release|x64
 		{44DA936F-29BB-4D6A-905D-FD508FDAB55E}.Release|x86.ActiveCfg = Release|x86
 		{44DA936F-29BB-4D6A-905D-FD508FDAB55E}.Release|x86.Build.0 = Release|x86
-		{85201FA5-8B19-4778-9AF6-49F39A8E572D}.32bit|Any CPU.ActiveCfg = DefaultBuild
-		{85201FA5-8B19-4778-9AF6-49F39A8E572D}.32bit|x64.ActiveCfg = DefaultBuild
-		{85201FA5-8B19-4778-9AF6-49F39A8E572D}.32bit|x86.ActiveCfg = DefaultBuild
-		{85201FA5-8B19-4778-9AF6-49F39A8E572D}.64bit|Any CPU.ActiveCfg = DefaultBuild
-		{85201FA5-8B19-4778-9AF6-49F39A8E572D}.64bit|x64.ActiveCfg = DefaultBuild
-		{85201FA5-8B19-4778-9AF6-49F39A8E572D}.64bit|x86.ActiveCfg = DefaultBuild
-		{85201FA5-8B19-4778-9AF6-49F39A8E572D}.All|Any CPU.ActiveCfg = DefaultBuild
-		{85201FA5-8B19-4778-9AF6-49F39A8E572D}.All|x64.ActiveCfg = DefaultBuild
-		{85201FA5-8B19-4778-9AF6-49F39A8E572D}.All|x86.ActiveCfg = DefaultBuild
-		{85201FA5-8B19-4778-9AF6-49F39A8E572D}.Debug|Any CPU.ActiveCfg = DefaultBuild
-		{85201FA5-8B19-4778-9AF6-49F39A8E572D}.Debug|x64.ActiveCfg = DefaultBuild
-		{85201FA5-8B19-4778-9AF6-49F39A8E572D}.Debug|x86.ActiveCfg = DefaultBuild
-		{85201FA5-8B19-4778-9AF6-49F39A8E572D}.Release|Any CPU.ActiveCfg = DefaultBuild
-		{85201FA5-8B19-4778-9AF6-49F39A8E572D}.Release|x64.ActiveCfg = DefaultBuild
-		{85201FA5-8B19-4778-9AF6-49F39A8E572D}.Release|x86.ActiveCfg = DefaultBuild
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,296 +1,381 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="CafedralDB.SourceCode.Utilities" Collapsed="true">
-    <Position X="11.75" Y="4.5" Width="1.5" />
+  <Class Name="CafedralDB.SourceCode.Utilities">
+    <Position X="13.75" Y="9" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="CafedralDB.SourceCode.Utilities.SemesterName">
+        <TypeIdentifier>
+          <NewMemberFileName>SourceCode\Utilities.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAAAAABAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAACBAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>SourceCode\Utilities.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CafedralDB.SourceCode.Model.Calculator" Collapsed="true">
-    <Position X="11" Y="0.5" Width="1.5" />
+  <Class Name="CafedralDB.SourceCode.Model.Calculator">
+    <Position X="10.25" Y="8.75" Width="3" />
     <TypeIdentifier>
-      <HashCode>AAAQAAAAACAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAE=</HashCode>
+      <HashCode>AAAQAAAAACAEAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAE=</HashCode>
       <FileName>SourceCode\Model\Calculator.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CafedralDB.SourceCode.Model.DataManager" Collapsed="true">
-    <Position X="3" Y="1.5" Width="1.5" />
+  <Class Name="CafedralDB.SourceCode.Model.DataManager">
+    <Position X="0.75" Y="1" Width="1.5" />
+    <Members>
+      <Method Name="CheckDisciplinesAtYearExist" Hidden="true" />
+      <Method Name="ClearYear" Hidden="true" />
+      <Method Name="CloseConnection" Hidden="true" />
+      <Method Name="CreateQuery" Hidden="true" />
+      <Method Name="DataManager" Hidden="true" />
+      <Method Name="FindLastWorkloadAssign" Hidden="true" />
+      <Method Name="FindTypeByName" Hidden="true" />
+      <Method Name="GetAcademicDegrees" Hidden="true" />
+      <Method Name="GetAcademicRanks" Hidden="true" />
+      <Method Name="GetDepartments" Hidden="true" />
+      <Method Name="GetDiscipline" Hidden="true" />
+      <Method Name="GetDisciplines" Hidden="true" />
+      <Method Name="GetEmployee" Hidden="true" />
+      <Method Name="GetEmployeeWorkloads" Hidden="true" />
+      <Method Name="GetFaculty" Hidden="true" />
+      <Method Name="GetGroup" Hidden="true" />
+      <Method Name="GetGroups" Hidden="true" />
+      <Method Name="GetQualifications" Hidden="true" />
+      <Method Name="GetSemesters" Hidden="true" />
+      <Method Name="GetSpecialities" Hidden="true" />
+      <Method Name="GetSpeciality" Hidden="true" />
+      <Method Name="GetSpecialityIDByGroupID" Hidden="true" />
+      <Method Name="GetSpecialityIDByName" Hidden="true" />
+      <Method Name="GetStudent" Hidden="true" />
+      <Method Name="GetStudents" Hidden="true" />
+      <Method Name="GetStudyForm" Hidden="true" />
+      <Method Name="GetStudyForms" Hidden="true" />
+      <Method Name="GetStudyYear" Hidden="true" />
+      <Method Name="GetStudyYears" Hidden="true" />
+      <Method Name="GetWorkingPosition" Hidden="true" />
+      <Method Name="GetWorkloadAssigns" Hidden="true" />
+      <Method Name="GetYearIDByName" Hidden="true" />
+      <Method Name="InitSemestersFromDB" Hidden="true" />
+      <Method Name="OpenConnection" Hidden="true" />
+      <Method Name="SetAcademicDegree" Hidden="true" />
+      <Method Name="SetAcademicRank" Hidden="true" />
+      <Method Name="SetDepartment" Hidden="true" />
+      <Method Name="SetDiscipline" Hidden="true" />
+      <Method Name="SetEmployee" Hidden="true" />
+      <Method Name="SetFaculty" Hidden="true" />
+      <Method Name="SetGroup" Hidden="true" />
+      <Method Name="SetSemester" Hidden="true" />
+      <Method Name="SharedDataManager" Hidden="true" />
+    </Members>
     <TypeIdentifier>
       <HashCode>ESIEAi0AyggI0CEcjCAEEDaAAQABUCmMDCBULBAAggU=</HashCode>
       <FileName>SourceCode\Model\DataManager.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CafedralDB.SourceCode.Model.DataSetHolder" Collapsed="true">
-    <Position X="4.75" Y="1.5" Width="1.5" />
+  <Class Name="CafedralDB.SourceCode.Model.DataSetHolder">
+    <Position X="4.5" Y="3" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAFAAAAAAAAAAAAAABAEAAABgAQAAAAAAAAAAAAAAA=</HashCode>
       <FileName>SourceCode\Model\DataManager.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CafedralDB.SourceCode.Model.AcademicDegree" Collapsed="true">
-    <Position X="3" Y="0.5" Width="1.5" />
+  <Class Name="CafedralDB.SourceCode.Model.AcademicDegree">
+    <Position X="4.5" Y="1" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAgAAEAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>SourceCode\Model\Entities\AcademicDegree.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CafedralDB.SourceCode.Model.AcademicRank" Collapsed="true">
-    <Position X="4.75" Y="0.5" Width="1.5" />
+  <Class Name="CafedralDB.SourceCode.Model.AcademicRank">
+    <Position X="6.25" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>SourceCode\Model\Entities\AcademicRank.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CafedralDB.SourceCode.Model.ContractDiscr" Collapsed="true">
-    <Position X="0.5" Y="1.75" Width="1.5" />
+  <Class Name="CafedralDB.SourceCode.Model.ContractDiscr">
+    <Position X="2.75" Y="5.75" Width="1.5" />
+    <InheritanceLine Type="CafedralDB.SourceCode.Model.WorkloadCost" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="3.625" Y="4.67" />
+        <Point X="3.625" Y="5.268" />
+        <Point X="3.625" Y="5.268" />
+        <Point X="3.625" Y="5.75" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAEAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>SourceCode\Model\Entities\Contract.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CafedralDB.SourceCode.Model.Department" Collapsed="true">
-    <Position X="6.5" Y="1.5" Width="1.5" />
+  <Class Name="CafedralDB.SourceCode.Model.Department">
+    <Position X="8" Y="1" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QAAAAAAAAAAggAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>SourceCode\Model\Entities\Department.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CafedralDB.SourceCode.Model.Discipline" Collapsed="true">
-    <Position X="8.25" Y="1.5" Width="1.5" />
+  <Class Name="CafedralDB.SourceCode.Model.Discipline">
+    <Position X="9.75" Y="1" Width="1.5" />
+    <Members>
+      <Property Name="DopuskVKR" Hidden="true" />
+      <Property Name="DPretz" Hidden="true" />
+      <Property Name="DPRuk" Hidden="true" />
+      <Property Name="Ekz" Hidden="true" />
+      <Property Name="GAK" Hidden="true" />
+      <Property Name="GAKPred" Hidden="true" />
+      <Property Name="GEK" Hidden="true" />
+      <Property Name="GosEkz" Hidden="true" />
+      <Property Name="NIIR" Hidden="true" />
+      <Property Name="Parameters" Hidden="true" />
+      <Property Name="RGR" Hidden="true" />
+    </Members>
     <TypeIdentifier>
       <HashCode>ABgAACIEAgAEgAAEAIAKEBKAgZAgFAgkAYiIDDACAAA=</HashCode>
       <FileName>SourceCode\Model\Entities\Discipline.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CafedralDB.SourceCode.Model.DisciplineType" Collapsed="true">
-    <Position X="10" Y="1.5" Width="1.5" />
+  <Class Name="CafedralDB.SourceCode.Model.DisciplineType">
+    <Position X="15" Y="4" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>SourceCode\Model\Entities\DisciplineType.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CafedralDB.SourceCode.Model.Employee" Collapsed="true">
-    <Position X="11.75" Y="1.5" Width="1.5" />
+  <Class Name="CafedralDB.SourceCode.Model.Employee">
+    <Position X="15" Y="1" Width="1.75" />
     <TypeIdentifier>
       <HashCode>QAAAAAAgAAAAgABAAACAAAQAAAAJAAAAAAAAAAAAAAA=</HashCode>
       <FileName>SourceCode\Model\Entities\Employee.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CafedralDB.SourceCode.Model.Faculty" Collapsed="true">
-    <Position X="8.25" Y="2.5" Width="1.5" />
+  <Class Name="CafedralDB.SourceCode.Model.Faculty">
+    <Position X="11.5" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAIAAAAAAAAQAAAAAAAAAAAAAAAAEAAA=</HashCode>
       <FileName>SourceCode\Model\Entities\Faculty.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CafedralDB.SourceCode.Model.Group" Collapsed="true">
-    <Position X="10" Y="2.5" Width="1.5" />
+  <Class Name="CafedralDB.SourceCode.Model.Group">
+    <Position X="11.5" Y="1" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAYAAAACAAAAgIAAAAABAAQAQAAEAAAAAAAAAAACAAA=</HashCode>
       <FileName>SourceCode\Model\Entities\Group.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CafedralDB.SourceCode.Model.Qualification" Collapsed="true">
-    <Position X="8.25" Y="3.5" Width="1.5" />
+  <Class Name="CafedralDB.SourceCode.Model.Qualification">
+    <Position X="13.25" Y="5.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAEAAA=</HashCode>
       <FileName>SourceCode\Model\Entities\Qualification.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CafedralDB.SourceCode.Model.Semester" Collapsed="true">
-    <Position X="10" Y="3.5" Width="1.5" />
+  <Class Name="CafedralDB.SourceCode.Model.Semester">
+    <Position X="13.25" Y="1" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAgAAEAAAAAAQAAAAAIAAAAAAAAAAAAAA=</HashCode>
       <FileName>SourceCode\Model\Entities\Semester.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CafedralDB.SourceCode.Model.Speciality" Collapsed="true">
-    <Position X="4.75" Y="4.5" Width="1.5" />
+  <Class Name="CafedralDB.SourceCode.Model.Speciality">
+    <Position X="6.25" Y="5.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAIAAAAAAAAQAAAAAAAAAAAAAAAAEAAA=</HashCode>
       <FileName>SourceCode\Model\Entities\Speciality.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CafedralDB.SourceCode.Model.Student" Collapsed="true">
-    <Position X="6.5" Y="4.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAEAAA=</HashCode>
-      <FileName>SourceCode\Model\Entities\Student.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="CafedralDB.SourceCode.Model.StudyForm" Collapsed="true">
-    <Position X="8.25" Y="4.5" Width="1.5" />
+  <Class Name="CafedralDB.SourceCode.Model.StudyForm">
+    <Position X="8" Y="3" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAgAAAAAAAAAQAAAAAACAAAAAAAAAAAAA=</HashCode>
       <FileName>SourceCode\Model\Entities\StudyForm.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CafedralDB.SourceCode.Model.StudyYear" Collapsed="true">
-    <Position X="10" Y="4.5" Width="1.5" />
+  <Class Name="CafedralDB.SourceCode.Model.StudyYear">
+    <Position X="13.25" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAABAAAgAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>SourceCode\Model\Entities\StudyYear.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CafedralDB.SourceCode.Model.WorkingPosition" Collapsed="true">
-    <Position X="3" Y="5.5" Width="1.5" />
+  <Class Name="CafedralDB.SourceCode.Model.WorkingPosition">
+    <Position X="4.5" Y="6" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>SourceCode\Model\Entities\WorkingPosition.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CafedralDB.SourceCode.Model.WorkloadAssign" Collapsed="true">
-    <Position X="8.25" Y="5.5" Width="1.5" />
+  <Class Name="CafedralDB.SourceCode.Model.WorkloadAssign">
+    <Position X="8" Y="5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAIAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAACAAAAEAAE=</HashCode>
+      <HashCode>AAIAAAAAAAAAAABAQAAAAAAAAAAAAAAAAACAAAAEAAE=</HashCode>
       <FileName>SourceCode\Model\Entities\WorkloadAssign.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CafedralDB.SourceCode.Model.WorkloadCost" Collapsed="true">
-    <Position X="0.5" Y="0.5" Width="1.5" />
+  <Class Name="CafedralDB.SourceCode.Model.WorkloadCost">
+    <Position X="2.5" Y="1" Width="1.75" />
+    <Members>
+      <Property Name="ASPRukCost" Hidden="true" />
+      <Property Name="DPRukCost" Hidden="true" />
+      <Property Name="EkzCost" Hidden="true" />
+      <Property Name="GAKCost" Hidden="true" />
+      <Property Name="GAKPredCost" Hidden="true" />
+      <Property Name="GEKCost" Hidden="true" />
+      <Property Name="GosEkz" Hidden="true" />
+      <Property Name="MagRuk" Hidden="true" />
+      <Property Name="NIIRCost" Hidden="true" />
+    </Members>
     <TypeIdentifier>
       <HashCode>AIAEIACAAAAAAAAAAAAgkAIEAAADMBCgEAAAAAgAIAQ=</HashCode>
       <FileName>SourceCode\Model\Entities\WorkloadCost.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CafedralDB.SourceCode.Model.Importer" Collapsed="true">
-    <Position X="11.75" Y="2.5" Width="1.5" />
+  <Class Name="CafedralDB.SourceCode.Model.Importer">
+    <Position X="6.75" Y="10.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAEAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAEAAAAAAAAgAAAQAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>SourceCode\Model\Importer.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CafedralDB.SourceCode.Model.Entity.Workload" Collapsed="true">
-    <Position X="4.75" Y="5.5" Width="1.5" />
+  <Class Name="CafedralDB.SourceCode.Model.Entity.Workload">
+    <Position X="6.25" Y="1" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAEAABAIAgAAAIAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>SourceCode\Model\Entities\Workload.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CafedralDB.SourceCode.Model.Exporter.ExportIndPlan" Collapsed="true">
-    <Position X="3" Y="2.5" Width="1.5" />
+  <Class Name="CafedralDB.SourceCode.Model.Exporter.ExportIndPlan">
+    <Position X="8.5" Y="10.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAhAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>SourceCode\Model\Exporter\ExportIndPlan.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CafedralDB.SourceCode.Model.Exporter.ExportSemester" Collapsed="true">
-    <Position X="4.75" Y="2.5" Width="1.5" />
+  <Class Name="CafedralDB.SourceCode.Model.Exporter.ExportSemester">
+    <Position X="5" Y="10.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>SourceCode\Model\Exporter\ExportSemester.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CafedralDB.SourceCode.Model.Exporter.ExportWorkload" Collapsed="true">
-    <Position X="6.5" Y="2.5" Width="1.5" />
+  <Class Name="CafedralDB.SourceCode.Model.Exporter.ExportWorkload">
+    <Position X="12" Y="11" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAIAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>SourceCode\Model\Exporter\ExportWorkload.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CafedralDB.SourceCode.Model.Exporter.IndPlan" Collapsed="true">
-    <Position X="6.5" Y="3.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>gAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>SourceCode\Model\Exporter.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="CafedralDB.SourceCode.Model.Exporter.Semester" Collapsed="true">
-    <Position X="11.75" Y="3.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
-      <FileName>SourceCode\Model\Exporter.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="CafedralDB.SourceCode.Model.Exporter.Workload" Collapsed="true">
-    <Position X="6.5" Y="5.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>QAIIAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>SourceCode\Model\Exporter.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="CafedralDB.SourceCode.Model.Exporter.Contract" Collapsed="true">
-    <Position X="13" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAIAAAAAAABAACAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
-      <FileName>SourceCode\Model\Exporter.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="CafedralDB.SourceCode.Settings.CalculationSetting" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="16.25" Y="4.75" Width="1.5" />
+  <Class Name="CafedralDB.SourceCode.Settings.CalculationSetting" BaseTypeListCollapsed="true">
+    <Position X="20.25" Y="3" Width="1.75" />
+    <Members>
+      <Property Name="ASPpractice" Hidden="true" />
+      <Property Name="AspRuk" Hidden="true" />
+      <Property Name="DopuskBak" Hidden="true" />
+      <Property Name="DopuskDissMag" Hidden="true" />
+      <Property Name="DopuskVKR" Hidden="true" />
+      <Property Name="DPRetz" Hidden="true" />
+      <Property Name="DPruk" Hidden="true" />
+      <Property Name="EkzBoard" Hidden="true" />
+      <Property Name="EkzCost" Hidden="true" />
+      <Property Name="GAK" Hidden="true" />
+      <Property Name="GAKPred" Hidden="true" />
+      <Property Name="GEK" Hidden="true" />
+      <Property Name="GosEkz" Hidden="true" />
+      <Property Name="KonsCost" Hidden="true" />
+      <Property Name="KPCost" Hidden="true" />
+      <Property Name="NIIR" Hidden="true" />
+      <Property Name="NIIRRukAsp" Hidden="true" />
+      <Property Name="NIIRRukMag" Hidden="true" />
+      <Property Name="NormocontrolBak" Hidden="true" />
+      <Property Name="NormocontrolMag" Hidden="true" />
+      <Property Name="PracticeCost" Hidden="true" />
+    </Members>
     <TypeIdentifier>
       <HashCode>AgAgAAIEASiEQAIAAIIvmBIAEABAFAgkGAigABgAIAA=</HashCode>
       <FileName>SourceCode\Settings\CalculationSetting.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="CafedralDB.SourceCode.Settings.ImportSetting" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="14.5" Y="4.75" Width="1.5" />
+  <Class Name="CafedralDB.SourceCode.Settings.ImportSetting" BaseTypeListCollapsed="true">
+    <Position X="18" Y="3" Width="2" />
     <TypeIdentifier>
       <HashCode>CiAgAAAAACCEcAAAAECAAAgABAAAAAAAAIAAgABAAQA=</HashCode>
       <FileName>SourceCode\Settings\ImportSetting.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="CafedralDB.SourceCode.Settings.SettingFields" Collapsed="true">
-    <Position X="6.5" Y="7" Width="1.5" />
+  <Class Name="CafedralDB.SourceCode.Settings.CalculationSettingFields">
+    <Position X="22.25" Y="3" Width="2" />
+    <Members>
+      <Field Name="ASPpractice" Hidden="true" />
+      <Field Name="AspRuk" Hidden="true" />
+      <Field Name="DopuskBak" Hidden="true" />
+      <Field Name="DopuskDissMag" Hidden="true" />
+      <Field Name="DopuskVKR" Hidden="true" />
+      <Field Name="DPRetz" Hidden="true" />
+      <Field Name="DPruk" Hidden="true" />
+      <Field Name="EkzBoard" Hidden="true" />
+      <Field Name="EkzCost" Hidden="true" />
+      <Field Name="GAK" Hidden="true" />
+      <Field Name="GAKPred" Hidden="true" />
+      <Field Name="GEK" Hidden="true" />
+      <Field Name="GosEkz" Hidden="true" />
+      <Field Name="KonsCost" Hidden="true" />
+      <Field Name="RGR" Hidden="true" />
+    </Members>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAIEACgEQAIAAIInmBIAEAAAFAgkGAigABgAIAA=</HashCode>
       <FileName>SourceCode\Settings\SettingFields.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CafedralDB.SourceCode.Settings.CalculationSettingFields" Collapsed="true">
-    <Position X="18" Y="4.75" Width="2" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAA=</HashCode>
-      <FileName>SourceCode\Settings\SettingFields.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="CafedralDB.SourceCode.Settings.ImportSettingFields" Collapsed="true">
-    <Position X="17" Y="5.5" Width="1.75" />
+  <Class Name="CafedralDB.SourceCode.Settings.ImportSettingFields">
+    <Position X="24.5" Y="3" Width="1.75" />
     <TypeIdentifier>
       <HashCode>CCAgAAAAACAEcAAAAECAAAgABAAAAAAAAIAAgABAAQA=</HashCode>
       <FileName>SourceCode\Settings\SettingFields.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Struct Name="CafedralDB.SourceCode.Model.DisciplineParameter" Collapsed="true">
-    <Position X="3" Y="6.75" Width="1.75" />
+  <Class Name="CafedralDB.SourceCode.Model.Exporter.ExportContract">
+    <Position X="10.25" Y="10.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>SourceCode\Model\Entities\DisciplineParameter.cs</FileName>
+      <HashCode>AAAAIAAAAAAABAAAAAAABAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>SourceCode\Model\Exporter\ExportContract.cs</FileName>
     </TypeIdentifier>
-  </Struct>
-  <Struct Name="CafedralDB.SourceCode.Settings.Field" Collapsed="true">
-    <Position X="15" Y="5.5" Width="1.5" />
+  </Class>
+  <Struct Name="CafedralDB.SourceCode.Settings.Field">
+    <Position X="23.25" Y="0.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQBAABAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>SourceCode\Settings\SettingFields.cs</FileName>
     </TypeIdentifier>
   </Struct>
-  <Interface Name="CafedralDB.SourceCode.Settings.ISetting" Collapsed="true">
-    <Position X="15.75" Y="3.5" Width="2.25" />
+  <Interface Name="CafedralDB.SourceCode.Settings.ISetting">
+    <Position X="19.75" Y="1" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AgAgAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>SourceCode\Settings\ISetting.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Enum Name="CafedralDB.SourceCode.Model.DisciplineTypeEnum" Collapsed="true">
-    <Position X="2.75" Y="9" Width="1.75" />
+  <Enum Name="CafedralDB.SourceCode.Model.DisciplineTypeEnum">
+    <Position X="4.75" Y="8.75" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAACAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>SourceCode\Model\Entities\DisciplineType.cs</FileName>
     </TypeIdentifier>
   </Enum>
-  <Enum Name="CafedralDB.SourceCode.Model.StudyQualification" Collapsed="true">
-    <Position X="6.5" Y="9" Width="1.5" />
+  <Enum Name="CafedralDB.SourceCode.Model.StudyQualification">
+    <Position X="8.5" Y="8.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AgAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA=</HashCode>
       <FileName>SourceCode\Model\Entities\Qualification.cs</FileName>
     </TypeIdentifier>
   </Enum>
-  <Enum Name="CafedralDB.SourceCode.Model.StudyFormEnum" Collapsed="true">
-    <Position X="4.75" Y="9" Width="1.5" />
+  <Enum Name="CafedralDB.SourceCode.Model.StudyFormEnum">
+    <Position X="6.75" Y="8.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAIACAAAAAAAAAAAAIAAA=</HashCode>
       <FileName>SourceCode\Model\Entities\StudyForm.cs</FileName>

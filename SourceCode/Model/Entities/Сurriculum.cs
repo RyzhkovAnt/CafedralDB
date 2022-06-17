@@ -1,19 +1,23 @@
 ﻿using System.Collections.Generic;
-
-
+using System.Text;
+using System.IO;
 namespace CafedralDB.SourceCode.Model.Entities
 {
     internal class CurriculumDiscipline
     {
-        public string Name { get; private set; }
-        public string Semester { get; private set; }
-        public int LabCount { get; private set; }
-        public int PracticeCount { get; private set; }
-        public int LectureCount { get; private set; }
-        public bool CourseWork { get; private set; }
-        public bool Ekz { get; private set; }
-        public bool Zach { get; private set; }
-        public bool IsPractice { get; private set; }
+        public string Name { get;  set; }
+        public string Semester { get;  set; }
+        public int LabCount { get; set; }
+        public int PracticeCount { get;  set; }
+        public int LectureCount { get;  set; }
+        public bool CourseWork { get;  set; }
+        public bool Ekz { get;  set; }
+        public bool Zach { get;  set; }
+        public bool IsPractice { get;  set; }
+        public CurriculumDiscipline()
+        {
+
+        }
         public CurriculumDiscipline(string _name, string _semester, int _lectureCount, int _labCount, int _practiceCount = 0, bool _courseWork = false, bool _ekz = false, bool _zach = false, bool _isPractice = false)
         {
             Name = _name;
@@ -787,6 +791,9 @@ namespace CafedralDB.SourceCode.Model.Entities
 
         internal static bool checkWorkPlan(CurriculumDiscipline discipline)
         {
+
+            var jsonCurricums = Newtonsoft.Json.JsonConvert.SerializeObject(new { Curriculums });
+            File.WriteAllText("curriculum.json",jsonCurricums);
 
             foreach (var item in Curriculums)
             {

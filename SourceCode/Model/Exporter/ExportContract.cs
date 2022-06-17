@@ -175,5 +175,9 @@ namespace CafedralDB.SourceCode.Model.Exporter
             }
         }
     }
+
+    public class Class1
+    {
+    }
 }
 

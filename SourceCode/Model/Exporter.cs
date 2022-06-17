@@ -346,7 +346,7 @@ namespace CafedralDB.SourceCode.Model
 				cn.Close();
 			}
 		}
-
+        [Obsolete("Старый класс экспорта нагрузки")]
 		public static class Workload
 		{
 			public static void ExportWorkload(string year)
