@@ -131,5 +131,18 @@ namespace CafedralDB.SourceCode.Model
             var setting = new CalculationSetting();
             return setting.LectureCost * lectureCount * semesterLength;
         }
-	}
+
+        public  static int getDefaultLectureCost(int lectureCount,int weekCount)
+        {
+            return lectureCount * weekCount;
+        }
+        public static int getDefaultPracticeCost(int practiceCount, int weekCount)
+        {
+            return practiceCount * weekCount*1;
+        }
+        public static int getDefaulLabsost(int labsCount, int weekCount)
+        {
+            return labsCount * weekCount *1;
+        }
+    }
 }

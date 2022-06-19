@@ -1,0 +1,813 @@
+[
+        {
+            "Name": "Информатика и программирование",
+            "Semester": "1",
+            "LabCount": 30,
+            "PracticeCount": 0,
+            "LectureCount": 15,
+            "CourseWork": true,
+            "Ekz": true,
+            "Zach": false
+        },
+        {
+            "Name": "Введение в программную инженерию",
+            "Semester": "1",
+            "LabCount": 30,
+            "PracticeCount": 0,
+            "LectureCount": 15,
+            "CourseWork": true,
+            "Ekz": true,
+            "Zach": false
+            
+        },
+        {
+            "Name": "История вычислительной техники и программирование",
+            "Semester": "1",
+            "LabCount": 15,
+            "PracticeCount": 0,
+            "LectureCount": 15,
+            "CourseWork": false,
+            "Ekz": false,
+            "Zach": true
+        },
+        {
+            "Name": "Разработка консольных приложений",
+            "Semester": "1",
+            "LabCount": 30,
+            "PracticeCount": 0,
+            "LectureCount": 15,
+            "CourseWork": false,
+            "Ekz": true,
+            "Zach": false
+        },
+        {
+            "Name": "Основы программирования",
+            "Semester": "2",
+            "LabCount": 30,
+            "PracticeCount": 0,
+            "LectureCount": 30,
+            "CourseWork": true,
+            "Ekz": true,
+            "Zach": false
+        },
+        {
+            "Name": "Современные программные платформы",
+            "Semester": "2",
+            "LabCount": 15,
+            "PracticeCount": 0,
+            "LectureCount": 15,
+            "CourseWork": false,
+            "Ekz": false,
+            "Zach": true
+        },
+        {
+            "Name": "Среды разработки программных средств",
+            "Semester": "2",
+            "LabCount": 30,
+            "PracticeCount": 0,
+            "LectureCount": 30,
+            "CourseWork": true,
+            "Ekz": true,
+            "Zach": false
+        },
+        {
+            "Name": "Учебная практика, ознакомительная",
+            "Semester": "2",
+            "LabCount": 0,
+            "PracticeCount": 0,
+            "LectureCount": 0,
+            "CourseWork": false,
+            "Ekz": false,
+            "Zach": false
+        },
+        {
+            "Name": "Компьютерная математика",
+            "Semester": "3",
+            "LabCount": 0,
+            "PracticeCount": 15,
+            "LectureCount": 15,
+            "CourseWork": false,
+            "Ekz": true,
+            "Zach": false
+        },
+        {
+            "Name": "Структуры и алгоритмы обработки данных",
+            "Semester": "3",
+            "LabCount": 30,
+            "PracticeCount": 0,
+            "LectureCount": 15,
+            "CourseWork": false,
+            "Ekz": false,
+            "Zach": true
+        },
+        {
+            "Name": "Теоретическая информатика",
+            "Semester": "3",
+            "LabCount": 30,
+            "PracticeCount": 0,
+            "LectureCount": 15,
+            "CourseWork": true,
+            "Ekz": false,
+            "Zach": true
+        },
+        {
+            "Name": "Объектно-ориентированное программирование",
+            "Semester": "3",
+            "LabCount": 30,
+            "PracticeCount": 0,
+            "LectureCount": 15,
+            "CourseWork": true,
+            "Ekz": true,
+            "Zach": false
+        },
+        {
+            "Name": "Основы программирования",
+            "Semester": "3",
+            "LabCount": 30,
+            "PracticeCount": 0,
+            "LectureCount": 15,
+            "CourseWork": false,
+            "Ekz": false,
+            "Zach": true
+        },
+        {
+            "Name": "Компьютерная математика",
+            "Semester": "4",
+            "LabCount": 30,
+            "PracticeCount": 0,
+            "LectureCount": 15,
+            "CourseWork": false,
+            "Ekz": true,
+            "Zach": false
+        },
+        {
+            "Name": "Структуры и алгоритмы обработки данных",
+            "Semester": "4",
+            "LabCount": 30,
+            "PracticeCount": 0,
+            "LectureCount": 30,
+            "CourseWork": true,
+            "Ekz": true,
+            "Zach": false
+        },
+        {
+            "Name": "Объектно-ориентированное программирование",
+            "Semester": "4",
+            "LabCount": 15,
+            "PracticeCount": 0,
+            "LectureCount": 30,
+            "CourseWork": false,
+            "Ekz": true,
+            "Zach": false
+        },
+        {
+            "Name": "Базы данных",
+            "Semester": "4",
+            "LabCount": 30,
+            "PracticeCount": 0,
+            "LectureCount": 30,
+            "CourseWork": true,
+            "Ekz": false,
+            "Zach": true
+        },
+        {
+            "Name": "Унифицированный язык моделирования UML",
+            "Semester": "4",
+            "LabCount": 15,
+            "PracticeCount": 0,
+            "LectureCount": 15,
+            "CourseWork": false,
+            "Ekz": false,
+            "Zach": true
+        },
+        {
+            "Name": "Архитектура вычислительных систем",
+            "Semester": "4",
+            "LabCount": 30,
+            "PracticeCount": 0,
+            "LectureCount": 30,
+            "CourseWork": false,
+            "Ekz": false,
+            "Zach": true
+        },
+        {
+            "Name": "Производственная практика, проектно-технологическая",
+            "Semester": "4",
+            "LabCount": 0,
+            "PracticeCount": 0,
+            "LectureCount": 0,
+            "CourseWork": false,
+            "Ekz": false,
+            "Zach": false
+        },
+        {
+            "Name": "Базы данных",
+            "Semester": "5",
+            "LabCount": 30,
+            "PracticeCount": 0,
+            "LectureCount": 15,
+            "CourseWork": false,
+            "Ekz": false,
+            "Zach": true
+        },
+        {
+            "Name": "Теория алгоритмов",
+            "Semester": "5",
+            "LabCount": 0,
+            "PracticeCount": 15,
+            "LectureCount": 15,
+            "CourseWork": true,
+            "Ekz": false,
+            "Zach": true
+        },
+        {
+            "Name": "Операционные системы и сети",
+            "Semester": "5",
+            "LabCount": 30,
+            "PracticeCount": 0,
+            "LectureCount": 30,
+            "CourseWork": true,
+            "Ekz": false,
+            "Zach": true
+        },
+        {
+            "Name": "Проектирование и архитектура программных систем",
+            "Semester": "5",
+            "LabCount": 15,
+            "PracticeCount": 0,
+            "LectureCount": 30,
+            "CourseWork": false,
+            "Ekz": false,
+            "Zach": true
+        },
+        {
+            "Name": "Основы компьютерных вычислений",
+            "Semester": "5",
+            "LabCount": 30,
+            "PracticeCount": 0,
+            "LectureCount": 30,
+            "CourseWork": false,
+            "Ekz": true,
+            "Zach": false
+        },
+        {
+            "Name": "Разработка мобильных приложений для Android",
+            "Semester": "5",
+            "LabCount": 15,
+            "PracticeCount": 0,
+            "LectureCount": 30,
+            "CourseWork": false,
+            "Ekz": true,
+            "Zach": false
+        },
+        {
+            "Name": "Теория автоматов и формальных языков",
+            "Semester": "6",
+            "LabCount": 30,
+            "PracticeCount": 0,
+            "LectureCount": 30,
+            "CourseWork": true,
+            "Ekz": true,
+            "Zach": false
+        },
+        {
+            "Name": "Тестирование программного обеспечения",
+            "Semester": "6",
+            "LabCount": 30,
+            "PracticeCount": 0,
+            "LectureCount": 15,
+            "CourseWork": false,
+            "Ekz": false,
+            "Zach": true
+        },
+        {
+            "Name": "Объектно-ориентированное программирование экономических информационных систем",
+            "Semester": "6",
+            "LabCount": 30,
+            "PracticeCount": 0,
+            "LectureCount": 30,
+            "CourseWork": false,
+            "Ekz": true,
+            "Zach": false
+        },
+        {
+            "Name": "Компьютерные системы моделирования",
+            "Semester": "6",
+            "LabCount": 30,
+            "PracticeCount": 0,
+            "LectureCount": 15,
+            "CourseWork": false,
+            "Ekz": true,
+            "Zach": false
+        },
+        {
+            "Name": "Основы компьютерных вычислений",
+            "Semester": "6",
+            "LabCount": 30,
+            "PracticeCount": 0,
+            "LectureCount": 30,
+            "CourseWork": false,
+            "Ekz": true,
+            "Zach": false
+        },
+        {
+            "Name": "Инструментальные программные средства для разработки автоматизированных систем в промышленности",
+            "Semester": "6",
+            "LabCount": 30,
+            "PracticeCount": 0,
+            "LectureCount": 15,
+            "CourseWork": true,
+            "Ekz": false,
+            "Zach": true
+        },
+        {
+            "Name": "Параллельные вычисления",
+            "Semester": "6",
+            "LabCount": 30,
+            "PracticeCount": 0,
+            "LectureCount": 30,
+            "CourseWork": false,
+            "Ekz": false,
+            "Zach": true
+        },
+        {
+            "Name": "Производственная  практика, проектная",
+            "Semester": "6",
+            "LabCount": 0,
+            "PracticeCount": 0,
+            "LectureCount": 0,
+            "CourseWork": false,
+            "Ekz": false,
+            "Zach": false
+        },
+        {
+            "Name": "Объектно-ориентированное программирование экономических информационных систем",
+            "Semester": "7",
+            "LabCount": 30,
+            "PracticeCount": 0,
+            "LectureCount": 30,
+            "CourseWork": true,
+            "Ekz": false,
+            "Zach": true
+        },
+        {
+            "Name": "Системы искусственного интеллекта",
+            "Semester": "7",
+            "LabCount": 30,
+            "PracticeCount": 0,
+            "LectureCount": 30,
+            "CourseWork": false,
+            "Ekz": false,
+            "Zach": true
+        },
+        {
+            "Name": "Web-программирование",
+            "Semester": "7",
+            "LabCount": 30,
+            "PracticeCount": 0,
+            "LectureCount": 30,
+            "CourseWork": false,
+            "Ekz": true,
+            "Zach": false
+        },
+        {
+            "Name": "Параллельные вычисления",
+            "Semester": "7",
+            "LabCount": 30,
+            "PracticeCount": 0,
+            "LectureCount": 30,
+            "CourseWork": false,
+            "Ekz": true,
+            "Zach": false
+        },
+        {
+            "Name": "Проектирование человеко-машинного интерфейса",
+            "Semester": "7",
+            "LabCount": 15,
+            "PracticeCount": 0,
+            "LectureCount": 15,
+            "CourseWork": false,
+            "Ekz": false,
+            "Zach": true
+        },
+        {
+            "Name": "Разработка и анализ требований",
+            "Semester": "7",
+            "LabCount": 30,
+            "PracticeCount": 0,
+            "LectureCount": 15,
+            "CourseWork": false,
+            "Ekz": false,
+            "Zach": true
+        },
+        {
+            "Name": "Теория языков программирования и методы трансляции",
+            "Semester": "7",
+            "LabCount": 30,
+            "PracticeCount": 0,
+            "LectureCount": 30,
+            "CourseWork": true,
+            "Ekz": true,
+            "Zach": false
+        },
+        {
+            "Name": "Системы искусственного интеллекта",
+            "Semester": "8",
+            "LabCount": 26,
+            "PracticeCount": 0,
+            "LectureCount": 26,
+            "CourseWork": true,
+            "Ekz": false,
+            "Zach": true
+        },
+        {
+            "Name": "Управление программными проектами",
+            "Semester": "8",
+            "LabCount": 13,
+            "PracticeCount": 0,
+            "LectureCount": 13,
+            "CourseWork": false,
+            "Ekz": false,
+            "Zach": true
+        },
+        {
+            "Name": "Теория вычислительных процессов",
+            "Semester": "8",
+            "LabCount": 26,
+            "PracticeCount": 0,
+            "LectureCount": 26,
+            "CourseWork": true,
+            "Ekz": false,
+            "Zach": true
+        },
+        {
+            "Name": "Защита информации",
+            "Semester": "8",
+            "LabCount": 26,
+            "PracticeCount": 0,
+            "LectureCount": 13,
+            "CourseWork": false,
+            "Ekz": false,
+            "Zach": true
+        },
+        {
+            "Name": "Моделирование систем",
+            "Semester": "8",
+            "LabCount": 26,
+            "PracticeCount": 0,
+            "LectureCount": 26,
+            "CourseWork": false,
+            "Ekz": false,
+            "Zach": true
+        },
+        {
+            "Name": "Параллельные вычисления",
+            "Semester": "8",
+            "LabCount": 26,
+            "PracticeCount": 0,
+            "LectureCount": 13,
+            "CourseWork": false,
+            "Ekz": false,
+            "Zach": true
+        },
+        {
+            "Name": "Анализ больших данных",
+            "Semester": "8",
+            "LabCount": 39,
+            "PracticeCount": 0,
+            "LectureCount": 26,
+            "CourseWork": false,
+            "Ekz": false,
+            "Zach": true
+        },
+        {
+            "Name": "Преддипломная практика",
+            "Semester": "8",
+            "LabCount": 0,
+            "PracticeCount": 0,
+            "LectureCount": 0,
+            "CourseWork": false,
+            "Ekz": false,
+            "Zach": false
+        },
+        {
+            "Name": "Подготовка к сдаче и сдача государственного экзамена",
+            "Semester": "8",
+            "LabCount": 0,
+            "PracticeCount": 0,
+            "LectureCount": 0,
+            "CourseWork": false,
+            "Ekz": true,
+            "Zach": false
+        },
+        {
+            "Name": "Выполнение и защита выпускной квалификационной работы",
+            "Semester": "8",
+            "LabCount": 0,
+            "PracticeCount": 0,
+            "LectureCount": 0,
+            "CourseWork": false,
+            "Ekz": true,
+            "Zach": false
+        },
+        {
+            "Name": "Интеллектуальный анализ данных",
+            "Semester": "9",
+            "LabCount": 24,
+            "PracticeCount": 0,
+            "LectureCount": 12,
+            "CourseWork": true,
+            "Ekz": true,
+            "Zach": false
+        },
+        {
+            "Name": "Компьютерные технологии",
+            "Semester": "9",
+            "LabCount": 24,
+            "PracticeCount": 0,
+            "LectureCount": 12,
+            "CourseWork": false,
+            "Ekz": false,
+            "Zach": true
+        },
+        {
+            "Name": "Надежность информационных систем",
+            "Semester": "9",
+            "LabCount": 24,
+            "PracticeCount": 0,
+            "LectureCount": 12,
+            "CourseWork": false,
+            "Ekz": true,
+            "Zach": false
+        },
+        {
+            "Name": "Интеллектуальные информационные системы",
+            "Semester": "9",
+            "LabCount": 12,
+            "PracticeCount": 0,
+            "LectureCount": 12,
+            "CourseWork": true,
+            "Ekz": true,
+            "Zach": false
+        },
+        {
+            "Name": "Новые технологии в разработке программных систем",
+            "Semester": "9",
+            "LabCount": 24,
+            "PracticeCount": 0,
+            "LectureCount": 12,
+            "CourseWork": false,
+            "Ekz": true,
+            "Zach": false
+        },
+        {
+            "Name": "Учебная практика, ознакомительная",
+            "Semester": "9",
+            "LabCount": 0,
+            "PracticeCount": 0,
+            "LectureCount": 0,
+            "CourseWork": false,
+            "Ekz": false,
+            "Zach": false
+        },
+        {
+            "Name": "Интеллектуальный анализ данных",
+            "Semester": "10",
+            "LabCount": 28,
+            "PracticeCount": 0,
+            "LectureCount": 14,
+            "CourseWork": false,
+            "Ekz": true,
+            "Zach": false
+        },
+        {
+            "Name": "Моделирование",
+            "Semester": "10",
+            "LabCount": 28,
+            "PracticeCount": 0,
+            "LectureCount": 14,
+            "CourseWork": true,
+            "Ekz": true,
+            "Zach": false
+        },
+        {
+            "Name": "Теория принятия решений",
+            "Semester": "10",
+            "LabCount": 14,
+            "PracticeCount": 0,
+            "LectureCount": 14,
+            "CourseWork": false,
+            "Ekz": true,
+            "Zach": false
+        },
+        {
+            "Name": "Теория мягких вычислений",
+            "Semester": "10",
+            "LabCount": 14,
+            "PracticeCount": 0,
+            "LectureCount": 14,
+            "CourseWork": false,
+            "Ekz": true,
+            "Zach": false
+        },
+        {
+            "Name": "Интеллектуальные информационные системы",
+            "Semester": "10",
+            "LabCount": 28,
+            "PracticeCount": 0,
+            "LectureCount": 14,
+            "CourseWork": false,
+            "Ekz": false,
+            "Zach": true
+        },
+        {
+            "Name": "Новые технологии в разработке программных систем",
+            "Semester": "10",
+            "LabCount": 28,
+            "PracticeCount": 0,
+            "LectureCount": 14,
+            "CourseWork": true,
+            "Ekz": true,
+            "Zach": false
+        },
+        {
+            "Name": "Производственная практика (НИР)",
+            "Semester": "10",
+            "LabCount": 0,
+            "PracticeCount": 0,
+            "LectureCount": 0,
+            "CourseWork": false,
+            "Ekz": false,
+            "Zach": false
+        },
+        {
+            "Name": "Научно-практический семинар",
+            "Semester": "11",
+            "LabCount": 26,
+            "PracticeCount": 0,
+            "LectureCount": 13,
+            "CourseWork": false,
+            "Ekz": false,
+            "Zach": true
+        },
+        {
+            "Name": "Интеллектуальный анализ текстов",
+            "Semester": "11",
+            "LabCount": 26,
+            "PracticeCount": 0,
+            "LectureCount": 26,
+            "CourseWork": true,
+            "Ekz": true,
+            "Zach": false
+        },
+        {
+            "Name": "Искусственные нейронные сети",
+            "Semester": "11",
+            "LabCount": 26,
+            "PracticeCount": 0,
+            "LectureCount": 13,
+            "CourseWork": true,
+            "Ekz": true,
+            "Zach": false
+        },
+        {
+            "Name": "Параллельные вычисления на кластерах и многоядерных компьютерах",
+            "Semester": "11",
+            "LabCount": 39,
+            "PracticeCount": 0,
+            "LectureCount": 26,
+            "CourseWork": false,
+            "Ekz": true,
+            "Zach": false
+        },
+        {
+            "Name": "Параллельные вычисления в интеллектуальных системах",
+            "Semester": "11",
+            "LabCount": 39,
+            "PracticeCount": 0,
+            "LectureCount": 26,
+            "CourseWork": false,
+            "Ekz": true,
+            "Zach": false
+        },
+        {
+            "Name": "Вычислительный эксперимент",
+            "Semester": "11",
+            "LabCount": 39,
+            "PracticeCount": 0,
+            "LectureCount": 13,
+            "CourseWork": false,
+            "Ekz": true,
+            "Zach": false
+        },
+        {
+            "Name": "Производственная практика (НИР)",
+            "Semester": "11",
+            "LabCount": 0,
+            "PracticeCount": 0,
+            "LectureCount": 0,
+            "CourseWork": false,
+            "Ekz": false,
+            "Zach": false
+        },
+        {
+            "Name": "Интеллектуальный анализ текстов",
+            "Semester": "12",
+            "LabCount": 20,
+            "PracticeCount": 0,
+            "LectureCount": 20,
+            "CourseWork": false,
+            "Ekz": true,
+            "Zach": false
+        },
+        {
+            "Name": "Искусственные нейронные сети",
+            "Semester": "12",
+            "LabCount": 20,
+            "PracticeCount": 0,
+            "LectureCount": 20,
+            "CourseWork": false,
+            "Ekz": true,
+            "Zach": false
+        },
+        {
+            "Name": "Методология программной инженерии",
+            "Semester": "12",
+            "LabCount": 20,
+            "PracticeCount": 0,
+            "LectureCount": 10,
+            "CourseWork": false,
+            "Ekz": false,
+            "Zach": true
+        },
+        {
+            "Name": "Параллельные вычисления на кластерах и многоядерных компьютерах",
+            "Semester": "12",
+            "LabCount": 20,
+            "PracticeCount": 0,
+            "LectureCount": 20,
+            "CourseWork": false,
+            "Ekz": true,
+            "Zach": false
+        },
+        {
+            "Name": "Параллельные вычисления в интеллектуальных системах",
+            "Semester": "12",
+            "LabCount": 20,
+            "PracticeCount": 0,
+            "LectureCount": 20,
+            "CourseWork": false,
+            "Ekz": true,
+            "Zach": false
+        },
+        {
+            "Name": "Вычислительный эксперимент",
+            "Semester": "12",
+            "LabCount": 20,
+            "PracticeCount": 0,
+            "LectureCount": 10,
+            "CourseWork": true,
+            "Ekz": false,
+            "Zach": true
+        },
+        {
+            "Name": "Производственная практика, проектная",
+            "Semester": "12",
+            "LabCount": 0,
+            "PracticeCount": 0,
+            "LectureCount": 0,
+            "CourseWork": false,
+            "Ekz": false,
+            "Zach": false
+        },
+        {
+            "Name": "Преддипломная практика",
+            "Semester": "12",
+            "LabCount": 0,
+            "PracticeCount": 0,
+            "LectureCount": 0,
+            "CourseWork": false,
+            "Ekz": false,
+            "Zach": false
+        },
+        {
+            "Name": "Подготовка к сдаче и сдача государственного экзамена",
+            "Semester": "12",
+            "LabCount": 0,
+            "PracticeCount": 0,
+            "LectureCount": 0,
+            "CourseWork": false,
+            "Ekz": false,
+            "Zach": false
+        },
+        {
+            "Name": "Выполнение и защита выпускной квалификационной работы",
+            "Semester": "12",
+            "LabCount": 0,
+            "PracticeCount": 0,
+            "LectureCount": 0,
+            "CourseWork": false,
+            "Ekz": false,
+            "Zach": false
+        }
+    ]

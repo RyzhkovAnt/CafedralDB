@@ -13,12 +13,11 @@ namespace CafedralDB.SourceCode.Model.Entities
         public bool CourseWork { get;  set; }
         public bool Ekz { get;  set; }
         public bool Zach { get;  set; }
-        public bool IsPractice { get;  set; }
         public CurriculumDiscipline()
         {
 
         }
-        public CurriculumDiscipline(string _name, string _semester, int _lectureCount, int _labCount, int _practiceCount = 0, bool _courseWork = false, bool _ekz = false, bool _zach = false, bool _isPractice = false)
+        public CurriculumDiscipline(string _name, string _semester, int _lectureCount, int _labCount, int _practiceCount = 0, bool _courseWork = false, bool _ekz = false, bool _zach = false)
         {
             Name = _name;
             Semester = _semester;
@@ -28,7 +27,6 @@ namespace CafedralDB.SourceCode.Model.Entities
             CourseWork = _courseWork;
             Ekz = _ekz;
             Zach = _zach;
-            IsPractice = _isPractice;
         }
 
         public override bool Equals(object obj)
@@ -789,11 +787,15 @@ namespace CafedralDB.SourceCode.Model.Entities
             ),
         };
 
+        public static void ReadFromJson()
+        {
+            var jsonString = File.ReadAllText("curriculum.json");
+            Curriculums = Newtonsoft.Json.JsonConvert.DeserializeObject<List<CurriculumDiscipline>>(jsonString);
+
+        }
+
         internal static bool checkWorkPlan(CurriculumDiscipline discipline)
         {
-
-            var jsonCurricums = Newtonsoft.Json.JsonConvert.SerializeObject(new { Curriculums });
-            File.WriteAllText("curriculum.json",jsonCurricums);
 
             foreach (var item in Curriculums)
             {

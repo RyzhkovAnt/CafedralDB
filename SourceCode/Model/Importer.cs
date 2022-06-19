@@ -41,10 +41,10 @@ namespace CafedralDB.SourceCode.Model
 				xlWorkSheet = xlWorkBook.Worksheets[1];
 				//var test = Convert.ToString(xlWorkSheet.Cells[100,100].Value2);
 				//MessageBox.Show(test==""?"empty":test==null?"null":test);
+				Entities.Сurriculum.ReadFromJson();
 				while (Convert.ToString(xlWorkSheet.Cells[counter, 8].Value2) != null)
 				{
 					string group = Convert.ToString(xlWorkSheet.Cells[counter, importSettings.GroupColumn].Value2);
-
 					int groupCount = Convert.ToInt32(Convert.ToString(xlWorkSheet.Cells[counter, importSettings.GroupCountColumn].Value2));
 					int studentCount = Convert.ToInt32(Convert.ToString(xlWorkSheet.Cells[counter, importSettings.StudentCountColumn].Value2));
 
@@ -183,9 +183,9 @@ namespace CafedralDB.SourceCode.Model
 					var workPlanDiscipline = new Entities.CurriculumDiscipline(
 						_name: disciplineName,
 						_semester: semester,
-						_lectureCount: lectures,
-						_labCount: labs,
-						_practiceCount: discipline.PracticeCount,
+						_lectureCount: Calculator.getDefaultLectureCost(lectures,weeks),
+						_labCount: Calculator.getDefaulLabsost(labs,weeks),
+						_practiceCount:Calculator.getDefaultPracticeCost(discipline.PracticeCount,weeks),
 						_courseWork: kr || kp,
 						_ekz: ekz,
 						_zach: zach);
