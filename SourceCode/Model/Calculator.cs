@@ -91,7 +91,7 @@ namespace CafedralDB.SourceCode.Model
             workloadCost.PredDipPracCost = calculationSetting.PreddipPr * group.StudentCount * discipline.PredDipPr;
                 
             workloadCost.GEKCost = discipline.GEK ? calculationSetting.GEK * group.StudentCount * 6 : 0;//GEK
-            workloadCost.GAKCost = discipline.GAK ? calculationSetting.GAK * group.StudentCount * 6 : 0;//GAK
+            workloadCost.GAKCost = discipline.GAK ? calculationSetting.GAK * group.StudentCount * 5 : 0;//GAK
             
             workloadCost.GAKPredCost = discipline.GAKPred ? calculationSetting.GAKPred * group.StudentCount : 0;//GAKPred
             workloadCost.DPRukCost = discipline.DPRuk ? (calculationSetting.DPruk + calculationSetting.DopuskBak + calculationSetting.NormocontrolBak) *

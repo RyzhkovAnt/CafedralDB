@@ -25,7 +25,7 @@ namespace CafedralDB.SourceCode.Settings
         public float PrPr { get; private set; } = 2;
         public float PreddipPr { get; private set; } = 1;
         public float KzZaoch { get; private set; } = 0.25f;
-        public float GEK { get; private set; } = 0.25f;
+        public float GEK { get; private set; } = 0.5f;
         public float GAK { get; private set; } = 0.5f;
         public float GAKPred { get; private set; } = 0.25f;
         public float DPruk { get; private set; } = 14;
