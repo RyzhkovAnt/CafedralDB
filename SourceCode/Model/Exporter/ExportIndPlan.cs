@@ -123,11 +123,12 @@ namespace CafedralDB.SourceCode.Model.Exporter
                     int entry = DataManager.SharedDataManager().GetStudyYear(Convert.ToInt32(reader[3])).Year;
                     int cource = Convert.ToInt32(year) - entry + 1;
                     var workload = DataManager.SharedDataManager().GetWorkload(Convert.ToInt32(reader[21]));
+                    var group= DataManager.SharedDataManager().GetGroup(workload.Group);
 
                     var discipline = DataManager.SharedDataManager().GetDiscipline(workload.Discipline);
-
                     string descr = string.Format("{0},{1},{2} курс", reader[1], reader[2], cource);
-                    DescrSheet.Cells[currentRow, ApplicationSettings.ExportSettings.IndPlanSetting.DisciplineDescrColumn] = discipline.Descr;// descr;
+
+                    DescrSheet.Cells[currentRow, ApplicationSettings.ExportSettings.IndPlanSetting.DisciplineDescrColumn] = descr;// descr;
                     DescrSheet.Cells[currentRow, ApplicationSettings.ExportSettings.IndPlanSetting.StudentsCountColumn] = reader[4];//studentCount
                     int countStud = Convert.ToInt32(reader[4]);
                     WorkloadCost workloadCost = Calculator.GetWorkloadCost(workload.ID);

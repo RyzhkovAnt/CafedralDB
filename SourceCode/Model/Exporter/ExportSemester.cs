@@ -71,7 +71,7 @@ namespace CafedralDB.SourceCode.Model.Exporter
 					var lectureCount = Convert.ToInt32(reader[4]);
 					var workloadId = Convert.ToInt32(reader[5]);
 					var facultyName = reader[6].ToString();
-					var entryYear = Convert.ToInt32(reader[7]);
+					var entryYear = DataManager.SharedDataManager().GetStudyYear( Convert.ToInt32(reader[7])).Year;
 					var qualification = reader[8].ToString();
 					var studyForm = reader[9].ToString();
 					var isContract = true;
