@@ -129,8 +129,9 @@ namespace CafedralDB.SourceCode.Model.Exporter
 
                     //}
                     //TestWorkload(Convert.ToInt32(reader[1]));/*DEBUG*/
-                    ExportNotAssign(workloadCost, group, speciality, faculty, discipline, semester, sheet, rowCounters);
+                    ExportNotAssign(workloadCost, group, speciality, faculty, discipline, semester, sheet, rowCounters,assignsForTeachers.ContainsKey(sheet));
                 }
+
             }
             //object misValue = System.Reflection.Missing.Value;
             //var nameWorkbook = "Workload_";
@@ -148,8 +149,8 @@ namespace CafedralDB.SourceCode.Model.Exporter
         }
 
         private static void ExportNotAssign(WorkloadCost workloadCost,Group group,Speciality speciality,Faculty faculty,Discipline discipline,
-
-            CafedralDB.SourceCode.Model.Semester semester, Excel.Worksheet sheet, Dictionary<Excel.Worksheet, int> rowCounters)
+            
+            Model.Semester semester, Excel.Worksheet sheet, Dictionary<Excel.Worksheet, int> rowCounters,bool isAssign)
         {
             //var workloadId = Convert.ToInt32(reader[1]);
             //var workloadCost = Calculator.GetWorkloadCost(Convert.ToInt32(reader[1]));
@@ -254,7 +255,7 @@ namespace CafedralDB.SourceCode.Model.Exporter
             //ГЕК
             if (workloadCost.GEKCost != 0)
             {
-                sheet.Cells[rowCounters[sheet], 47] = Math.Round(workloadCost.GEKCost, 2);
+                sheet.Cells[rowCounters[sheet], 47] =isAssign? Math.Round(workloadCost.GEKCost / calculationSetting.EkzBoard, 2): Math.Round(workloadCost.GEKCost, 2);
             }
             //гос Экзамен
             if (workloadCost.GosEkz != 0)
@@ -265,7 +266,7 @@ namespace CafedralDB.SourceCode.Model.Exporter
             //ГАК
             if (workloadCost.GAKCost != 0)
             {
-                sheet.Cells[rowCounters[sheet], 48] = Math.Round(workloadCost.GAKCost, 2);
+                sheet.Cells[rowCounters[sheet], 48] =isAssign? Math.Round(workloadCost.GAKCost/calculationSetting.EkzBoard, 2): Math.Round(workloadCost.GAKCost, 2);
             }
             //ГAКпред
             if (workloadCost.GAKPredCost != 0)

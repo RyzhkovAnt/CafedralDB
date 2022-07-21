@@ -28,13 +28,27 @@ namespace CafedralDB.SourceCode.Model.Exporter
             //Книга.
             ObjWorkBook = ObjExcel.Workbooks.Add(path);//System.Reflection.Missing.Value);
                                                        //Таблица.
+
+            var workingPosition= teacher.WorkingPositionID != 0 ? DataManager.SharedDataManager().GetWorkingPosition(teacher.WorkingPositionID).Name :"";
+            var academicDegree = DataManager.SharedDataManager().GetAcademicDegree(teacher.AcademicDegreeID);
+            var academicRang = DataManager.SharedDataManager().GetAcademicRank(teacher.AcademicRankID);
+
+            var academicRangName = academicRang.ID != 3 ? academicRang.Name : "";
+            var academicDegreeName = academicDegree.ID != 3 ? academicDegree.Name : "";
             ObjWorkSheet = (Excel.Worksheet)ObjWorkBook.Sheets[1];
             ObjWorkBook.Title = string.Format("Индивидуальный план {0} ({1} / {2})", teacher.Name, year, Convert.ToInt32(year) + 1);
             ObjWorkSheet.Cells[
             ApplicationSettings.ExportSettings.IndPlanSetting.YearsDescriptionRowCell[0],
              ApplicationSettings.ExportSettings.IndPlanSetting.YearsDescriptionRowCell[1]] = string.Format("На  {0} / {1} учебный год", year, Convert.ToInt32(year) + 1);
+            
             ObjWorkSheet.Cells[ApplicationSettings.ExportSettings.IndPlanSetting.TeacherFIORowCell[0],
              ApplicationSettings.ExportSettings.IndPlanSetting.TeacherFIORowCell[1]] = teacher.Name;
+
+            ObjWorkSheet.Cells[ApplicationSettings.ExportSettings.IndPlanSetting.TeacherWorkPosition[0], 
+                ApplicationSettings.ExportSettings.IndPlanSetting.TeacherWorkPosition[1]] = string.Format("{0} {1}", workingPosition, teacher.Rate);//+rang?
+
+            ObjWorkSheet.Cells[ApplicationSettings.ExportSettings.IndPlanSetting.TeacherRang[0],
+                ApplicationSettings.ExportSettings.IndPlanSetting.TeacherRang[1]] = string.Format("{0},{1}", academicDegreeName, academicRangName);
 
             PrintSemester(teacherID, Utilities.SemesterName.Осенний, year, ObjWorkBook);
             PrintSemester(teacherID, Utilities.SemesterName.Весенний, year, ObjWorkBook);

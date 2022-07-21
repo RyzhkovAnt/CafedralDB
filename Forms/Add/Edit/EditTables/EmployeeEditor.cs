@@ -28,5 +28,10 @@ namespace CafedralDB.Forms.Add.Edit.EditTables
 		{
 			this.employeeTableAdapter.Update(this.mainDBDataSet.Employee);
 		}
-	}
+
+        private void employeeBindingSource_CurrentChanged(object sender, EventArgs e)
+        {
+
+        }
+    }
 }

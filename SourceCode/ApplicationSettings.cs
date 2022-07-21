@@ -808,6 +808,8 @@ namespace ApplicationSettings
             public static int DisciplinesStartRow = 5;
             public static int[] YearsDescriptionRowCell = { 26, 6 };
             public static int[] TeacherFIORowCell = { 29, 8 };
+            public static int[] TeacherWorkPosition = { 31, 9 };
+            public static int[] TeacherRang = { 33, 8 };
             public static int DisciplineNameColumn = 3;
             public static int DisciplineDescrColumn = 4;
             public static int StudentsCountColumn = 5;
